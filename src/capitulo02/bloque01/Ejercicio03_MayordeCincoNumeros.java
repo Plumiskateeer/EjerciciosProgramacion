@@ -12,6 +12,7 @@ public class Ejercicio03_MayordeCincoNumeros {
 			String str = JOptionPane.showInputDialog("Introduzca un número entero: ");
 			numeros[i] = Integer.parseInt(str);
 		}
+		
 		int mayor = 0;
 		for(int i = 0; i<numeros.length; i++) {
 			if(numeros[i]>mayor) mayor = numeros[i];
