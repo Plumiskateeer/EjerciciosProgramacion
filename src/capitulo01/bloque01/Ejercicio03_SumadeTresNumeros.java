@@ -6,16 +6,23 @@ public class Ejercicio03_SumadeTresNumeros {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int [] numeros = new int[3];
+		int n1 = 0;
+		int n2 = 0;
+		int n3 = 0;
 		int suma = 0;
 		
-		for(int i = 0; i<3; i++) {
+		
 			String str = JOptionPane.showInputDialog("Introduzca un número entero: ");
-			numeros[i] = Integer.parseInt(str);
-		}
-		for(int i = 0; i<3; i++) {
-			suma += numeros[i];
-		}
+			n1 = Integer.parseInt(str);
+			
+			str = JOptionPane.showInputDialog("Introduzca un número entero: ");
+			n2 = Integer.parseInt(str);
+			
+			str = JOptionPane.showInputDialog("Introduzca un número entero: ");
+			n3 = Integer.parseInt(str);
+			
+		
+		suma = n1 + n2 + n3;
 		
 		System.out.println("La suma de los tres numeros es: " + suma);
 
