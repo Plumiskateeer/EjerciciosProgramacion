@@ -24,7 +24,7 @@ public class Ejercicio03_SumadeTresNumeros {
 		
 		suma = n1 + n2 + n3;
 		
-		System.out.println("La suma de los tres numeros es: " + suma);
+		System.out.println("La suma de los tres numeros es : " + suma);
 
 	}
 
