@@ -12,14 +12,14 @@ public class Ejercicio03_SumadeTresNumeros {
 		int suma = 0;
 		
 		
-			String str = JOptionPane.showInputDialog("Introduzca un número entero: ");
-			n1 = Integer.parseInt(str);
+		String str = JOptionPane.showInputDialog("Introduzca un número entero: ");
+		n1 = Integer.parseInt(str);
 			
-			str = JOptionPane.showInputDialog("Introduzca un número entero: ");
-			n2 = Integer.parseInt(str);
+		str = JOptionPane.showInputDialog("Introduzca un número entero: ");
+		n2 = Integer.parseInt(str);
 			
-			str = JOptionPane.showInputDialog("Introduzca un número entero: ");
-			n3 = Integer.parseInt(str);
+		str = JOptionPane.showInputDialog("Introduzca un número entero: ");
+		n3 = Integer.parseInt(str);
 			
 		
 		suma = n1 + n2 + n3;
