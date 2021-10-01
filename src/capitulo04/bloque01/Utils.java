@@ -61,7 +61,7 @@ public class Utils {
         int n1 = pedirInt();
         int n2 = pedirInt();
         int num = pedirInt();
-        System.out.println("Los + "+ num +" siguientes numeros de fibonacci son: ");
+        System.out.println("Los "+ num +" siguientes numeros de fibonacci son: ");
         fibonacciN(n1,n2,num);
     }
 
@@ -81,8 +81,6 @@ public class Utils {
     // POR AQUI
 
     public static String ej8_InttoString(int n){
-
-
 
 
         return null;
