@@ -18,11 +18,11 @@ public class Ejercicio01_SumarCinco {
 		int neg = 0;
 		int baj = 0;
 		int med = 0;
-		int gra = 0; 
+		int gra = 0;
 		
 		for(int i = 0; i<5; i++) {
 			if(numeros[i]<0) neg+=numeros[i];
-			else if(numeros[i]<26) baj+=numeros[i];
+			else if(numeros[i]<26) baj+=numeros[i]; // grande +=var;
 			else if(numeros[i]<251) med+=numeros[i];
 			else gra+=numeros[i];
 		}

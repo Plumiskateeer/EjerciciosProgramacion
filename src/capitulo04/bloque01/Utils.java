@@ -16,7 +16,12 @@ public class Utils {
 
         //System.out.println("Numero impar entre 11 y 23: " + ej6_ImparEntre11y23());
 
-        ej7_100recursivo(1);
+        //ej7_100recursivo(1);
+
+        System.out.println("Introduce un numero para convertirlo a string: ");
+        int n = sc.nextInt();
+
+        System.out.println(ej8_InttoString(n));
     }
     public static int pedirInt(){
         Scanner sc = new Scanner(System.in);
@@ -74,6 +79,14 @@ public class Utils {
         }else return n;
     }
     // POR AQUI
+
+    public static String ej8_InttoString(int n){
+
+
+
+
+        return null;
+    }
 
     public static int fibonacciOriginal(int n){
         if(n == 1){
