@@ -1,5 +1,6 @@
 package capitulo02.bloque03;
 
+import javax.swing.*;
 import java.net.StandardSocketOptions;
 import java.util.Scanner;
 
@@ -18,19 +19,10 @@ public class Ejercicio02_Calculadora {
             op = sc.nextInt();
 
 
-            switch (op){
-                case 1: {
-                    System.out.println("El modulo de la division es " + modDiv());
-                    break;
-                }
-                case 2: {
-                    System.out.println("El resultado de la raiz es: " + raiz());
-                    break;
-                }case 3: {
-                    System.out.println("El resultado de la potencia es: " + potencia());
-                    break;
-                }
-
+            switch (op) {
+                case 1 -> System.out.println("El modulo de la division es " + modDiv());
+                case 2 -> System.out.println("El resultado de la raiz es: " + raiz());
+                case 3 -> System.out.println("El resultado de la potencia es: " + potencia());
             }
         }while(op!=0);
     }
@@ -64,3 +56,16 @@ public class Ejercicio02_Calculadora {
         return Math.pow(b,ex);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

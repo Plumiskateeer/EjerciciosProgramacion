@@ -8,34 +8,32 @@ public class Ejercicio02_EjAnteriorRestricciones {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		
-		int [] numeros = new int[5]; 
+		int [] numeros = new int[5];
 		
-		boolean hayCero = false;
+		boolean hayNegativo = false;
 		
-		for(int i = 0; i<5 && !hayCero; i++) {
+		for(int i = 0; i<numeros.length && !hayNegativo; i++) {
 			System.out.println("Introduce un numero");
 			int v = sc.nextInt();
-				if(v != 0)
+				if(v > 0)
 					numeros[i] = v;
-				else hayCero = true;
+				else hayNegativo = true;
 		}
-		if(!hayCero) {
-		int neg = 0;
+		if(!hayNegativo) {
 		int baj = 0;
 		int med = 0;
 		int gra = 0; 
 		
 		for(int i = 0; i<5; i++) {
-			if(numeros[i]<0) neg+=numeros[i];
-				else if(numeros[i]<26) baj+=numeros[i];
-					else if(numeros[i]<251) med+=numeros[i];
-						else gra+=numeros[i];
+			if(numeros[i]<26) baj+=numeros[i];
+				else if(numeros[i]<251) med+=numeros[i];
+					else gra+=numeros[i];
 		}
-		
-		System.out.println("Suma numeros negativos: " + neg);
 		System.out.println("Suma numeros bajos: " + baj);
 		System.out.println("Suma numeros medios: " + med);
 		System.out.println("Suma numeros grandes: " + gra);
+		}else{
+			System.out.println("Error, numero negativo");
 		}
 	}
 

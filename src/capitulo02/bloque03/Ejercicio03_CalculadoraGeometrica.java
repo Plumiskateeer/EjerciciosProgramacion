@@ -24,15 +24,15 @@ public class Ejercicio03_CalculadoraGeometrica {
             if(op>-1 && op<6) {
 
                 switch (op) {
-                    case 1 -> System.out.println("La hipotenusa es " + hipTriangulo());
+                    case 1 -> System.out.println("La hipotenusa es " + hipTriangulo() + "\n");
 
-                    case 2 -> System.out.println("La superficie de la cincurferencia es: " + supCircunferencia());
+                    case 2 -> System.out.println("La superficie de la cincurferencia es: " + supCircunferencia() + "\n");
 
-                    case 3 -> System.out.println("El perimetro de la circunferencia es: " + perimCircunferencia());
+                    case 3 -> System.out.println("El perimetro de la circunferencia es: " + perimCircunferencia() + "\n");
 
-                    case 4 -> System.out.println("El area del rectangulo es: " + areaRect());
+                    case 4 -> System.out.println("El area del rectangulo es: " + areaRect() + "\n");
 
-                    case 5 -> System.out.println("El area del triangulo es: " + areaTriang());
+                    case 5 -> System.out.println("El area del triangulo es: " + areaTriang() + "\n");
                 }
             }else{
                 System.out.println("\nOpcion incorrecta\n");

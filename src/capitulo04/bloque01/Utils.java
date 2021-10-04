@@ -22,6 +22,10 @@ public class Utils {
         int n = sc.nextInt();
 
         System.out.println(ej8_InttoString(n));
+
+        ej9_enOrden(5,4,3);
+        ej9_enOrden(3,2,6);
+        ej9_enOrden(4,6,2);
     }
     public static int pedirInt(){
         Scanner sc = new Scanner(System.in);
@@ -82,10 +86,34 @@ public class Utils {
 
     public static String ej8_InttoString(int n){
 
-
-        return null;
+        return switch (n) {
+            case 1 -> "uno";
+            case 2 -> "dos";
+            case 3 -> "tres";
+            case 4 -> "cuatro";
+            case 5 -> "cinco";
+            case 6 -> "seis";
+            case 7 -> "siete";
+            case 8 -> "ocho";
+            case 9 -> "nueve";
+            case 10 -> "diez";
+            default -> throw new IllegalStateException("Unexpected value: " + n);
+        };
     }
 
+    public static void ej9_enOrden(int n, int n2, int n3){
+        if((n-n2) >= 0 && (n-n3) >= 0) {
+            System.out.println(n + " ");
+            ej9_auxOrdena2(n2,n3);
+        }
+            else if((n2-n) >= 0 && (n2-n) >= 0)
+                System.out.println(n2 + " ");
+                else System.out.println( n3 + " ");
+    }
+    public static void ej9_auxOrdena2(int n, int n1){
+        if(n<n1) System.out.print(n1 + " " + n1 + "\n");
+            else System.out.print(n + " " + n1 +  "\n");
+    }
     public static int fibonacciOriginal(int n){
         if(n == 1){
             return 1;
