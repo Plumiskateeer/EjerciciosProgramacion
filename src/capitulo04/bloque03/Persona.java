@@ -2,7 +2,23 @@ package capitulo04.bloque03;
 
 public class Persona {
     private String nombre, apellido, direccion;
-    private int DNI, telefono;
+    private int dni, telefono;
+
+    public Persona(){
+        nombre = null;
+        apellido = null;
+        direccion = null;
+        dni = 00000000;
+        telefono = 000000000;
+    }
+
+    public Persona(String nombre, String apellido, String direccion, int dni, int telefono){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.dni = dni;
+        this.telefono = telefono;
+    }
 
     public String getNombre() {
         return nombre;
@@ -29,11 +45,11 @@ public class Persona {
     }
 
     public int getDNI() {
-        return DNI;
+        return dni;
     }
 
     public void setDNI(int DNI) {
-        this.DNI = DNI;
+        this.dni = DNI;
     }
 
     public int getTelefono() {
@@ -42,5 +58,12 @@ public class Persona {
 
     public void setTelefono(int telefono) {
         this.telefono = telefono;
+    }
+
+    public String toString(){
+        return ("Nombre: " + this.nombre + " " + this.apellido + "\n" +
+                "Direccion: " + this.direccion + "\n" +
+                "DNI: " + this.dni + "\n" +
+                "Telefono: " + this.telefono);
     }
 }
