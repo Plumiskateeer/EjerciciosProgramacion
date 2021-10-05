@@ -3,7 +3,7 @@ package capitulo04.bloque02;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Ejercicio2_TirarMonedaalAire {
+public class Ejercicio02_TirarMonedaalAire {
     public static void main(String[]args){
 
         Scanner sc = new Scanner(System.in);
