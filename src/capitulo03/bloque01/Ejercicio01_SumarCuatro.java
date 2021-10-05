@@ -16,7 +16,5 @@ public class Ejercicio01_SumarCuatro {
         }
 
         System.out.println("El resultado de sumar los numeros mayores de 10 es: " + suma);
-
-
     }
 }
