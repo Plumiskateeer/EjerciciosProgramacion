@@ -1,5 +1,7 @@
 package capitulo04.bloque03;
 
+import capitulo04.bloque03.banco.Persona;
+
 public class Ejercicio03_PruebaPersona {
     public static void main(String[]args){
         Persona p1 = new Persona();

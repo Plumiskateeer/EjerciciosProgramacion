@@ -1,4 +1,4 @@
-package capitulo04.bloque03;
+package capitulo04.bloque03.banco;
 
 public class Persona {
     private String nombre, apellido, direccion;
@@ -8,8 +8,8 @@ public class Persona {
         nombre = null;
         apellido = null;
         direccion = null;
-        dni = 00000000;
-        telefono = 000000000;
+        dni = 0;
+        telefono = 0;
     }
 
     public Persona(String nombre, String apellido, String direccion, int dni, int telefono){
