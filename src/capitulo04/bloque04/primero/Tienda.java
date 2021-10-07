@@ -1,0 +1,57 @@
+package capitulo04.bloque04.primero;
+
+import javax.swing.*;
+import java.util.ArrayList;
+
+public class Tienda {
+    private ArrayList<Producto> articulos;
+    private ArrayList<Cliente> clientes;
+
+    public Tienda(){
+        articulos = new ArrayList<>();
+        clientes = new ArrayList<>();
+    }
+
+    public void anadirCliente(){
+        String nombre = JOptionPane.showInputDialog("Introduce el nombre del cliente: ");
+        Cliente cl = new Cliente(nombre,clientes.size()+1);
+        clientes.add(cl);
+    }
+
+    public void anadirArticulo(){
+        Producto pr;
+        String tipo = JOptionPane.showInputDialog("¿El producto es perecedero? (si o no)");
+        int codigo = Integer.parseInt(JOptionPane.showInputDialog("Introduce el codigo del producto: "));
+        int precio = Integer.parseInt(JOptionPane.showInputDialog("Introduce el precio del producto: "));
+        String nombre = JOptionPane.showInputDialog("Introduce el nombre del producto: ");
+        if(tipo.equals("si")) pr = new Perecedero(codigo,precio,nombre,articulos.size()+1); // aqui me dicen que es perecedero
+            else pr = new Producto(codigo,precio,nombre,articulos.size()+1);
+
+        articulos.add(pr);
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("------CLIENTES-------\n");
+        for(Cliente c : clientes){
+            sb.append(c.toString());
+        }
+        sb.append("------PRODUCTOS------\n");
+        for(Producto p : articulos){
+            sb.append(p.toString());
+        }
+
+        return sb.toString();
+    }
+
+    public static void main(String[]args){
+        Tienda tienda = new Tienda();
+        for(int i = 0; i<4; i++) {
+            JOptionPane.showConfirmDialog(null,"Producto numero " + i, "TIENDA",2);
+            tienda.anadirArticulo();
+            tienda.anadirCliente();
+        }
+        System.out.println(tienda);
+    }
+}
