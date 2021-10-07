@@ -5,32 +5,38 @@ import java.util.Scanner;
 public class Plato {
     private String eleccion;
     private int orden;
-    private int precioPrimero, precioSegundo, precioTercero;
+    private int precio;
+    private int nPlato;
 
     public Plato(int orden){
         Scanner sc = new Scanner(System.in);
         this.orden = orden;
+        this.precio = 0;
+
         switch (orden){
             case 1 -> {
                 System.out.println("Elige el primer plato: (salmorejo, ensalada o sopa)");
                 eleccion = sc.nextLine();
-                if(eleccion.equals("salmorejo")) precioPrimero = 4;
-                    else if(eleccion.equals("ensalada")) precioPrimero = 6;
-                        else precioPrimero = 5;
+                nPlato = 1;
+                if(eleccion.equals("salmorejo")) precio = 4;
+                    else if(eleccion.equals("ensalada")) precio = 6;
+                        else precio = 5;
             }
             case 2 -> {
                 System.out.println("Elige el segundo plato: (paella, pollo o tortilla)");
                 eleccion = sc.nextLine();
-                if(eleccion.equals("paella")) precioSegundo = 6;
-                    else if(eleccion.equals("pollo")) precioSegundo = 8;
-                        else precioSegundo = 5;
+                nPlato = 2;
+                if(eleccion.equals("paella")) precio = 6;
+                    else if(eleccion.equals("pollo")) precio = 8;
+                        else precio = 5;
             }
             case 3-> {
                 System.out.println("Elige el tercer plato: (helado, tarta o tiramisu)");
                 eleccion = sc.nextLine();
-                if(eleccion.equals("helado")) precioTercero = 3;
-                    else if(eleccion.equals("tarta")) precioTercero = 4;
-                        else precioTercero = 5;
+                nPlato = 3;
+                if(eleccion.equals("helado")) precio = 3;
+                    else if(eleccion.equals("tarta")) precio = 4;
+                        else precio = 5;
             }
             default -> throw new IllegalStateException("Valor inesperado: " + orden);
         }
@@ -48,6 +54,19 @@ public class Plato {
     }
     public void setOrden(int orden) {
         this.orden = orden;
+    }
+    public int getPrecio(){
+        return this.precio;
+    }
+
+    public String toString(){
+        String cadena;
+
+        if(nPlato==1) cadena = "El primer plato es: ";
+            else if(nPlato==2) cadena = "El segundo plato es: ";
+                else cadena = "El tercer plato es: ";
+
+        return (cadena + eleccion + "\n");
     }
 
 }

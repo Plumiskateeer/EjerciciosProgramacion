@@ -12,6 +12,7 @@ public class Menu {
     public Plato getPrimero() {
         return primero;
     }
+
     public void setPrimero(Plato primero) {
         this.primero = primero;
     }
@@ -27,11 +28,18 @@ public class Menu {
     public Plato getTercero() {
         return tercero;
     }
+
     public void setTercero(Plato tercero) {
         this.tercero = tercero;
     }
 
-
-
+    public String toString(){
+        return ("El menu es: " + "\n" +
+                primero.toString() + "\n" +
+                segundo.toString() + "\n" +
+                tercero.toString() + "\n" +
+                "El precio del menu es: " +
+                (primero.getPrecio()+segundo.getPrecio() + tercero.getPrecio()) + "\n\n");
+    }
 
 }
