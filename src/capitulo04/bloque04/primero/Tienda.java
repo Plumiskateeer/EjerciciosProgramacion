@@ -48,7 +48,7 @@ public class Tienda {
     public static void main(String[]args){
         Tienda tienda = new Tienda();
         for(int i = 0; i<4; i++) {
-            JOptionPane.showConfirmDialog(null,"Producto numero " + i, "TIENDA",2);
+            JOptionPane.showConfirmDialog(null,"Producto numero " + (i+1), "TIENDA",2);
             tienda.anadirArticulo();
             tienda.anadirCliente();
         }

@@ -2,7 +2,6 @@ package capitulo04.bloque04.primero;
 
 public class Perecedero extends Producto{
     String dia, mes, anyo;
-    int id;
 
     public Perecedero(int codigo, int precio, String nombre, int id){
         super(codigo,precio,nombre,id);
@@ -33,6 +32,14 @@ public class Perecedero extends Producto{
 
     public void setAnyo(String anyo) {
         this.anyo = anyo;
+    }
+
+    public String toString(){
+        return ("Producto: " + super.getId() + "\n" +
+                "Codigo: " + super.getNombre() + "\n" +
+                "Nombre: " + super.getNombre() + "\n" +
+                "Precio: " + super.getPrecio() + "\n" +
+                "Fecha perecedero: (" + this.dia + "/" + this.mes + "/" + this.anyo + ")" + "\n\n");
     }
 
 }
