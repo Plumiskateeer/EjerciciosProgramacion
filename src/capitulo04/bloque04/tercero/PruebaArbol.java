@@ -18,6 +18,7 @@ public class PruebaArbol {
         Hoja j4 = new Hoja("verde");
         Hoja j5 = new Hoja("morado");
 
+        // AQUI FALTA HACER MAS ARBOLES PARA INTRODUCIRLOS Y QUE AL IMPRIMIRLOS SE VEA MEJOR
         izq = new Arbol();
         der = new Arbol();
         der = new Arbol(izq,j1,f1,der);
@@ -25,13 +26,19 @@ public class PruebaArbol {
         raiz = new Arbol(izq,j1,f1,der);
 
 
-        recorrerArbol()
+        recorrerArbol(raiz);
     }
 
-    public void recorrerArbol(Arbol arb){
+    public static void recorrerArbol(Arbol arb){
         if(arb.getIzq()==null && arb.getDer()==null){
+            System.out.println("Fin del arbol");
+        }else if(arb.getDer()==null) {
             System.out.println(arb);
-        }else if(arb.getDer()==null) recorrerArbol(arb.getIzq());
-            else recorrerArbol(arb.getDer());
+            recorrerArbol(arb.getIzq());
+        }
+            else {
+                System.out.println(arb);
+                recorrerArbol(arb.getDer());
+        }
     }
 }
