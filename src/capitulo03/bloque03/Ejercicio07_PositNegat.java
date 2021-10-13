@@ -3,7 +3,7 @@ package capitulo03.bloque03;
 import java.util.Scanner;
 
 public class Ejercicio07_PositNegat {
-    public static void main(String[]args){
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         int valor;
@@ -13,11 +13,11 @@ public class Ejercicio07_PositNegat {
         do {
             System.out.println("Introduce un numero: ");
             valor = sc.nextInt();
-            if(valor!=0) {
+            if (valor != 0) {
                 if (valor < 0) neg++;
                 else pos++;
             }
-        }while(valor!=0);
+        } while (valor != 0);
 
         System.out.println("Se han introducido " + neg + " numeros negativos y " + pos + " numeros positivos");
     }

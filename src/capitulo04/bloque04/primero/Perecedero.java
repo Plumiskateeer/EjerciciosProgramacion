@@ -1,10 +1,10 @@
 package capitulo04.bloque04.primero;
 
-public class Perecedero extends Producto{
+public class Perecedero extends Producto {
     String dia, mes, anyo;
 
-    public Perecedero(int codigo, int precio, String nombre, int id){
-        super(codigo,precio,nombre,id);
+    public Perecedero(int codigo, int precio, String nombre, int id) {
+        super(codigo, precio, nombre, id);
         this.dia = null;
         this.mes = null;
         this.anyo = null;
@@ -34,7 +34,7 @@ public class Perecedero extends Producto{
         this.anyo = anyo;
     }
 
-    public String toString(){
+    public String toString() {
         return ("Producto: " + super.getId() + "\n" +
                 "Codigo: " + super.getNombre() + "\n" +
                 "Nombre: " + super.getNombre() + "\n" +

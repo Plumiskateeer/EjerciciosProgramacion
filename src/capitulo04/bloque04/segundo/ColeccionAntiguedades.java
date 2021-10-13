@@ -1,7 +1,7 @@
 package capitulo04.bloque04.segundo;
 
 public class ColeccionAntiguedades {
-    public static void main(String[]args){
+    public static void main(String[] args) {
 
         Joya j = new Joya();
         CocheAntiguo c = new CocheAntiguo();

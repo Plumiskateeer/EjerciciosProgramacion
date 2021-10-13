@@ -4,7 +4,7 @@ public class Cliente {
     private String nombre;
     private int ID;
 
-    public Cliente(String nombre, int id){
+    public Cliente(String nombre, int id) {
         this.nombre = nombre;
         this.ID = id;
     }
@@ -25,7 +25,7 @@ public class Cliente {
         this.ID = dni;
     }
 
-    public String toString(){
+    public String toString() {
         return ("Cliente: " + this.getID() + "\n" +
                 "Producto que ha comprado: " + this.getID() + "\n" +
                 "Nombre: " + this.getNombre() + "\n\n");

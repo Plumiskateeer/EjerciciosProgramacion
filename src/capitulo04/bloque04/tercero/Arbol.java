@@ -1,15 +1,16 @@
 package capitulo04.bloque04.tercero;
 
 public class Arbol {
-    private Arbol izq,der;
+    private Arbol izq, der;
     private Hoja hoja;
     private Fruto fruto;
 
-    public Arbol(){
+    public Arbol() {
         izq = null;
         der = null;
     }
-    public Arbol(Arbol izq, Hoja hoja, Fruto fruto, Arbol der){
+
+    public Arbol(Arbol izq, Hoja hoja, Fruto fruto, Arbol der) {
         this.izq = izq;
         this.der = der;
         this.hoja = hoja;
@@ -48,7 +49,7 @@ public class Arbol {
         this.fruto = fruto;
     }
 
-    public String toString(){
+    public String toString() {
         return ("Arbol " + this.fruto.toString() + " " + this.hoja.toString() + "\n");
     }
 }

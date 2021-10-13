@@ -4,7 +4,7 @@ public class Semaforo {
     private String estado;
     private String peatones;
 
-    public Semaforo(){
+    public Semaforo() {
         estado = "ROJO";
     }
 
@@ -13,15 +13,15 @@ public class Semaforo {
     }
 
     public void setEstado(String estado) {
-        if(estado.equals("VERDE")) setPeatones("ROJO");
+        if (estado.equals("VERDE")) setPeatones("ROJO");
         this.estado = estado;
     }
 
-    public String getPeatones(){
+    public String getPeatones() {
         return peatones;
     }
 
-    public void setPeatones(String peatones){
+    public void setPeatones(String peatones) {
         this.peatones = peatones;
     }
 }

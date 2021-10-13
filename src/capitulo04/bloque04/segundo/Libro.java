@@ -2,13 +2,14 @@ package capitulo04.bloque04.segundo;
 
 import javax.swing.*;
 
-public class Libro extends Antiguedad{
+public class Libro extends Antiguedad {
     private String titulo, autor;
 
 
     public Libro() {
         super();
     }
+
     public Libro(String nombre, String precio, int anyoFabricacion,
                  int precioVenta, String titulo, String autor) {
         super(nombre, precio, anyoFabricacion, precioVenta);
@@ -31,7 +32,8 @@ public class Libro extends Antiguedad{
     public void setAutor(String autor) {
         this.autor = autor;
     }
-    public void introduceLibro(){
+
+    public void introduceLibro() {
         super.setNombre(JOptionPane.showInputDialog("Introduce el nombre del libro: "));
         super.setAnyoFabricacion(Integer.parseInt(JOptionPane.showInputDialog("Introduce el año de fabricacion: ")));
         super.setPrecioVenta(Integer.parseInt(JOptionPane.showInputDialog("Introduce el precio de venta: ")));
@@ -39,11 +41,11 @@ public class Libro extends Antiguedad{
         this.setTitulo(JOptionPane.showInputDialog("Introduce el titulo del libro: "));
     }
 
-    public String toString(){
+    public String toString() {
         return ("Antiguedad: " + super.getNombre() + "\n" +
                 "Precio de venta: " + super.getPrecioVenta() + "\n" +
                 "Origen: " + super.getAnyoFabricacion() + "\n" +
-                "Titulo libro: " + this.titulo +"\n" +
-                "Autor libro: " + this.autor +"\n\n");
+                "Titulo libro: " + this.titulo + "\n" +
+                "Autor libro: " + this.autor + "\n\n");
     }
 }

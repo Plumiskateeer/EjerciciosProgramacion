@@ -1,7 +1,7 @@
 package capitulo04.bloque03;
 
 public class Ejercicio01_PruebaSemaforo {
-    public static void main(String[]args){
+    public static void main(String[] args) {
 
         Semaforo s1 = new Semaforo();
         Semaforo s2 = new Semaforo();

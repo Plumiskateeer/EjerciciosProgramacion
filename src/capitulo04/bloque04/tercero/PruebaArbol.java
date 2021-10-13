@@ -1,9 +1,7 @@
 package capitulo04.bloque04.tercero;
 
-import java.util.ArrayList;
-
 public class PruebaArbol {
-    public static void main(String[]args){
+    public static void main(String[] args) {
         Arbol raiz, izq, der, izqfinal, derfinal;
         Fruto f1 = new Fruto("naranja");
         Fruto f2 = new Fruto("piña");
@@ -21,24 +19,23 @@ public class PruebaArbol {
         // AQUI FALTA HACER MAS ARBOLES PARA INTRODUCIRLOS Y QUE AL IMPRIMIRLOS SE VEA MEJOR
         izq = new Arbol();
         der = new Arbol();
-        der = new Arbol(izq,j1,f1,der);
-        izq  = new Arbol(izq,j1,f1,der);
-        raiz = new Arbol(izq,j1,f1,der);
+        der = new Arbol(izq, j1, f1, der);
+        izq = new Arbol(izq, j1, f1, der);
+        raiz = new Arbol(izq, j1, f1, der);
 
 
         recorrerArbol(raiz);
     }
 
-    public static void recorrerArbol(Arbol arb){
-        if(arb.getIzq()==null && arb.getDer()==null){
+    public static void recorrerArbol(Arbol arb) {
+        if (arb.getIzq() == null && arb.getDer() == null) {
             System.out.println("Fin del arbol");
-        }else if(arb.getDer()==null) {
+        } else if (arb.getDer() == null) {
             System.out.println(arb);
             recorrerArbol(arb.getIzq());
-        }
-            else {
-                System.out.println(arb);
-                recorrerArbol(arb.getDer());
+        } else {
+            System.out.println(arb);
+            recorrerArbol(arb.getDer());
         }
     }
 }

@@ -4,7 +4,7 @@ public class Persona {
     private String nombre, apellido, direccion;
     private int dni, telefono;
 
-    public Persona(){
+    public Persona() {
         nombre = null;
         apellido = null;
         direccion = null;
@@ -12,7 +12,7 @@ public class Persona {
         telefono = 0;
     }
 
-    public Persona(String nombre, String apellido, String direccion, int dni, int telefono){
+    public Persona(String nombre, String apellido, String direccion, int dni, int telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
@@ -60,7 +60,7 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    public String toString(){
+    public String toString() {
         return ("Nombre: " + this.nombre + " " + this.apellido + "\n" +
                 "Direccion: " + this.direccion + "\n" +
                 "DNI: " + this.dni + "\n" +

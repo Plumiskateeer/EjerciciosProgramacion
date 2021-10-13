@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Ejercicio05_LosChinos {
-    public static void main(String[]args){
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
@@ -22,18 +22,18 @@ public class Ejercicio05_LosChinos {
             if (prediccion == chinospc) {
                 System.out.println("Felicidades, has acertado. Has ganado un punto.");
                 aciertos++;
-                }else if(propios == chinospc){
-                    System.out.println("El ordenador ha acertado. Has perdido un punto.");
-                    aciertos--;
-                    }else System.out.println("Nadie ha ganado ni perdido.");
+            } else if (propios == chinospc) {
+                System.out.println("El ordenador ha acertado. Has perdido un punto.");
+                aciertos--;
+            } else System.out.println("Nadie ha ganado ni perdido.");
 
-        }while(propios!=0);
+        } while (propios != 0);
 
         System.out.println("Tienes " + aciertos + " puntos.");
     }
 
-    public static int devolverNumChinos(){
+    public static int devolverNumChinos() {
         Random rnd = new Random();
-        return rnd.nextInt(11)+1;
+        return rnd.nextInt(11) + 1;
     }
 }

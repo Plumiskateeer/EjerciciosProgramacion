@@ -6,7 +6,9 @@ public class Antiguedad {
     private String nombre;
     private int anyoFabricacion, precioVenta;
 
-    public Antiguedad(){}
+    public Antiguedad() {
+    }
+
     public Antiguedad(String nombre, String precio, int anyoFabricacion, int precioVenta) {
         this.nombre = nombre;
         this.anyoFabricacion = anyoFabricacion;
@@ -37,13 +39,13 @@ public class Antiguedad {
         this.precioVenta = precioVenta;
     }
 
-    public void introduceAntiguedad(){
+    public void introduceAntiguedad() {
         this.setNombre(JOptionPane.showInputDialog("Introduce el nombre de la antiguedad: "));
         this.setAnyoFabricacion(Integer.parseInt(JOptionPane.showInputDialog("Introduce el año de fabricacion: ")));
         this.setPrecioVenta(Integer.parseInt(JOptionPane.showInputDialog("Introduce el precio de venta: ")));
     }
 
-    public String toString(){
+    public String toString() {
         return ("Antiguedad: " + this.nombre + "\n" +
                 "Precio de venta: " + this.precioVenta + "\n" +
                 "Origen: " + this.anyoFabricacion + "\n\n");

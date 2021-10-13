@@ -33,13 +33,13 @@ public class Menu {
         this.tercero = tercero;
     }
 
-    public String toString(){
+    public String toString() {
         return ("El menu es: " + "\n" +
                 primero.toString() + "\n" +
                 segundo.toString() + "\n" +
                 tercero.toString() + "\n" +
                 "El precio del menu es: " +
-                (primero.getPrecio()+segundo.getPrecio() + tercero.getPrecio()) + "\n\n");
+                (primero.getPrecio() + segundo.getPrecio() + tercero.getPrecio()) + "\n\n");
     }
 
 }

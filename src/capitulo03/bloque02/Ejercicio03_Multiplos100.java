@@ -3,7 +3,7 @@ package capitulo03.bloque02;
 import java.util.Scanner;
 
 public class Ejercicio03_Multiplos100 {
-    public static void main(String[]args){
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         boolean heLlegado = false;
@@ -13,12 +13,12 @@ public class Ejercicio03_Multiplos100 {
         System.out.println("Los multiplos son: ");
 
         int i = 1;
-        while(!heLlegado) {
-            if(n*i < 100)
+        while (!heLlegado) {
+            if (n * i < 100)
                 System.out.print(n * i + "  ");
             else heLlegado = true;
             i++;
         }
-        }
+    }
 
 }

@@ -3,7 +3,7 @@ package capitulo03.bloque02;
 import java.util.Scanner;
 
 public class Ejercicio04_MultiplosUser {
-    public static void main(String[]args){
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         boolean heLlegado = false;
@@ -15,8 +15,8 @@ public class Ejercicio04_MultiplosUser {
         System.out.println("Los multiplos son: ");
 
         int i = 1;
-        while(!heLlegado) {
-            if(n*i < lim)
+        while (!heLlegado) {
+            if (n * i < lim)
                 System.out.print(n * i + "  ");
             else heLlegado = true;
             i++;

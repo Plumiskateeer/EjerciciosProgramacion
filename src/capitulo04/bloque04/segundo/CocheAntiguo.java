@@ -2,13 +2,14 @@ package capitulo04.bloque04.segundo;
 
 import javax.swing.*;
 
-public class CocheAntiguo extends Antiguedad{
+public class CocheAntiguo extends Antiguedad {
     private String marca;
     private String modelo;
 
     public CocheAntiguo() {
         super();
     }
+
     public CocheAntiguo(String nombre, String precio, int anyoFabricacion, int precioVenta,
                         String marca, String modelo) {
         super(nombre, precio, anyoFabricacion, precioVenta);
@@ -32,7 +33,7 @@ public class CocheAntiguo extends Antiguedad{
         this.modelo = modelo;
     }
 
-    public void introduceCoche(){
+    public void introduceCoche() {
         super.setNombre(JOptionPane.showInputDialog("Introduce el nombre del coche: "));
         super.setAnyoFabricacion(Integer.parseInt(JOptionPane.showInputDialog("Introduce el año de fabricacion: ")));
         super.setPrecioVenta(Integer.parseInt(JOptionPane.showInputDialog("Introduce el precio de venta: ")));
@@ -40,12 +41,12 @@ public class CocheAntiguo extends Antiguedad{
         this.setModelo(JOptionPane.showInputDialog("Introduce el modelo del coche: "));
     }
 
-    public String toString(){
+    public String toString() {
         return ("Coche: " + super.getNombre() + "\n" +
                 "Precio de venta: " + super.getPrecioVenta() + "\n" +
                 "Origen: " + super.getAnyoFabricacion() + "\n" +
-                "Marca: " + this.marca +"\n" +
-                "Modelo: " + this.modelo +"\n\n");
+                "Marca: " + this.marca + "\n" +
+                "Modelo: " + this.modelo + "\n\n");
     }
 
 }

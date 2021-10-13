@@ -1,11 +1,9 @@
 package capitulo02.bloque03;
 
-import javax.swing.*;
-import java.net.StandardSocketOptions;
 import java.util.Scanner;
 
 public class Ejercicio02_Calculadora {
-    public static void main(String[]args){
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int op;
         do {
@@ -24,19 +22,20 @@ public class Ejercicio02_Calculadora {
                 case 2 -> System.out.println("El resultado de la raiz es: " + raiz());
                 case 3 -> System.out.println("El resultado de la potencia es: " + potencia());
             }
-        }while(op!=0);
+        } while (op != 0);
     }
 
-    public static int modDiv(){
+    public static int modDiv() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce el dividendo: ");
         int dividendo = sc.nextInt();
         System.out.println("Introduce el divisor: ");
         int divisor = sc.nextInt();
 
-        return dividendo%divisor;
+        return dividendo % divisor;
     }
-    public static double raiz(){
+
+    public static double raiz() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Introduce el numero al que calcular la raiz: ");
@@ -45,7 +44,8 @@ public class Ejercicio02_Calculadora {
         return Math.sqrt(n);
 
     }
-    public static double potencia(){
+
+    public static double potencia() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Introduce la base de la potencia: ");
@@ -53,7 +53,7 @@ public class Ejercicio02_Calculadora {
         System.out.println("Introduce el exponente de la potencia: ");
         int ex = sc.nextInt();
 
-        return Math.pow(b,ex);
+        return Math.pow(b, ex);
     }
 }
 
