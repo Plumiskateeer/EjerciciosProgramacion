@@ -12,7 +12,7 @@ public class Ejercicio02_MediaTres {
         while (n != 0) {
             System.out.println("Introduce un numero: ");
             n = sc.nextInt();
-            if(n!=0) {
+            if (n != 0) {
                 suma += n;
                 cont++;
             }
