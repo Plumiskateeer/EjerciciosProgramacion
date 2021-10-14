@@ -1,4 +1,4 @@
-package capitulo04.bloque04.tercero;
+package capitulo04.bloque04.Ejercicio03_Arbol;
 
 public class Fruto {
     private String nombre;

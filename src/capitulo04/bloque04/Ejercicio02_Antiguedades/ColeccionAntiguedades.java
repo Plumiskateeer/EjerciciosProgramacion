@@ -1,4 +1,4 @@
-package capitulo04.bloque04.segundo;
+package capitulo04.bloque04.Ejercicio02_Antiguedades;
 
 public class ColeccionAntiguedades {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package capitulo04.bloque04.primero;
+package capitulo04.bloque04.Ejercicio01_Tienda;
 
 import javax.swing.*;
 import java.util.ArrayList;
