@@ -24,7 +24,9 @@ public class Ejercicio02_Calculadora {
             }
         } while (op != 0);
     }
-
+    /*
+    Calculo del modulo de la division
+    */
     public static int modDiv() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce el dividendo: ");
@@ -35,6 +37,9 @@ public class Ejercicio02_Calculadora {
         return dividendo % divisor;
     }
 
+    /*
+    Calculo de la raiz
+     */
     public static double raiz() {
         Scanner sc = new Scanner(System.in);
 
@@ -44,7 +49,9 @@ public class Ejercicio02_Calculadora {
         return Math.sqrt(n);
 
     }
-
+    /*
+    Calculo de la potencia
+     */
     public static double potencia() {
         Scanner sc = new Scanner(System.in);
 

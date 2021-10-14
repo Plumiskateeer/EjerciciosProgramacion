@@ -30,6 +30,10 @@ public class Ejercicio02_TirarMonedaalAire {
 
     }
 
+    /**
+     * Calculo de num aleatorio 0 o 1
+     * @return 0/1
+     */
     public static int CaraoCruz() {
         Random rnd = new Random();
         return rnd.nextInt(2);

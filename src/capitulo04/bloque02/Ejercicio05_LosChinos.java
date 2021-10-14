@@ -32,6 +32,10 @@ public class Ejercicio05_LosChinos {
         System.out.println("Tienes " + aciertos + " puntos.");
     }
 
+    /**
+     *
+     * @return numero aleatorio para numero de chinos
+     */
     public static int devolverNumChinos() {
         Random rnd = new Random();
         return rnd.nextInt(11) + 1;

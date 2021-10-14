@@ -9,6 +9,10 @@ public class Ejercicio01_NumeroPensado {
         numeroPensado();
     }
 
+    /**
+     * Calculo del numero pensado por el ordenador, usuario introduce datos hasta adivinarlo,
+     * devuelve mensaje por pantalla
+     */
     public static void numeroPensado() {
         Random rnd = new Random();
         Scanner sc = new Scanner(System.in);

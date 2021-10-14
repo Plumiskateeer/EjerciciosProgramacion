@@ -39,7 +39,9 @@ public class Ejercicio03_CalculadoraGeometrica {
             }
         } while (op != 0);
     }
-
+    /*
+    Calculo de la hipotenusa del triangulo
+     */
     public static double hipTriangulo() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce el cateto a: ");
@@ -49,7 +51,9 @@ public class Ejercicio03_CalculadoraGeometrica {
 
         return Math.pow(a, 2) + Math.pow(b, 2);
     }
-
+    /*
+    Calculo de la superficie del circulo
+     */
     public static double supCircunferencia() {
         Scanner sc = new Scanner(System.in);
 
@@ -59,7 +63,9 @@ public class Ejercicio03_CalculadoraGeometrica {
         return Math.pow(r, 2) * Math.PI;
 
     }
-
+    /*
+    Calculo del perimetro de la circunferencia
+     */
     public static double perimCircunferencia() {
         Scanner sc = new Scanner(System.in);
 
@@ -68,7 +74,9 @@ public class Ejercicio03_CalculadoraGeometrica {
 
         return 2 * Math.PI * r;
     }
-
+    /*
+    Calculo del area del rectangulo
+     */
     public static int areaRect() {
         Scanner sc = new Scanner(System.in);
 
@@ -79,7 +87,9 @@ public class Ejercicio03_CalculadoraGeometrica {
 
         return b * h;
     }
-
+    /*
+    Calculo del area del triangulo
+     */
     public static int areaTriang() {
         Scanner sc = new Scanner(System.in);
 

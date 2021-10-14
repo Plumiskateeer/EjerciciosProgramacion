@@ -4,6 +4,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Ejercicio04_ParesNones {
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -30,6 +35,10 @@ public class Ejercicio04_ParesNones {
 
     }
 
+    /**
+     *
+     * @return devuelve numero al azar, 0 o 1
+     */
     public static int CaraoCruz() {
         Random rnd = new Random();
         return rnd.nextInt(2);

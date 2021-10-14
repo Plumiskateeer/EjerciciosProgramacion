@@ -4,13 +4,16 @@ import java.util.Scanner;
 
 public class Plato {
     private String eleccion;
-    private int orden;
     private int precio;
     private final int nPlato;
 
+    /**
+     * Constructor general plato
+     *
+     * @param orden puede ser 1, 2, 3 siendo respectivamente primer plato, segundo plato, tercer plato
+     */
     public Plato(int orden) {
         Scanner sc = new Scanner(System.in);
-        this.orden = orden;
         this.precio = 0;
 
         switch (orden) {
@@ -42,26 +45,34 @@ public class Plato {
         }
     }
 
+    /**
+     *
+     * @return eleccion plato, primero segundo
+     */
     public String getEleccion() {
         return eleccion;
     }
 
+    /**
+     *
+     * @param eleccion introducir eleccion plato
+     */
     public void setEleccion(String eleccion) {
         this.eleccion = eleccion;
     }
 
-    public int getOrden() {
-        return orden;
-    }
-
-    public void setOrden(int orden) {
-        this.orden = orden;
-    }
-
+    /**
+     *
+     * @return precio plato
+     */
     public int getPrecio() {
         return this.precio;
     }
 
+    /**
+     *
+     * @return toString plato, que orden de plato es y que eleccion hemos tomado
+     */
     public String toString() {
         String cadena;
 

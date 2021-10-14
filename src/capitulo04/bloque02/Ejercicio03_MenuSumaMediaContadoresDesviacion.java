@@ -37,6 +37,10 @@ public class Ejercicio03_MenuSumaMediaContadoresDesviacion {
 
     }
 
+    /**
+     *  Metodo que devuelve cantidad de positivos, negativos y nulos
+     * @return cantidad de numeros contados de cada tipo
+     */
     public static String contarPosNegNulos() {
         int positivos = 0;
         int negativos = 0;
@@ -45,13 +49,16 @@ public class Ejercicio03_MenuSumaMediaContadoresDesviacion {
         for (int i = 0; i < 200; i++) {
             int num = numAleatorioInter100();
             if (num < 0) negativos++;
-            else if (num == 0) nulos++;
-            else positivos++;
+                else if (num == 0) nulos++;
+                    else positivos++;
         }
         return ("Positivos: " + positivos + " Negativos: " + negativos + " Nulos: " + nulos);
     }
 
-
+    /**
+     *
+     * @return suma y media de 500 numeros aleatorios entre  y 1000
+     */
     public static String sumayMedia500() {
         int suma = 0;
         for (int i = 0; i < 500; i++) {
@@ -60,6 +67,10 @@ public class Ejercicio03_MenuSumaMediaContadoresDesviacion {
         return ("Suma: " + suma + " Media: " + ((float) suma) / 500);
     }
 
+    /**
+     *
+     * @return mayor y menor de 100 numeros al azar entre 0 y 1000
+     */
     public static String mayoryMenor1000() {
 
         int menor = 1000;
@@ -69,20 +80,28 @@ public class Ejercicio03_MenuSumaMediaContadoresDesviacion {
             int num = numAleatorioInter1000();
 
             if (num < menor) menor = num;
-            else if (num > mayor) mayor = num;
+                else if (num > mayor) mayor = num;
         }
 
         return ("Mayor: " + mayor + " Menor: " + menor);
     }
 
+    /**
+     *
+     * @return numero aleatorio entre 0 y 100
+     */
     public static int numAleatorioInter100() {
         Random rnd = new Random();
-        return rnd.nextInt(200) - 100;
+        return rnd.nextInt(201)- 100;
     }
 
+    /**
+     *
+     * @return numero aleatorio entre 0 y 1000
+     */
     public static int numAleatorioInter1000() {
         Random rnd = new Random();
-        return rnd.nextInt(1000);
+        return rnd.nextInt(2001) - 1000;
     }
 
 }

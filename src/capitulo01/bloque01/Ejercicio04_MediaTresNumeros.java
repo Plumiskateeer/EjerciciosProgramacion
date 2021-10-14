@@ -17,8 +17,6 @@ public class Ejercicio04_MediaTresNumeros {
         }
 
         System.out.println("La media de los tres numeros es: " + media / numeros.length);
-
-
     }
 
 }
