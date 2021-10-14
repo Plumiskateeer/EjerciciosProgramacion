@@ -12,8 +12,10 @@ public class Ejercicio02_MediaTres {
         while (n != 0) {
             System.out.println("Introduce un numero: ");
             n = sc.nextInt();
-            suma += n;
-            cont++;
+            if(n!=0) {
+                suma += n;
+                cont++;
+            }
         }
 
         System.out.println("La media de los numeros es: " + suma / cont);
