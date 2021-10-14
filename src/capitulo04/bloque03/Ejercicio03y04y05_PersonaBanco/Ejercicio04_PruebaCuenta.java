@@ -1,4 +1,4 @@
-package capitulo04.bloque03.banco;
+package capitulo04.bloque03.Ejercicio03y04y05_PersonaBanco;
 
 public class Ejercicio04_PruebaCuenta {
     public static void main(String[] args) {

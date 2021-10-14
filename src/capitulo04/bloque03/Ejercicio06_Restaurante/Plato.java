@@ -1,4 +1,4 @@
-package capitulo04.bloque03.restaurante;
+package capitulo04.bloque03.Ejercicio06_Restaurante;
 
 import java.util.Scanner;
 

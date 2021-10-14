@@ -1,4 +1,4 @@
-package capitulo04.bloque03;
+package capitulo04.bloque03.Ejercicio07_Rectangulo;
 
 import javax.swing.*;
 

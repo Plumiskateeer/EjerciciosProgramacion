@@ -1,6 +1,4 @@
-package capitulo04.bloque03;
-
-import capitulo04.bloque03.banco.Persona;
+package capitulo04.bloque03.Ejercicio03y04y05_PersonaBanco;
 
 public class Ejercicio03_PruebaPersona {
     public static void main(String[] args) {

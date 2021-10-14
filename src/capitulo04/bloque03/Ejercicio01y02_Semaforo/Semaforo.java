@@ -1,4 +1,4 @@
-package capitulo04.bloque03;
+package capitulo04.bloque03.Ejercicio01y02_Semaforo;
 
 public class Semaforo {
     private String estado;

@@ -1,4 +1,4 @@
-package capitulo04.bloque03.banco;
+package capitulo04.bloque03.Ejercicio03y04y05_PersonaBanco;
 
 public class Cuenta {
     private Persona titular;
