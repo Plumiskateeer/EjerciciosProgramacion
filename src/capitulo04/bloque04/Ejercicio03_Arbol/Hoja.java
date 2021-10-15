@@ -19,10 +19,18 @@ public class Hoja {
         return this.nombre;
     }
 
+    /**
+     *
+     * @param nombre introducir nombre hoja
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @return toString hoja
+     */
     public String toString() {
         return ("Hoja: " + this.nombre + "\n");
     }
