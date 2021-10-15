@@ -6,10 +6,10 @@ public class Ejercicio03_TablasMultiplicar15 {
         while(i<16){
             int tabla = 0;
             System.out.println("Tabla del " + i);
-            while(tabla < 11){
+            do{
                 System.out.print(i*tabla + " ");
                 tabla++;
-            }
+            }while(tabla < 11);
             System.out.println("\n");
             i++;
         }
