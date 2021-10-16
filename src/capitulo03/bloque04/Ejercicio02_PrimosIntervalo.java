@@ -12,12 +12,14 @@ public class Ejercicio02_PrimosIntervalo {
         while(limInf<=limSup) {
             int num = limInf;
             while (i <= num / 2 && esPrimo) {
-                if (num % i == 0)
+                if (num % i == 0) {
                     esPrimo = false;
+                    System.out.println("El numero " + num + " no es primo.");
+                }
                 i++;
             }
+            i=2;
             if(esPrimo) System.out.println("El numero " + num + " es primo.");
-            else System.out.println("El numero " + num + " no es primo.");
             esPrimo = true;
             limInf++;
         }
