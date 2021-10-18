@@ -4,7 +4,7 @@ public class Componente {
     private Componente izq, der;
 
     /**
-     *
+     * Constructor por defecto
      */
     public Componente(){
         this.izq = null;
@@ -12,9 +12,9 @@ public class Componente {
     }
 
     /**
-     *
-     * @param izq
-     * @param der
+     * Constructor arbol
+     * @param izq arbol izquierdo
+     * @param der arbol derecho
      */
     public Componente(Componente izq, Componente der){
         this.izq = izq;
