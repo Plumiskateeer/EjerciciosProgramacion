@@ -21,4 +21,35 @@ public class Componente {
         this.der = der;
     }
 
+    /**
+     *
+     * @param izq introducir componente izquierdo
+     */
+    public void setIzq(Componente izq){
+        this.izq = izq;
+    }
+
+    /**
+     *
+     * @return componente izquierdo
+     */
+    private Componente getIzq(){
+        return this.izq;
+    }
+    /**
+     *
+     * @param der introducir componente derecho
+     */
+    public void setDer(Componente der){
+        this.der = der;
+    }
+
+    /**
+     *
+     * @return componente derecho
+     */
+    private Componente getDer(){
+        return this.der;
+    }
+
 }
