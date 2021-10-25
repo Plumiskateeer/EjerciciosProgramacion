@@ -6,6 +6,7 @@ public class Ejercicio06_DesplazarDireccion {
     public static void main(String[] args) {
         int[] matriz = new int[5];
 
+        // inicializo e imprimo
         for (int i = 0; i < matriz.length; i++) {
             matriz[i] = (int) (Math.round(Math.random() * (100)));
             System.out.print(matriz[i] + " ");
@@ -17,6 +18,7 @@ public class Ejercicio06_DesplazarDireccion {
         int desp = Integer.parseInt(JOptionPane.showInputDialog("Hacia la izquierda (0) Hacia la derecha (1): "));
 
 
+        // si el usuario me ha indicado der hago der, 1, si el usuario me indica izq hago izq, 0.
         if (desp == 1) {
             for (int j = 0; j < num; j++) { // hacia la derecha se desplaza num veces
                 salvar = matriz[matriz.length - 1];
@@ -37,6 +39,7 @@ public class Ejercicio06_DesplazarDireccion {
             }
         }
 
+        // imprimo el resultado
         for (int i : matriz)
             System.out.print(i + " ");
     }
