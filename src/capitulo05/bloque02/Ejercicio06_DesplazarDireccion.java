@@ -20,8 +20,8 @@ public class Ejercicio06_DesplazarDireccion {
         // si pide hacia la izquierda se desplaza matriz.length - num veces, es circular
         // si pide hacia la derecha se deja tal cual
         if (desp == 0) {
-            num = matriz.length - num;
             direccion = "Desplazamiento " + num + " veces a la izquierda";
+            num = matriz.length - num;
         }
 
         // este metodo es el encargado de desplazar la matriz
