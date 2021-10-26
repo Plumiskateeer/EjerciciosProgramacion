@@ -8,7 +8,7 @@ public class Ejercicio01_PosicionMedia {
         // inicializo e imprimo
         System.out.println("Matriz original: ");
         for (int i = 0; i < matriz.length; i++) {
-            matriz[i] = (int) (Math.round(Math.random() * (1000)));
+            matriz[i] = (int) (Math.round(Math.random() * (100)));
             System.out.print(matriz[i] + " ");
         }
 
