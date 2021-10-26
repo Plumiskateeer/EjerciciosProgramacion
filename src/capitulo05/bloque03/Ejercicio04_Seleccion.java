@@ -12,11 +12,11 @@ public class Ejercicio04_Seleccion {
         }
 
         // recorro la matriz quedandome con el elemento inicial, avanzando de uno en uno
-        for(int i = 0; i < matriz.length; i++){
+        for (int i = 0; i < matriz.length; i++) {
             int menor = matriz[i];
             int indice = i;
-            for(int j = i; j < matriz.length; j++){ // recorro desde ese valor en adelante buscando el siguiente menor a ese
-                if(matriz[j] < menor){
+            for (int j = i; j < matriz.length; j++) { // recorro desde ese valor en adelante buscando el siguiente menor a ese
+                if (matriz[j] < menor) {
                     menor = matriz[j]; // guardo su valor
                     indice = j; // guardo la posicion en la q lo he encontrado
                 }
@@ -27,7 +27,7 @@ public class Ejercicio04_Seleccion {
 
         // imprimo la solucion
         System.out.println("\nMatriz ordenada: ");
-        for(int i : matriz)
+        for (int i : matriz)
             System.out.print(i + " ");
 
     }

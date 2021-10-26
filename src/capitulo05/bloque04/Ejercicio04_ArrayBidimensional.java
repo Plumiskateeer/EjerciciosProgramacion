@@ -128,22 +128,22 @@ public class Ejercicio04_ArrayBidimensional {
         return traspuesta;
     }
 
-    public static int[][] calcularOpuesta(int[][] matriz){
+    public static int[][] calcularOpuesta(int[][] matriz) {
         int[][] opuesta = new int[matriz.length][matriz.length];
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
-                opuesta[i][j] = matriz[i][j]*-1;
+                opuesta[i][j] = matriz[i][j] * -1;
             }
         }
         return opuesta;
     }
 
-    public static int[][] eliminarFilaMatriz(int[][] matriz){
+    public static int[][] eliminarFilaMatriz(int[][] matriz) {
         int fila = Integer.parseInt(JOptionPane.showInputDialog("Introduce el numero de fila que quieres eliminar: "));
 
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
-                if(i == fila)
+                if (i == fila)
                     matriz[i][j] = 0;
             }
         }

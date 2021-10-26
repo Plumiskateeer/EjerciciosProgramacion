@@ -1,7 +1,7 @@
 package capitulo05.bloque03;
 
 public class Ejercicio02_InsercionDirecta {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[] matriz = new int[150];
 
         // inicializo e imprimo
@@ -24,7 +24,7 @@ public class Ejercicio02_InsercionDirecta {
         // imprimo el resultado
 
         System.out.println("\nMatriz ordenada: ");
-        for(int i : matriz)
+        for (int i : matriz)
             System.out.print(i + " ");
     }
 }
