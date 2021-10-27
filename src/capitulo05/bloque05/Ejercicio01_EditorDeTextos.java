@@ -1,7 +1,6 @@
 package capitulo05.bloque05;
 
 import javax.swing.*;
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class Ejercicio01_EditorDeTextos {
                 case 4 -> borrarLinea(texto);
                 case 5 -> cortarParteDeTexto(texto, limInf, limSup);
                 case 6 -> pegarParteDeTexto(texto, limInf, limSup);
-                case 7 -> System.out.println("\n"+imprimirTexto(texto));
+                case 7 -> System.out.println("\n" + imprimirTexto(texto));
                 default -> System.out.println("VALOR ERRONEO");
             }
 
