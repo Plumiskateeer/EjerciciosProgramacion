@@ -1,4 +1,4 @@
-package capitulo05.bloque05.Supermercado;
+package capitulo05.bloque05.Ejercicio02_Supermercado;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,64 +9,47 @@ public class Cola {
     private Semaphore mutex = new Semaphore(1);
     private Semaphore productor = new Semaphore(10);
     private Semaphore consumidor = new Semaphore(3);
-    private Semaphore imprimir = new Semaphore(1);
+    private boolean leyendo = false;
     private StringBuilder sb;
 
-    public Cola(){
+    public Cola() {
         this.clientes = new ArrayList<>();
         sb = new StringBuilder();
     }
 
-    public StringBuilder getSb(){
-        return this.sb;
-    }
-
     public void anadirCliente() throws InterruptedException {
-        productor.acquire();
+        while (leyendo){
+            Thread.yield();
+        }
+        consumidor.acquire();
         mutex.acquire();
-        if(clientes.size()<10)
-            clientes.add('*');
+        clientes.add('*');
         mutex.release();
         productor.release();
     }
 
     public void atenderCliente() throws InterruptedException {
-        consumidor.acquire();
+        while (leyendo){
+            Thread.yield();
+        }
+        productor.acquire();
         mutex.acquire();
-        if(clientes.size()>0)
+        if (clientes.size() > 0)
             clientes.remove(0);
         mutex.release();
         consumidor.release();
     }
-    public void imprimirCola() throws InterruptedException {
-        consumidor.acquire();
-        productor.acquire();
-        mutex.acquire();
-        imprimir.acquire();
 
-        sb = new StringBuilder();
-        for(Character c : clientes){
+    public void imprimirCola() throws InterruptedException {
+        leyendo = true;
+        mutex.acquire();
+        for (Character c : clientes) {
             sb.append(c).append(" ");
         }
         sb.append(" || COLA").append("\n");
-
-        imprimir.release();
-        mutex.release();
-        productor.release();
-        consumidor.release();
-    }
-    public void resetImprimirCola() throws InterruptedException {
-        consumidor.acquire();
-        productor.acquire();
-        mutex.acquire();
-        imprimir.acquire();
-
+        System.out.println(sb);
         sb = new StringBuilder();
-
-        imprimir.release();
         mutex.release();
-        productor.release();
-        consumidor.release();
-
+        leyendo = false;
     }
 }
