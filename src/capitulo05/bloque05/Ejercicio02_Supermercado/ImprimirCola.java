@@ -1,8 +1,6 @@
 package capitulo05.bloque05.Ejercicio02_Supermercado;
 
-import java.io.IOException;
-
-public class ImprimirCola extends Thread{
+public class ImprimirCola extends Thread {
     private Cola c;
 
     public ImprimirCola(Cola c) {

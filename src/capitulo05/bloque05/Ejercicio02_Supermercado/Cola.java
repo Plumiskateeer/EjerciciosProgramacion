@@ -18,7 +18,7 @@ public class Cola {
     }
 
     public void anadirCliente() throws InterruptedException {
-        while (leyendo){
+        while (leyendo) {
             Thread.yield();
         }
         consumidor.acquire();
@@ -29,7 +29,7 @@ public class Cola {
     }
 
     public void atenderCliente() throws InterruptedException {
-        while (leyendo){
+        while (leyendo) {
             Thread.yield();
         }
         productor.acquire();
