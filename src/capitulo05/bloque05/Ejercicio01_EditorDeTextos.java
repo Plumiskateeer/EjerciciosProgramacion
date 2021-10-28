@@ -8,7 +8,8 @@ public class Ejercicio01_EditorDeTextos {
     private static List<String> lineasCortadas; // CAMBIAR ESTO POR OTRO ARRAYLIST Y LUEGO PARA PEGAR HACER ADD.ALL EN CIERTA POSICION
 
     /**
-     En el main se muestra un menu con opciones, y se llama al metodo correspondiente
+     * En el main se muestra un menu con opciones, y se llama al metodo correspondiente
+     *
      * @param args default
      */
     public static void main(String[] args) {
@@ -45,6 +46,7 @@ public class Ejercicio01_EditorDeTextos {
 
     /**
      * Annadir linea al texto
+     *
      * @param texto arraylist texto
      */
     public static void anadirLinea(List<String> texto) {
@@ -53,6 +55,7 @@ public class Ejercicio01_EditorDeTextos {
 
     /**
      * Annadir linea en x posicion
+     *
      * @param texto arraylist texto
      */
     public static void anadirLineaenPos(List<String> texto) {
@@ -63,6 +66,7 @@ public class Ejercicio01_EditorDeTextos {
 
     /**
      * Editar linea del texto
+     *
      * @param texto arraylist texto
      */
     public static void editarLinea(List<String> texto) {
@@ -73,6 +77,7 @@ public class Ejercicio01_EditorDeTextos {
 
     /**
      * Borrar linea del texto
+     *
      * @param texto arraylist texto
      */
     public static void borrarLinea(List<String> texto) {
@@ -82,7 +87,8 @@ public class Ejercicio01_EditorDeTextos {
 
     /**
      * Metodo auxiliar para borrar x linea
-     * @param texto arraylist texto
+     *
+     * @param texto  arraylist texto
      * @param indice indice de la linea a borrar
      */
     public static void borrarLinea(List<String> texto, int indice) {
@@ -91,6 +97,7 @@ public class Ejercicio01_EditorDeTextos {
 
     /**
      * Cortar x lineas del texto en un intervalo
+     *
      * @param texto arraylist texto
      */
     public static void cortarParteDeTexto(List<String> texto) {
@@ -101,7 +108,7 @@ public class Ejercicio01_EditorDeTextos {
         } while (limInf > limSup || limInf < 0);
 
         lineasCortadas = new ArrayList<>();
-        for (int i = 0; i <= limSup-limInf; i++) {
+        for (int i = 0; i <= limSup - limInf; i++) {
             lineasCortadas.add(texto.get(limInf));
             borrarLinea(texto, limInf);
         }
@@ -109,6 +116,7 @@ public class Ejercicio01_EditorDeTextos {
 
     /**
      * Pegar el texto anteriormente cortado
+     *
      * @param texto arraylist texto
      */
     public static void pegarParteDeTexto(List<String> texto) {
@@ -118,6 +126,7 @@ public class Ejercicio01_EditorDeTextos {
 
     /**
      * Imprime el texto entero
+     *
      * @param texto arraylist texto
      * @return StrinBuilder del texto to String
      */
