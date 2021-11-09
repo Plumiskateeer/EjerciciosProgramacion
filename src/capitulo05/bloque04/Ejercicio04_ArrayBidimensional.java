@@ -145,7 +145,7 @@ public class Ejercicio04_ArrayBidimensional {
 
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
-                if (i == fila-1)
+                if (i == fila - 1)
                     matriz[i][j] = 0;
             }
         }
