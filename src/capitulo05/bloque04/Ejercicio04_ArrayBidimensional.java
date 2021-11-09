@@ -1,6 +1,7 @@
 package capitulo05.bloque04;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 public class Ejercicio04_ArrayBidimensional {
     public static void main(String[] args) {
@@ -12,6 +13,7 @@ public class Ejercicio04_ArrayBidimensional {
         esTriangularSuperior(matriz);
         esMatrizDispersa(matriz);
         int[] matriz1D = convertirDimension(matriz);
+        System.out.println(Arrays.toString(matriz1D));
         esMatrizSimetrica(matriz);
         int[][] traspuesta = calcularTraspuesta(matriz);
         imprimirMatriz(traspuesta);
@@ -19,8 +21,8 @@ public class Ejercicio04_ArrayBidimensional {
         int[][] opuesta = calcularOpuesta(matriz);
         imprimirMatriz(opuesta);
         System.out.println();
-        int[][] eliminadaFila = eliminarFilaMatriz(matriz);
-        imprimirMatriz(eliminadaFila);
+        eliminarFilaMatriz(matriz);
+        imprimirMatriz(matriz);
     }
 
     public static void inicializarMatriz(int[][] matriz) {
@@ -138,16 +140,15 @@ public class Ejercicio04_ArrayBidimensional {
         return opuesta;
     }
 
-    public static int[][] eliminarFilaMatriz(int[][] matriz) {
+    public static void eliminarFilaMatriz(int[][] matriz) {
         int fila = Integer.parseInt(JOptionPane.showInputDialog("Introduce el numero de fila que quieres eliminar: "));
 
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
-                if (i == fila)
+                if (i == fila-1)
                     matriz[i][j] = 0;
             }
         }
-        return matriz;
     }
 
 }
