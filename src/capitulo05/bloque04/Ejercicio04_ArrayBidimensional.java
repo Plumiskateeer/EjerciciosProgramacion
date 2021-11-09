@@ -7,6 +7,7 @@ public class Ejercicio04_ArrayBidimensional {
     public static void main(String[] args) {
         int[][] matriz = new int[5][5];
         inicializarMatriz(matriz);
+        System.out.println("Original");
         imprimirMatriz(matriz);
         esMatrizPositiva(matriz);
         esMatrizDiagonal(matriz);
@@ -16,9 +17,11 @@ public class Ejercicio04_ArrayBidimensional {
         System.out.println(Arrays.toString(matriz1D));
         esMatrizSimetrica(matriz);
         int[][] traspuesta = calcularTraspuesta(matriz);
+        System.out.println("Traspuesta");
         imprimirMatriz(traspuesta);
         System.out.println();
         int[][] opuesta = calcularOpuesta(matriz);
+        System.out.println("Opuesta");
         imprimirMatriz(opuesta);
         System.out.println();
         eliminarFilaMatriz(matriz);
