@@ -12,8 +12,12 @@ public class Ejercicio01_MayordeDosNumeros {
         System.out.println("Introduce otro numero: ");
         int n2 = sc.nextInt();
 
-        if (n1 >= n2) System.out.println("El numero mayor es " + n1);
-        else System.out.println("El numero mayor es " + n2);
+        System.out.println("El mayor es " + mayorde2(n1,n2));
+
+    }
+
+    public static int mayorde2(int n1, int n2) {
+        return Math.max(n1, n2);
     }
 
 }
