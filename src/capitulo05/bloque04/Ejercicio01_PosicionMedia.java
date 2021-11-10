@@ -8,7 +8,8 @@ public class Ejercicio01_PosicionMedia {
         inicializarMatriz(matriz);
         encontrarElementoMedio(matriz);
     }
-    public static void inicializarMatriz(int [] matriz){
+
+    public static void inicializarMatriz(int[] matriz) {
         // inicializo e imprimo
         System.out.println("Matriz original: ");
         for (int i = 0; i < matriz.length; i++) {
@@ -17,7 +18,7 @@ public class Ejercicio01_PosicionMedia {
         }
     }
 
-    public static void encontrarElementoMedio(int [] matriz){
+    public static void encontrarElementoMedio(int[] matriz) {
         int valorPosMedia;
         if (matriz.length % 2 == 0) { // compruebo el tamaño y dependiendo de si es par o no igualo a su valor intermedio
             valorPosMedia = -1;

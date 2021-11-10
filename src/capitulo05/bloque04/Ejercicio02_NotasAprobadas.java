@@ -8,7 +8,7 @@ public class Ejercicio02_NotasAprobadas {
         calculoNotas(matriz);
     }
 
-    public static void inicializarMatriz(int[] matriz){
+    public static void inicializarMatriz(int[] matriz) {
         // inicializo e imprimo
         System.out.println("Matriz original: ");
         for (int i = 0; i < matriz.length; i++) {
@@ -17,7 +17,7 @@ public class Ejercicio02_NotasAprobadas {
         }
     }
 
-    public static void calculoNotas(int[] matriz){
+    public static void calculoNotas(int[] matriz) {
         float aprobados = 0;
         float suspensos = 0;
 
@@ -26,7 +26,7 @@ public class Ejercicio02_NotasAprobadas {
                 aprobados++;
             else suspensos++;
 
-        System.out.println("\nEl % de aprobados es: " + ((aprobados/matriz.length)*100) + "\n" +
-                "El % de suspensos es: " + (suspensos/matriz.length)*100);
+        System.out.println("\nEl % de aprobados es: " + ((aprobados / matriz.length) * 100) + "\n" +
+                "El % de suspensos es: " + (suspensos / matriz.length) * 100);
     }
 }
