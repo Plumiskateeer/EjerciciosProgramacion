@@ -1,0 +1,38 @@
+package capitulo07.gestionVentaCoches;
+
+public class Main {
+
+    public static void main(String[] args) {
+        menuPrincipal();
+    }
+
+    /**
+     *
+     */
+    private static void menuPrincipal() {
+
+        int opcionElegida;
+        do {
+            System.out.println("\n\t\t\tGESTION DE VENTAS DE COCHES");
+
+            System.out.println("\n\t1.- Gestion de fabricantes.");
+            System.out.println("\t2.- Gestion de ___________.");
+            System.out.println("\t3.- Gestion de ___________.");
+            System.out.println("\t4.- Gestion de ___________.");
+            System.out.println("\t5.- Gestion de ___________.");
+            System.out.println("\t0.- Salir");
+            System.out.println("\n\tElija una opcion: ");
+
+            opcionElegida = Utils.getIntConsola(0, 5);
+
+            switch (opcionElegida) {
+                case 0:
+                    System.out.println("\n!Que tenga un feliz dia!");
+                    break;
+                case 1:
+                    GestionFabricante.menuGestion();
+            }
+        } while (opcionElegida != 0);
+    }
+
+}
