@@ -54,7 +54,7 @@ public class Rectangulo {
 
         for (int i = 0; i < base; i++) {
             str.append("\n");
-            str.append(" * ".repeat(Math.max(0, altura)));
+            //str.append(" * ".repeat(Math.max(0, altura)));
         }
         return str.toString();
     }

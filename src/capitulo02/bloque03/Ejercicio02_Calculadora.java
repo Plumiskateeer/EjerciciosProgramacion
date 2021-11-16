@@ -18,9 +18,9 @@ public class Ejercicio02_Calculadora {
 
 
             switch (op) {
-                case 1 -> System.out.println("El modulo de la division es " + modDiv());
-                case 2 -> System.out.println("El resultado de la raiz es: " + raiz());
-                case 3 -> System.out.println("El resultado de la potencia es: " + potencia());
+                case 1 : System.out.println("El modulo de la division es " + modDiv());
+                case 2 : System.out.println("El resultado de la raiz es: " + raiz());
+                case 3 : System.out.println("El resultado de la potencia es: " + potencia());
             }
         } while (op != 0);
     }

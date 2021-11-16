@@ -17,27 +17,28 @@ public class Ejercicio01_EditorDeTextos {
         int num;
 
         do {
-            System.out.println("""
-                    ------- EDITOR DE TEXTOS -------
-                    1 : Añadir linea al texto
-                    2 : Insertar una linea en una posicion
-                    3 : Editar una linea
-                    4 : Borrar una linea
-                    5 : Cortar lineas de ciertas posiciones
-                    6 : Pegar lineas en unas posiciones
-                    7 : Imprimir el texto""");
+            System.out.println("------- EDITOR DE TEXTOS -------\n" +
+                               "1 : Añadir linea al texto\n" +
+                               "2 : Insertar una linea en una posicion\n" +
+                               "3 : Editar una linea\n" +
+                               "4 : Borrar una linea\n" +
+                               "5 : Cortar lineas de ciertas posiciones\n" +
+                               "6 : Pegar lineas en unas posiciones\n" +
+                               "7 : Imprimir el texto");
 
             num = Integer.parseInt(JOptionPane.showInputDialog("Introduce la accion deseada: "));
 
             switch (num) {
-                case 1 -> anadirLinea(texto);
-                case 2 -> anadirLineaenPos(texto);
-                case 3 -> editarLinea(texto);
-                case 4 -> borrarLinea(texto);
-                case 5 -> cortarParteDeTexto(texto);
-                case 6 -> pegarParteDeTexto(texto);
-                case 7 -> System.out.println("\n" + imprimirTexto(texto));
-                default -> System.out.println("FIN DEL PROGRAMA");
+                case 1 : {
+                    anadirLinea(texto);
+                }
+                case 2 : anadirLineaenPos(texto);
+                case 3 : editarLinea(texto);
+                case 4 : borrarLinea(texto);
+                case 5 : cortarParteDeTexto(texto);
+                case 6 : pegarParteDeTexto(texto);
+                case 7 : System.out.println("\n" + imprimirTexto(texto));
+                default : System.out.println("FIN DEL PROGRAMA");
             }
 
         } while (num != 0);

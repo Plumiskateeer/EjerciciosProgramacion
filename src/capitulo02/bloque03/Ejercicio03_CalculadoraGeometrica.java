@@ -10,13 +10,12 @@ public class Ejercicio03_CalculadoraGeometrica {
             System.out.println("BIENVENIDO A LA CALCULADORA GEOMETRICA");
             System.out.println(".-------------------------------------.");
             System.out.println(
-                    """
-                            1. Cálculo de la hipotenusa de un triángulo.
-                            2. Cálculo de la superficie de una circunferencia.
-                            3. Cálculo del perímetro de una circunferencia.
-                            4. Cálculo del área de un rectángulo.
-                            5. Cálculo del área de un triángulo.
-                            0. Salir de la aplicación.""");
+                    "1. Cálculo de la hipotenusa de un triángulo.\n" +
+                    "2. Cálculo de la superficie de una circunferencia.\n" +
+                    "3. Cálculo del perímetro de una circunferencia.\n" +
+                    "4. Cálculo del área de un rectángulo.\n" +
+                    "5. Cálculo del área de un triángulo.\n" +
+                    "0. Salir de la aplicación.");
             System.out.println(".-------------------------------------.");
             System.out.println("Elige la operacion a realizar, 0 para salir: ");
             op = sc.nextInt();
@@ -24,15 +23,15 @@ public class Ejercicio03_CalculadoraGeometrica {
             if (op > -1 && op < 6) {
 
                 switch (op) {
-                    case 1 -> System.out.println("La hipotenusa es " + hipTriangulo() + "\n");
+                    case 1 : System.out.println("La hipotenusa es " + hipTriangulo() + "\n");
 
-                    case 2 -> System.out.println("La superficie de la cincurferencia es: " + supCircunferencia() + "\n");
+                    case 2 : System.out.println("La superficie de la cincurferencia es: " + supCircunferencia() + "\n");
 
-                    case 3 -> System.out.println("El perimetro de la circunferencia es: " + perimCircunferencia() + "\n");
+                    case 3 : System.out.println("El perimetro de la circunferencia es: " + perimCircunferencia() + "\n");
 
-                    case 4 -> System.out.println("El area del rectangulo es: " + areaRect() + "\n");
+                    case 4 : System.out.println("El area del rectangulo es: " + areaRect() + "\n");
 
-                    case 5 -> System.out.println("El area del triangulo es: " + areaTriang() + "\n");
+                    case 5 : System.out.println("El area del triangulo es: " + areaTriang() + "\n");
                 }
             } else {
                 System.out.println("\nOpcion incorrecta\n");

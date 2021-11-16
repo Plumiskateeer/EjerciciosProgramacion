@@ -21,7 +21,7 @@ public class Utils {
         System.out.println("Introduce un numero para convertirlo a string: ");
         int n = sc.nextInt();
 
-        System.out.println(ej8_InttoString(n));
+
 
         ej9_enOrdenAscendente(5, 4, 3);
         ej9_enOrdenAscendente(3, 2, 6);
@@ -126,22 +126,7 @@ public class Utils {
      * @param n numero a convertir
      * @return numero introducido en String
      */
-    public static String ej8_InttoString(int n) {
 
-        return switch (n) {
-            case 1 -> "uno";
-            case 2 -> "dos";
-            case 3 -> "tres";
-            case 4 -> "cuatro";
-            case 5 -> "cinco";
-            case 6 -> "seis";
-            case 7 -> "siete";
-            case 8 -> "ocho";
-            case 9 -> "nueve";
-            case 10 -> "diez";
-            default -> throw new IllegalStateException("Unexpected value: " + n);
-        };
-    }
 
     /**
      *Devuelve estos numeros ordenados ascendentemente

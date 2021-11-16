@@ -15,10 +15,9 @@ public class Ejercicio03_MenuSumaMediaContadoresDesviacion {
             System.out.println("MENU DE OPERACIONES DISPONIBLES");
             System.out.println(".------------------------------.");
             System.out.println(
-                    """
-                            1. Contar numeros positivos, negativos y nulos de 200 numeros entre -100 y 100.
-                            2. Suma y media de 500 numeros en el intervalo 0-1000.
-                            3. Mayor y menor en el intervalo 0-1000.""");
+                    "1. Contar numeros positivos, negativos y nulos de 200 numeros entre -100 y 100.\n" +
+                    "2. Suma y media de 500 numeros en el intervalo 0-1000.\n" +
+                    "3. Mayor y menor en el intervalo 0-1000.");
             System.out.println(".-------------------------------.");
             System.out.println("Elige la operacion a realizar, 0 para salir: ");
             op = sc.nextInt();
@@ -26,9 +25,9 @@ public class Ejercicio03_MenuSumaMediaContadoresDesviacion {
             if (op > -1 && op < 6) {
 
                 switch (op) {
-                    case 1 -> System.out.println("El conteo es: \n" + contarPosNegNulos() + "\n");
-                    case 2 -> System.out.println("La suma y media: \n" + sumayMedia500() + "\n");
-                    case 3 -> System.out.println("El mayor y menor numero del intervalo 0-1000 es: \n" + mayoryMenor1000() + "\n");
+                    case 1 : System.out.println("El conteo es: \n" + contarPosNegNulos() + "\n");
+                    case 2 : System.out.println("La suma y media: \n" + sumayMedia500() + "\n");
+                    case 3 : System.out.println("El mayor y menor numero del intervalo 0-1000 es: \n" + mayoryMenor1000() + "\n");
                 }
             } else {
                 System.out.println("\nOpcion incorrecta\n");

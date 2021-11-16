@@ -11,13 +11,17 @@ public class Ejercicio01_NotaAlumno {
         int nota = sc.nextInt();
 
         switch (nota) {
-            case 1, 2 -> System.out.println("Muy deficiente");
-            case 3, 4 -> System.out.println("Insuficiente");
-            case 5 -> System.out.println("Suficiente");
-            case 6 -> System.out.println("Bien");
-            case 7, 8 -> System.out.println("Notable");
-            case 9, 10 -> System.out.println("Sobresaliente");
-            default -> throw new IllegalArgumentException("Unexpected value: " + nota);
+            case 1: case 2: {
+                System.out.println("Muy deficiente");
+            }
+            case 3: case 4:{
+                System.out.println("Insuficiente");
+            }
+            case 5 : System.out.println("Suficiente");
+            case 6 : System.out.println("Bien");
+            case 7 : case 8 : System.out.println("Notable");
+            case 9 : case 10 : System.out.println("Sobresaliente");
+            default : throw new IllegalArgumentException("Unexpected value: " + nota);
         }
     }
 }
