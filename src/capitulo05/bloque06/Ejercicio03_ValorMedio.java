@@ -9,11 +9,11 @@ public class Ejercicio03_ValorMedio {
         float media = 0;
         int suma = 0, cont = 0;
         while(media < 499.5 || media > 500.5){
-            int num = (int)(Math.round(Math.random()*1000)+1);
+            int num = (int)(Math.round(Math.random()*999)+1);
             cont++;
             suma+=num;
             media=(float) suma/cont;
         }
-        System.out.println(media + "\n" + cont + "numeros  numeros necesitados");
+        System.out.println(media + "\n" + cont + " numeros  numeros necesitados");
     }
 }
