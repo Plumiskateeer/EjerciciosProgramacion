@@ -5,6 +5,8 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/capitulo07/gestionVentaCoches/modelo/controladores/resource1" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/capitulo07/resource2" type="java-resource" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -54,5 +56,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="mysql-connector-java-5.1.47-bin" level="project" />
   </component>
 </module>
