@@ -7,7 +7,15 @@ import java.sql.SQLException;
 
 public class ConnectionManagerV1 {
 
-	private static Connection conexion = null;
+	private static com.mysql.jdbc.Connection conexion;
+
+	static {
+		try {
+			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/tutorialjavacoches", "root", "5411");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 	public static Connection getConexion() throws SQLException {

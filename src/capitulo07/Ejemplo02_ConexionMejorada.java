@@ -3,6 +3,7 @@ package capitulo07;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -73,9 +74,9 @@ public class Ejemplo02_ConexionMejorada {
      */
     public static void main(String[] args) {
         try {
-            Connection conn = ConnectionManagerV1.getConexion();
+            com.mysql.jdbc.Connection conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/tutorialjavacoches", "root", "5411");
 
-            consultarTabla(conn, "coche");
+            consultarTabla(conexion, "coche");
 
         } catch (SQLException ex) {
             System.out.println("Error en la ejecuci�n SQL: " + ex.getMessage());

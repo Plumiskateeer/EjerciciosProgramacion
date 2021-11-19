@@ -4,6 +4,7 @@ import com.mysql.jdbc.Connection;
 import oracle.ucp.jdbc.PoolDataSource;
 import oracle.ucp.jdbc.PoolDataSourceFactory;
 
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
@@ -26,7 +27,7 @@ public class ConnectionManagerV2 {
      */
     public static Connection getConexion() throws SQLException, ImposibleConectarException {
 
-        Connection conn = null;
+        com.mysql.jdbc.Connection conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/tutorialjavacoches", "root", "5411");
 
         int intentos = 0;
 
@@ -36,16 +37,16 @@ public class ConnectionManagerV2 {
             pds.setURL("jdbc:mysql://" + host + "/" + schema);
             pds.setUser(user);
             pds.setPassword(password);
-            conn = (Connection) pds.getConnection();
+            conexion = (Connection) pds.getConnection();
             intentos++;
-        } while (!conn.isValid(5) && intentos <= MAX_INTENTOS_CONEXION);
+        } while (!conexion.isValid(5) && intentos <= MAX_INTENTOS_CONEXION);
 
-        if (!conn.isValid(1) && intentos >= MAX_INTENTOS_CONEXION) {
+        if (!conexion.isValid(1) && intentos >= MAX_INTENTOS_CONEXION) {
             throw new ImposibleConectarException("Tiempo agotado, imposible conectar");
         }
 
 
-        return conn;
+        return conexion;
     }
 
 }
