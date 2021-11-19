@@ -20,14 +20,14 @@ public class JDBCPropiedades {
 		if (propiedades == null) {
 			propiedades = new Properties();
 
-			try {
-				propiedades.load(new FileInputStream("jdbc.properties"));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			propiedades.setProperty("USUARIO","root");
+			propiedades.setProperty("PASSWORD","5411");
+			propiedades.setProperty("ID_USUARIO","1");
+			propiedades.setProperty("JDBC_DRIVER_CLASS","com.mysql.jdbc.Driver");
+			propiedades.setProperty("JDBC_USER","root");
+			propiedades.setProperty("JDBC_PASSWORD","5411");
+			propiedades.setProperty("JDBC_HOST","localhost");
+			propiedades.setProperty("JDBC_SCHEMA_NAME","tutorialjavacoches");
 
 		}
 		return propiedades;

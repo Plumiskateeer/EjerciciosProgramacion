@@ -27,7 +27,7 @@ public class ConnectionManagerV2 {
      */
     public static Connection getConexion() throws SQLException, ImposibleConectarException {
 
-        com.mysql.jdbc.Connection conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/tutorialjavacoches", "root", "5411");
+        com.mysql.jdbc.Connection conexion;
 
         int intentos = 0;
 
