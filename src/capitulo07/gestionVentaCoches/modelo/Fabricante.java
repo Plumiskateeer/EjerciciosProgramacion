@@ -2,9 +2,9 @@ package capitulo07.gestionVentaCoches.modelo;
 
 public class Fabricante {
 
-	int id;
-	String cif;
-	String nombre;
+	private int id;
+	private String cif;
+	private String nombre;
 
 	public Fabricante() {
 	}

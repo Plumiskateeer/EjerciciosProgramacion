@@ -1,6 +1,6 @@
 package capitulo07.gestionVentaCoches.modelo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Cliente {
 
@@ -16,6 +16,10 @@ public class Cliente {
         this.dniNie = dniNie;
         this.fechaNac = fechaNac;
         this.activo = activo;
+    }
+
+    public Cliente() {
+
     }
 
     public int getId() {
@@ -42,20 +46,20 @@ public class Cliente {
         this.apellidos = apellidos;
     }
 
-    public String getDniNie() {
-        return dniNie;
-    }
-
-    public void setDniNie(String dniNie) {
-        this.dniNie = dniNie;
-    }
-
     public String getLocalidad() {
         return localidad;
     }
 
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
+    }
+
+    public String getDniNie() {
+        return dniNie;
+    }
+
+    public void setDniNie(String dniNie) {
+        this.dniNie = dniNie;
     }
 
     public Date getFechaNac() {
@@ -66,8 +70,24 @@ public class Cliente {
         this.fechaNac = fechaNac;
     }
 
+    public boolean getActivo() {
+        return activo;
+    }
+
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+               "id=" + id +
+               ", nombre='" + nombre + '\'' +
+               ", apellidos='" + apellidos + '\'' +
+               ", localidad='" + localidad + '\'' +
+               ", dniNie='" + dniNie + '\'' +
+               ", fechaNac=" + fechaNac +
+               ", activo=" + activo +
+               '}';
+    }
 }
