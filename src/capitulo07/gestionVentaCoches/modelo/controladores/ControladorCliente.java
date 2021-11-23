@@ -132,18 +132,18 @@ public class ControladorCliente extends ControladorBBDD{
         try {
             conn = ConnectionManagerV2.getConexion();
 
-            PreparedStatement ps = (PreparedStatement) conn.
+            PreparedStatement ps = conn.
                     prepareStatement(
                             "update cliente set nombre = ?, apellidos = ?, localidad = ?, dniNie = ?, fechaNac = ?, activo = ? where id = ?");
             int registrosInsertados;
 
-            ps.setInt(1, cl.getId());
-            ps.setString(2, cl.getNombre());
-            ps.setString(3, cl.getApellidos());
-            ps.setString(4, cl.getLocalidad());
-            ps.setString(5, cl.getDniNie());
-            ps.setDate(6, new java.sql.Date(cl.getFechaNac().getTime()));
-            ps.setBoolean(7, cl.getActivo());
+            ps.setString(1, cl.getNombre());
+            ps.setString(2, cl.getApellidos());
+            ps.setString(3, cl.getLocalidad());
+            ps.setString(4, cl.getDniNie());
+            ps.setDate(5, new java.sql.Date(cl.getFechaNac().getTime()));
+            ps.setBoolean(6, cl.getActivo());
+            ps.setInt(7, cl.getId());
 
             registrosInsertados = ps.executeUpdate();
             if (registrosInsertados != 1) {
@@ -152,6 +152,7 @@ public class ControladorCliente extends ControladorBBDD{
             ps.close();
 
         } catch (SQLException | ImposibleConectarException e) {
+            e.printStackTrace();
             throw new ErrorBBDDException(e);
         }
 

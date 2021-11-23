@@ -79,10 +79,6 @@ public class GestionCliente {
 
         Cliente cl = new Cliente();
 
-        System.out.print("\nIntroduzca 'ID' del cliente ('Intro' para no modificar): ");
-        String str = Utils.getStringConsola();
-        cl.setId(Integer.parseInt(str));
-
         System.out.print("\nIntroduzca 'Nombre' del cliente  ('Intro' para no modificar): ");
         cl.setNombre(Utils.getStringConsola());
 
@@ -100,7 +96,7 @@ public class GestionCliente {
         cl.setFechaNac(df.parse(Utils.getStringConsola()));
 
         System.out.print("\nIntroduzca 'Activo' del cliente  (true o false) ('Intro' para no modificar): ");
-        str = Utils.getStringConsola();
+        String str = Utils.getStringConsola();
         if (str.equals("true"))
             cl.setActivo(true);
         else cl.setActivo(false);
