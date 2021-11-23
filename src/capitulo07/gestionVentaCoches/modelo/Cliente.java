@@ -1,6 +1,6 @@
 package capitulo07.gestionVentaCoches.modelo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Cliente {
 

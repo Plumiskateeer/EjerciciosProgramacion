@@ -58,14 +58,14 @@ public class ControladorCliente extends ControladorBBDD{
      * @throws ErrorBBDDException
      */
     public static Cliente get(int id) throws ErrorBBDDException {
-        Connection conn = null;
+        Connection conn;
         Cliente cl = null;
 
         try {
             conn = ConnectionManagerV2.getConexion();
 
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("Select * from fabricante where id = " + id);
+            ResultSet rs = s.executeQuery("Select * from cliente where id = " + id);
 
             if (rs.next()) {
                 cl = new Cliente();
@@ -98,7 +98,7 @@ public class ControladorCliente extends ControladorBBDD{
 
             PreparedStatement ps = (PreparedStatement) conn.
                     prepareStatement(
-                            "INSERT INTO cliente (id, nombre, apellidos, localidad, dniNie, fechaNac, activo) VALUES  (?, ?, ?)");
+                            "INSERT INTO cliente (id, nombre, apellidos, localidad, dniNie, fechaNac, activo) VALUES  (?, ?, ?, ?, ?, ?, ?)");
             int registrosInsertados;
 
             ps.setInt(1, nextIdEnTabla(conn, "cliente"));
@@ -106,7 +106,7 @@ public class ControladorCliente extends ControladorBBDD{
             ps.setString(3, cl.getApellidos());
             ps.setString(4, cl.getLocalidad());
             ps.setString(5, cl.getDniNie());
-            ps.setDate(6, cl.getFechaNac());
+            ps.setDate(6, new java.sql.Date(cl.getFechaNac().getTime()));
             ps.setBoolean(7, cl.getActivo());
 
             registrosInsertados = ps.executeUpdate();
@@ -137,12 +137,13 @@ public class ControladorCliente extends ControladorBBDD{
                             "update cliente set nombre = ?, apellidos = ?, localidad = ?, dniNie = ?, fechaNac = ?, activo = ? where id = ?");
             int registrosInsertados;
 
-            ps.setString(1, cl.getNombre());
-            ps.setString(2, cl.getApellidos());
-            ps.setString(3, cl.getLocalidad());
-            ps.setString(4, cl.getDniNie());
-            ps.setDate(5, cl.getFechaNac());
-            ps.setBoolean(6, cl.getActivo());
+            ps.setInt(1, cl.getId());
+            ps.setString(2, cl.getNombre());
+            ps.setString(3, cl.getApellidos());
+            ps.setString(4, cl.getLocalidad());
+            ps.setString(5, cl.getDniNie());
+            ps.setDate(6, new java.sql.Date(cl.getFechaNac().getTime()));
+            ps.setBoolean(7, cl.getActivo());
 
             registrosInsertados = ps.executeUpdate();
             if (registrosInsertados != 1) {
@@ -167,9 +168,7 @@ public class ControladorCliente extends ControladorBBDD{
         try {
             conn = ConnectionManagerV2.getConexion();
 
-            PreparedStatement ps = (PreparedStatement) conn.
-                    prepareStatement(
-                            "delete from cliente where id = ?");
+            PreparedStatement ps = conn.prepareStatement("delete from cliente where id = ?");
             int registrosInsertados;
 
             ps.setInt(1, cl.getId());

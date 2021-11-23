@@ -4,7 +4,7 @@ import capitulo07.gestionVentaCoches.modelo.Cliente;
 import capitulo07.gestionVentaCoches.modelo.controladores.ControladorCliente;
 import capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,12 +20,12 @@ public class GestionCliente {
         int opcionElegida = -1;
         do {
             try {
-                System.out.println("\n\t\t\tGESTION DE FABRICANTES");
+                System.out.println("\n\t\t\tGESTION DE CLIENTES");
 
-                System.out.println("\n\t1.- Listado de fabricantes.");
-                System.out.println("\t2.- Alta de fabricante.");
-                System.out.println("\t3.- Modificacion de fabricante.");
-                System.out.println("\t4.- Baja de fabricante.");
+                System.out.println("\n\t1.- Listado de clientes.");
+                System.out.println("\t2.- Alta de cliente.");
+                System.out.println("\t3.- Modificacion de cliente.");
+                System.out.println("\t4.- Baja de cliente.");
                 System.out.println("\t0.- Salir");
                 System.out.println("\n\tElija una opcion: ");
 
@@ -96,12 +96,12 @@ public class GestionCliente {
         cl.setDniNie(Utils.getStringConsola());
 
         System.out.print("\nIntroduzca 'FechaNacimiento' del cliente  ('Intro' para no modificar): ");
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        cl.setFechaNac((Date) df.parse(Utils.getStringConsola()));
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        cl.setFechaNac(df.parse(Utils.getStringConsola()));
 
         System.out.print("\nIntroduzca 'Activo' del cliente  (true o false) ('Intro' para no modificar): ");
         str = Utils.getStringConsola();
-        if(str.equals("true"))
+        if (str.equals("true"))
             cl.setActivo(true);
         else cl.setActivo(false);
 
@@ -121,13 +121,8 @@ public class GestionCliente {
         Cliente cl = seleccionPorUsuario();
 
         if (cl != null) {
-            System.out.print("\nIntroduzca 'ID' del cliente ('Intro' para no modificar): ");
-            String str = Utils.getStringConsola();
-            if (!str.equals(""))
-                cl.setId(Integer.parseInt(str));
-
             System.out.print("\nIntroduzca 'Nombre' del cliente  ('Intro' para no modificar): ");
-            str = Utils.getStringConsola();
+            String str = Utils.getStringConsola();
             if (!str.equals(""))
                 cl.setNombre(str);
 
@@ -148,17 +143,19 @@ public class GestionCliente {
 
             System.out.print("\nIntroduzca 'FechaNacimiento' del cliente  ('Intro' para no modificar): ");
             str = Utils.getStringConsola();
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             if (!str.equals(""))
-                cl.setFechaNac((Date) df.parse(str));
+                cl.setFechaNac(df.parse(str));
 
             System.out.print("\nIntroduzca 'Activo' del cliente  (true o false) ('Intro' para no modificar): ");
             str = Utils.getStringConsola();
-            if (!str.equals(""))
-                if(str.equals("true"))
-                cl.setActivo(true);
+            if (!str.equals("")) {
+                if (str.equals("true"))
+                    cl.setActivo(true);
                 else cl.setActivo(false);
-
+            }else{
+                cl.setActivo(cl.getActivo());
+            }
             ControladorCliente.almacenar(cl);
 
             System.out.println("\n\tModificado correctamente!. Pulse 'Intro' para continuar");
@@ -196,7 +193,7 @@ public class GestionCliente {
         int id = -2;
         do {
             System.out.println("\n\tIntroduzca ID del cliente ('-1' - ver listado, '0' - salir): ");
-            id = Utils.getIntConsola(-1);
+            id = Utils.getIntConsola(1);
             if (id == -1) {
                 listado(false);
             } else {

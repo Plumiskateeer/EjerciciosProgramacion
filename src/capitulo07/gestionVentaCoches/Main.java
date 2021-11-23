@@ -2,6 +2,7 @@ package capitulo07.gestionVentaCoches;
 
 public class Main {
 
+
     public static void main(String[] args) {
         menuPrincipal();
     }
@@ -16,7 +17,7 @@ public class Main {
             System.out.println("\n\t\t\tGESTION DE VENTAS DE COCHES");
 
             System.out.println("\n\t1.- Gestion de fabricantes.");
-            System.out.println("\t2.- Gestion de ___________.");
+            System.out.println("\t2.- Gestion de clientes.");
             System.out.println("\t3.- Gestion de ___________.");
             System.out.println("\t4.- Gestion de ___________.");
             System.out.println("\t5.- Gestion de ___________.");
@@ -31,6 +32,10 @@ public class Main {
                     break;
                 case 1:
                     GestionFabricante.menuGestion();
+                    break;
+                case 2:
+                    GestionCliente.menuGestion();
+                    break;
             }
         } while (opcionElegida != 0);
     }
