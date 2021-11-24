@@ -7,7 +7,7 @@ public class Ejercicio03_AddInteger {
         int[] matriz = new int[10];
         Ejercicio01_ArrayToString.inicializarMatriz(matriz);
         System.out.println("Array original\n" + Arrays.toString(matriz));
-        matriz = Arrays.copyOf(addInteger(matriz,5),addInteger(matriz,5).length);
+        matriz = addInteger(matriz,5);
         System.out.println("Array editado\n" + Arrays.toString(matriz));
     }
 
