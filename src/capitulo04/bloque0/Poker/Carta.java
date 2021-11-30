@@ -1,48 +1,48 @@
 package capitulo04.bloque0.Poker;
 
 public class Carta {
-    private String paloCarta;
-    private int valorCarta, idCarta;
+    private String palo;
+    private int valor, id;
 
     public Carta() {
     }
 
-    public Carta(String paloCarta, int valorCarta, int idCarta) {
-        this.paloCarta = paloCarta;
-        this.valorCarta = valorCarta;
-        this.idCarta = idCarta;
+    public Carta(String palo, int valor, int id) {
+        this.palo = palo;
+        this.valor = valor;
+        this.id = id;
     }
 
-    public String getPaloCarta() {
-        return paloCarta;
+    public String getPalo() {
+        return palo;
     }
 
-    public void setPaloCarta(String paloCarta) {
-        this.paloCarta = paloCarta;
+    public void setPalo(String palo) {
+        this.palo = palo;
     }
 
-    public int getValorCarta() {
-        return valorCarta;
+    public int getValor() {
+        return valor;
     }
 
-    public void setValorCarta(int valorCarta) {
-        this.valorCarta = valorCarta;
+    public void setValor(int valor) {
+        this.valor = valor;
     }
 
-    public int getIdCarta() {
-        return idCarta;
+    public int getId() {
+        return id;
     }
 
-    public void setIdCarta(int idCarta) {
-        this.idCarta = idCarta;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "Carta{" +
-               "paloCarta='" + paloCarta + '\'' +
-               ", valorCarta=" + valorCarta +
-               ", idCarta=" + idCarta +
+               "paloCarta='" + palo + '\'' +
+               ", valorCarta=" + valor +
+               ", idCarta=" + id +
                '}';
     }
 }
