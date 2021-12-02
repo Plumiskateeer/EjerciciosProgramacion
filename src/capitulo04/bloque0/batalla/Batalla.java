@@ -6,6 +6,8 @@ public class Batalla {
         NaveHumana naveHum = new NaveHumana(10);
         System.out.println(naveAl);
         System.out.println(naveHum);
+        Ventana ventana = new Ventana();
+        ventana.setVisible(true);
     }
 
     public static void comienzaBatalla(NaveHumana nHum, NaveAlienigena nAli){
