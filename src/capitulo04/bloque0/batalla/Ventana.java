@@ -1,5 +1,5 @@
 package capitulo04.bloque0.batalla;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -13,19 +13,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class Ventana extends JFrame {
 
     public static int ANCHO = 800;
-    public static int ALTO = 600;
-    public static String TITULO_APLICACION = "Título de la aplicación";
+    public static int ALTO = 450;
+    public static String TITULO_APLICACION = "BATALLA ALIENÍGENA";
 
     private CacheImagenes cacheImagenes;
     public static BufferedImage iconoApp;
@@ -174,9 +170,9 @@ public class Ventana extends JFrame {
     private JPanel getElementosBasicosPanel () {
         JPanel muestrario = new JPanel();
 
-        // JLabel
-        JLabel lb = new JLabel ("Ejemplo de JTextField: ");
-        muestrario.add(lb);
+//        // JLabel
+//        JLabel lb = new JLabel ("Ejemplo de JTextField: ");
+//        muestrario.add(lb);
 
         // JTextField
         JTextField tf = new JTextField("asdf");
@@ -187,14 +183,27 @@ public class Ventana extends JFrame {
 
         // JButton
         JButton bt = new JButton("Que comience la batalla!!!");
+        JButton bt2 = new JButton("Finalizar batalla");
         bt.addActionListener(new ActionListener () {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Personalización del icono, otra vez
-                JOptionPane.showMessageDialog(null, "Acción!!!!!!!", TITULO_APLICACION, JOptionPane.INFORMATION_MESSAGE, cacheImagenes.getIcono("goku.png"));
+                JOptionPane.showMessageDialog(null, "¡Acción!", TITULO_APLICACION, JOptionPane.INFORMATION_MESSAGE, cacheImagenes.getIcono("goku.png"));
             }
         });
+        bt2.addActionListener(new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Personalización del icono, otra vez
+                JOptionPane.showMessageDialog(null, "Batalla finalizada", TITULO_APLICACION, JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        JLabel lbnave = new JLabel();
+
+
         muestrario.add(bt);
+        muestrario.add(bt2);
 
         return muestrario;
     }
