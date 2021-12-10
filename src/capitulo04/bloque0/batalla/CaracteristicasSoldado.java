@@ -4,6 +4,11 @@ public class CaracteristicasSoldado {
     private int puntosVida, puntosFuerza;
     private float porcentajeAcierto;
 
+    public CaracteristicasSoldado(){
+        this.puntosFuerza = (int) Math.round(Math.random() * 100);
+        this.puntosVida = (int) Math.round(Math.random() * 50) + 50;
+        this.porcentajeAcierto = (float) Math.round(Math.random() * 60);
+    }
     public CaracteristicasSoldado(int puntosVida, int puntosFuerza, float porcentajeAcierto) {
         this.puntosVida = puntosVida;
         this.puntosFuerza = puntosFuerza;
