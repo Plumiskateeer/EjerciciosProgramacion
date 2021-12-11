@@ -8,13 +8,14 @@ public class GestionPersona {
 
         int opcion;
         do {
-            System.out.println("\n0:Salir");
-            System.out.println("1:Introducir persona");
-            System.out.println("2:Mostrar personas");
+            System.out.println("\n-------MENU PERSONAS---------");
+            System.out.println("\t0:Salir");
+            System.out.println("\t1:Introducir persona");
+            System.out.println("\t2:Mostrar personas");
             opcion = Integer.parseInt(JOptionPane.showInputDialog("Introduce una opcion:"));
             switch (opcion) {
                 case 0: {
-                    System.out.println("Fin del programa");
+                    System.out.println("\nFin del programa");
                     break;
                 }
                 case 1: {
@@ -24,16 +25,24 @@ public class GestionPersona {
                 case 2: {
                     mostrarPersonas(personas);
                 }
+                default: break;
+
             }
         } while (opcion != 0);
 
     }
 
     private static void mostrarPersonas(Persona[] personas) {
+        boolean hayPersonas = false;
+        System.out.println("\n"+"--PERSONAS ALMACENADAS--");
         for(Persona i : personas) {
-            if(i!=null)
-            System.out.println(i);
+            if(i!=null) {
+                System.out.println(i);
+                hayPersonas = true;
+            }
         }
+        if (!hayPersonas)
+            System.out.println("\nNo hay ninguna persona para mostrar");
     }
 
     private static void introducirPersona(Persona[] personas) {
@@ -61,6 +70,7 @@ public class GestionPersona {
             personas[posNula].setDireccion(dato);
             dato = JOptionPane.showInputDialog("Introduce el telefono: ");
             personas[posNula].setTelefono(dato);
+            System.out.println("\nHas introducido una persona");
         }else
             System.out.println("\nNo hay hueco para introducir persona");
     }
