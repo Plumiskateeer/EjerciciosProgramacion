@@ -7,13 +7,13 @@ public class CampoBatalla {
     private Alien[] aliens = new Alien[5];
 
     public CampoBatalla() {
-        inicializarPersonajes(humanos, false);
-        inicializarPersonajes(aliens, true);
+        inicializarPersonajes(humanos);
+        inicializarPersonajes(aliens);
     }
 
-    public void inicializarPersonajes(CaracteristicasSoldado[] array, boolean esAlien) {
+    public void inicializarPersonajes(CaracteristicasSoldado[] array) {
         for (int i = 0; i < array.length; i++) {
-            if (esAlien)
+            if (array instanceof Alien[])
                 array[i] = new Alien();
              else array[i] = new Humano();
         }

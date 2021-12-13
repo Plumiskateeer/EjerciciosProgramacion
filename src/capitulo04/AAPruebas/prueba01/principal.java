@@ -8,7 +8,7 @@ public class principal {
         JFrame f = new JFrame();
         f.add(s);
         f.setVisible(true);
-        f.setSize(1280,1200);
+        f.setSize(650,450);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
