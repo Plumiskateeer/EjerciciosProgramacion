@@ -1,6 +1,6 @@
 package capitulo04.bloque0.batalla;
 
-public class Alien extends CaracteristicasSoldado {
+public class Alien extends Personaje {
 
     public Alien(){
         super();

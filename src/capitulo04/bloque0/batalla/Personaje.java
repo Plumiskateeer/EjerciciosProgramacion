@@ -1,15 +1,15 @@
 package capitulo04.bloque0.batalla;
 
-public class CaracteristicasSoldado {
+public class Personaje {
     private int puntosVida, puntosFuerza;
     private float porcentajeAcierto;
 
-    public CaracteristicasSoldado(){
+    public Personaje(){
         this.puntosFuerza = (int) Math.round(Math.random() * 100);
         this.puntosVida = (int) Math.round(Math.random() * 50) + 50;
         this.porcentajeAcierto = (float) Math.round(Math.random() * 60);
     }
-    public CaracteristicasSoldado(int puntosVida, int puntosFuerza, float porcentajeAcierto) {
+    public Personaje(int puntosVida, int puntosFuerza, float porcentajeAcierto) {
         this.puntosVida = puntosVida;
         this.puntosFuerza = puntosFuerza;
         this.porcentajeAcierto = porcentajeAcierto;

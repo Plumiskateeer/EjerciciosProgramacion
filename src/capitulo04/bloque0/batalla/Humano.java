@@ -1,6 +1,6 @@
 package capitulo04.bloque0.batalla;
 
-public class Humano extends CaracteristicasSoldado {
+public class Humano extends Personaje {
 
     public Humano(){
         super();
