@@ -12,6 +12,8 @@ public class Alien extends Personaje {
 
     @Override
     public String toString() {
-        return "A->" + super.toString();
+        if(this.getPuntosVida() > 0)
+            return "[A: " + this.getPuntosVida() + " ]";
+        else return "[A:X]";
     }
 }

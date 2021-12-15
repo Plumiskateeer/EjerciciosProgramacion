@@ -46,10 +46,11 @@ public class CampoBatalla {
             if (primerAlienVivo == null)
                 System.out.println("Han ganado los humanos");
 
+            muestraCampoBatalla();
         }while(localizarPrimerPersonajeVivo(aliens) != null && localizarPrimerPersonajeVivo(humanos) != null);
     }
 
-    public static void disparaSobrePersonaje(Personaje dispara, Personaje recibe) {
+    public void disparaSobrePersonaje(Personaje dispara, Personaje recibe) {
         int probabilidad = (int) Math.round(Math.random() * 100);
 
         if (dispara != null && probabilidad <= dispara.getPorcentajeAcierto()) {
@@ -57,8 +58,22 @@ public class CampoBatalla {
 
             // si tiene menos de 0 puntos de vida se queda con 0, si no con la vida que tenia
             recibe.setPuntosVida(Math.max(recibe.getPuntosVida(), 0));
-            System.out.println(dispara.toString() + " ha disparado sobre " + recibe.toString());
         }
+        //despues muestro el campo de batalla
+
+
+    }
+
+    public void muestraCampoBatalla(){
+        System.out.print("Aliens: ");
+        for(Alien a : aliens){
+            System.out.print(a.toString());
+        }
+        System.out.print("\nHumanos: ");
+        for(Humano h : humanos){
+            System.out.print(h.toString());
+        }
+        System.out.println("\n");
     }
 
     public static Personaje localizarPrimerPersonajeVivo(Personaje[] array) {

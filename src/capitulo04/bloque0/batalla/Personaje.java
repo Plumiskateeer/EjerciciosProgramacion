@@ -1,6 +1,6 @@
 package capitulo04.bloque0.batalla;
 
-public class Personaje {
+public abstract class Personaje {
     private int puntosVida, puntosFuerza;
     private float porcentajeAcierto;
 
@@ -39,7 +39,5 @@ public class Personaje {
         this.porcentajeAcierto = porcentajeAcierto;
     }
 
-    public String toString() {
-        return "HP:" + this.puntosVida;
-    }
+    public abstract String toString();
 }

@@ -11,6 +11,8 @@ public class Humano extends Personaje {
 
     @Override
     public String toString() {
-        return "H->" + super.toString();
+        if(this.getPuntosVida() > 0)
+        return "[H: " + this.getPuntosVida() + " ]";
+        else return "[H:X]";
     }
 }
