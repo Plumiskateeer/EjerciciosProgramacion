@@ -3,6 +3,7 @@ package capitulo05.bloque08;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Ejercicio02_EditorTextos {
     private static ArrayList<String> lineasCortadas;
@@ -24,21 +25,20 @@ public class Ejercicio02_EditorTextos {
                                "4 : Borrar una linea\n" +
                                "5 : Cortar lineas de ciertas posiciones\n" +
                                "6 : Pegar lineas en unas posiciones\n" +
-                               "7 : Imprimir el texto");
+                               "7 : Imprimir el texto\n" +
+                               "0 : Finalizar programa\n");
 
             num = Integer.parseInt(JOptionPane.showInputDialog("Introduce la accion deseada: "));
 
             switch (num) {
-                case 1 : {
-                    anadirLinea(texto);
-                }
-                case 2 : anadirLineaenPos(texto);
-                case 3 : editarLinea(texto);
-                case 4 : borrarLinea(texto);
-                case 5 : cortarParteDeTexto(texto);
-                case 6 : pegarParteDeTexto(texto);
-                case 7 : System.out.println("\n" + imprimirTexto(texto));
-                default : System.out.println("FIN DEL PROGRAMA");
+                case 1 : anadirLinea(texto); break;
+                case 2 : anadirLineaenPos(texto); break;
+                case 3 : editarLinea(texto); break;
+                case 4 : borrarLinea(texto); break;
+                case 5 : cortarParteDeTexto(texto); break;
+                case 6 : pegarParteDeTexto(texto); break;
+                case 7 : System.out.println("\n" + imprimirTexto(texto) + "\n"); break;
+                default : System.out.println("FIN DEL PROGRAMA"); break;
             }
 
         } while (num != 0);
@@ -121,7 +121,10 @@ public class Ejercicio02_EditorTextos {
      * @param texto arraylist texto
      */
     public static void pegarParteDeTexto(List<String> texto) {
-        texto.addAll(lineasCortadas);
+        int posicion = Integer.parseInt(JOptionPane.showInputDialog("Introduce la posicion en la cual insertar el texto cortado: "));
+        for (String i : lineasCortadas) {
+            texto.add(posicion++, i);
+        }
         lineasCortadas.clear();
     }
 
