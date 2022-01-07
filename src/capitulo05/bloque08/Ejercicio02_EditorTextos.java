@@ -14,6 +14,7 @@ public class Ejercicio02_EditorTextos {
      * @param args default
      */
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         List<String> texto = new ArrayList<>();
         int num;
 
@@ -26,9 +27,10 @@ public class Ejercicio02_EditorTextos {
                                "4 : Borrar una linea\n" +
                                "5 : Cortar un conjunto de lineas\n" +
                                "6 : Pegar un conjunto de líneas cortadas en una determinada posición\n" +
-                               "7 : Imprimir el fichero\n");
+                               "7 : Imprimir el fichero\n" +
+                                "Introduce la accion deseada: ");
 
-            num = Integer.parseInt(JOptionPane.showInputDialog("Introduce la accion deseada: "));
+            num = sc.nextInt();
 
             switch (num) {
                 case 1 : anadirLinea(texto); break;
@@ -38,7 +40,7 @@ public class Ejercicio02_EditorTextos {
                 case 5 : cortarParteDeTexto(texto); break;
                 case 6 : pegarParteDeTexto(texto); break;
                 case 7 : System.out.println("\n" + imprimirTexto(texto) + "\n"); break;
-                default : System.out.println("FIN DEL PROGRAMA"); break;
+                default : System.out.println("******* FIN DEL PROGRAMA *******"); break;
             }
 
         } while (num != 0);
@@ -66,7 +68,7 @@ public class Ejercicio02_EditorTextos {
         System.out.println("Introduce el indice en el cual quieres introducir una linea: ");
         int pos = sc.nextInt();
         System.out.println("Introduce la linea: ");
-        String linea  = sc.nextLine();
+        String linea  = sc.next();
         texto.add(pos,linea);
     }
 
@@ -80,7 +82,7 @@ public class Ejercicio02_EditorTextos {
         System.out.println("Introduce el indice de la linea a modificar: ");
         int pos = sc.nextInt();
         System.out.println("Introduce la linea modificada: ");
-        String linea  = sc.nextLine();
+        String linea  = sc.next();
         texto.set(pos,linea);
     }
 
