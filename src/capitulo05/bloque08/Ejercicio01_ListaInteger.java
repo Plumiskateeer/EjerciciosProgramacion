@@ -94,10 +94,8 @@ public class Ejercicio01_ListaInteger {
 
         int borrados = 0;
         for (int i = min; i <= max; i++) {
-            if (lista.contains(lista.get(i))) {
-                lista.remove(i);
-                borrados++;
-            }
+            lista.remove(min);
+            borrados++;
         }
         System.out.println("Se han borrado " + borrados + " elementos de la lista\n");
     }
