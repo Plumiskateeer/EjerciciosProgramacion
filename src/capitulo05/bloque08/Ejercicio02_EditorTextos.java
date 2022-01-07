@@ -19,14 +19,14 @@ public class Ejercicio02_EditorTextos {
 
         do {
             System.out.println("------- EDITOR DE TEXTOS -------\n" +
+                               "0 : Finalizar programa\n" +
                                "1 : Añadir linea al texto\n" +
                                "2 : Insertar una linea en una posicion\n" +
                                "3 : Editar una linea\n" +
                                "4 : Borrar una linea\n" +
-                               "5 : Cortar lineas de ciertas posiciones\n" +
-                               "6 : Pegar lineas en unas posiciones\n" +
-                               "7 : Imprimir el texto\n" +
-                               "0 : Finalizar programa\n");
+                               "5 : Cortar un conjunto de lineas\n" +
+                               "6 : Pegar un conjunto de líneas cortadas en una determinada posición\n" +
+                               "7 : Imprimir el fichero\n");
 
             num = Integer.parseInt(JOptionPane.showInputDialog("Introduce la accion deseada: "));
 
@@ -51,7 +51,9 @@ public class Ejercicio02_EditorTextos {
      * @param texto arraylist texto
      */
     public static void anadirLinea(List<String> texto) {
-        texto.add(JOptionPane.showInputDialog("Introduce la linea: "));
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce la linea: ");
+        texto.add(sc.nextLine());
     }
 
     /**
@@ -60,9 +62,12 @@ public class Ejercicio02_EditorTextos {
      * @param texto arraylist texto
      */
     public static void anadirLineaenPos(List<String> texto) {
-        texto.set(Integer.parseInt(JOptionPane.showInputDialog
-                        ("Introduce el indice en el cual quieres introducir una linea")),
-                JOptionPane.showInputDialog("Introduce la linea: "));
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce el indice en el cual quieres introducir una linea: ");
+        int pos = sc.nextInt();
+        System.out.println("Introduce la linea: ");
+        String linea  = sc.nextLine();
+        texto.add(pos,linea);
     }
 
     /**
@@ -71,9 +76,12 @@ public class Ejercicio02_EditorTextos {
      * @param texto arraylist texto
      */
     public static void editarLinea(List<String> texto) {
-        texto.set(Integer.parseInt(JOptionPane.showInputDialog
-                        ("Introduce el indice de la linea a modificar: ")),
-                JOptionPane.showInputDialog("Introduce la linea modificada: "));
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce el indice de la linea a modificar: ");
+        int pos = sc.nextInt();
+        System.out.println("Introduce la linea modificada: ");
+        String linea  = sc.nextLine();
+        texto.set(pos,linea);
     }
 
     /**
@@ -82,8 +90,9 @@ public class Ejercicio02_EditorTextos {
      * @param texto arraylist texto
      */
     public static void borrarLinea(List<String> texto) {
-        texto.remove(Integer.parseInt(JOptionPane.showInputDialog
-                ("Introduce el indice de la linea que quieres borrar: ")));
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce el indice de la linea que quieres borrar: ");
+        texto.remove(sc.nextInt());
     }
 
     /**
@@ -102,10 +111,13 @@ public class Ejercicio02_EditorTextos {
      * @param texto arraylist texto
      */
     public static void cortarParteDeTexto(List<String> texto) {
+        Scanner sc = new Scanner(System.in);
         int limInf, limSup;
         do {
-            limInf = Integer.parseInt(JOptionPane.showInputDialog("Introduce el indice inferior para cortar: "));
-            limSup = Integer.parseInt(JOptionPane.showInputDialog("Introduce el indice superior para cortar: "));
+            System.out.println("Introduce el indice inferior para cortar: ");
+            limInf = sc.nextInt();
+            System.out.println("Introduce el indice superior para cortar: ");
+            limSup = sc.nextInt();
         } while (limInf > limSup || limInf < 0);
 
         lineasCortadas = new ArrayList<>();
@@ -121,7 +133,9 @@ public class Ejercicio02_EditorTextos {
      * @param texto arraylist texto
      */
     public static void pegarParteDeTexto(List<String> texto) {
-        int posicion = Integer.parseInt(JOptionPane.showInputDialog("Introduce la posicion en la cual insertar el texto cortado: "));
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce la posicion en la cual insertar el texto cortado: ");
+        int posicion = sc.nextInt();
         for (String i : lineasCortadas) {
             texto.add(posicion++, i);
         }
