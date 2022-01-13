@@ -68,7 +68,8 @@ public class Ejercicio02_EditorTextos {
         System.out.println("Introduce el indice en el cual quieres introducir una linea: ");
         int pos = sc.nextInt();
         System.out.println("Introduce la linea: ");
-        String linea  = sc.next();
+        sc.nextLine();
+        String linea  = sc.nextLine();
         texto.add(pos,linea);
     }
 
@@ -81,8 +82,7 @@ public class Ejercicio02_EditorTextos {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce el indice de la linea a modificar: ");
         int pos = sc.nextInt();
-        System.out.println("Introduce la linea modificada: ");
-        String linea  = sc.next();
+        String linea  = JOptionPane.showInputDialog("Introduce la linea modificada: ",texto.get(pos));
         texto.set(pos,linea);
     }
 
@@ -138,9 +138,7 @@ public class Ejercicio02_EditorTextos {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce la posicion en la cual insertar el texto cortado: ");
         int posicion = sc.nextInt();
-        for (String i : lineasCortadas) {
-            texto.add(posicion++, i);
-        }
+        texto.addAll(posicion, lineasCortadas);
         lineasCortadas.clear();
     }
 
