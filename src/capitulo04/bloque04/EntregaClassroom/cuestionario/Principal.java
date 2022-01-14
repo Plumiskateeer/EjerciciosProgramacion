@@ -30,6 +30,7 @@ public class Principal {
 
     public static void inicializarPreguntas(List<Pregunta> preguntas){
         Scanner sc = new Scanner(System.in);
+        preguntas.clear();
         for (int i = 0; i < NUM_PREGUNTAS; i++){
             if(i < 3){ // 3 de respuesta unica
                 System.out.println("Introduce el enunciado de la pregunta (PREGUNTA UNICA): ");
