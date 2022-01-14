@@ -1,4 +1,4 @@
-package capitulo04.bloque04.Ejercicio01_Tienda;
+package capitulo04.bloque04.EntregaClassroom.articulosComestibles;
 
 import javax.swing.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package capitulo04.bloque04.Ejercicio02_Antiguedades;
+package capitulo04.bloque04.EntregaClassroom.coleccionAntiguedades;
 
 import javax.swing.*;
 
