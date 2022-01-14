@@ -13,12 +13,11 @@ public class Principal {
 
         int opc;
         do {
-            System.out.println("""
-                    ------- TEST 5 PREGUNTAS -------
-                    0 : Finalizar programa
-                    1 : Introducir las preguntas
-                    2 : Realizar TEST
-                    Introduce la accion deseada:\s""");
+            System.out.println("------- TEST 5 PREGUNTAS -------\n" +
+                               "0 : Finalizar programa\n" +
+                               "1 : Introducir las preguntas\n" +
+                               "2 : Realizar TEST\n" +
+                               "Introduce la accion deseada: ");
 
             opc = sc.nextInt();
             switch (opc) {
