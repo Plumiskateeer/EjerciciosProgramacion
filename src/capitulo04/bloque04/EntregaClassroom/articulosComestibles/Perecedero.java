@@ -1,7 +1,7 @@
 package capitulo04.bloque04.EntregaClassroom.articulosComestibles;
 
 public class Perecedero extends Producto {
-    String fecha;
+    private String fecha;
 
     /**
      * Constructor general perecedero

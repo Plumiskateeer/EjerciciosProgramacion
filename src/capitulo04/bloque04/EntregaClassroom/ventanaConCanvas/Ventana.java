@@ -18,12 +18,11 @@ public class Ventana extends JPanel {
 
 
         g2.setColor(Color.BLUE);
-        int [] puntos1 = {50,150,100};
+        int [] puntos1 = {50,150,50};
         int[] puntos2={30,50,100};
         Polygon p = new Polygon(puntos1,puntos2,3);
         g2.drawPolygon(p);
         g2.fill(p);
-
     }
 
 }
