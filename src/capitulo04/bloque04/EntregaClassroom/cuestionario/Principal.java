@@ -75,6 +75,7 @@ public class Principal {
             }else{
                 VoF pregunta = (VoF) p;
                 System.out.println("\n---OPCIONES---");
+                System.out.println("PREGUNTA: " + p.getEnunciado());
                 int cont = 0;
                 for(String s : pregunta.getOpciones()){
                     switch(cont){
