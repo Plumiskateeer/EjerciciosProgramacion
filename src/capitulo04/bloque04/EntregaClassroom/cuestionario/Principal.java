@@ -60,14 +60,16 @@ public class Principal {
     }
     public static void realizarTest(List<Pregunta> preguntas){
         Scanner sc = new Scanner(System.in);
-
+        int correctas = 0;
         System.out.println("-----TEST DE 5 PREGUNTAS-----");
         for(Pregunta p : preguntas){
             if(p instanceof OpcionUnica){
                 System.out.println("PREGUNTA: " + p.getEnunciado());
                 System.out.println("\nRESPUESTA: ");
-                if(p.comprobarRespuesta(sc.nextLine()))
+                if(p.comprobarRespuesta(sc.nextLine())) {
                     System.out.println("\nFELICIDADES, respuesta correcta\n");
+                    correctas++;
+                }
                 else {
                     System.out.println("\nHas fallado, respuesta incorrecta");
                     System.out.println(p+"\n");
@@ -88,15 +90,17 @@ public class Principal {
                     cont++;
                 }
                 System.out.println("\nRESPUESTA: ");
-                if(p.comprobarRespuesta(sc.nextLine()))
+                if(p.comprobarRespuesta(sc.nextLine())) {
                     System.out.println("\nFELICIDADES, respuesta correcta\n");
+                    correctas++;
+                }
                 else {
                     System.out.println("\nHas fallado, respuesta incorrecta");
                     System.out.println(p+"\n");
                 }
             }
         }
-
+        System.out.println("Respuestas correctas: " + correctas);
         System.out.println("\n-----EL TEST HA FINALIZADO-----\n\n");
     }
 
