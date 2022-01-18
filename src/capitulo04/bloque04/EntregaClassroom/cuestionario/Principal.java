@@ -32,12 +32,12 @@ public class Principal {
         Scanner sc = new Scanner(System.in);
         preguntas.clear();
         for (int i = 0; i < NUM_PREGUNTAS; i++){
-            if(i < 3){ // 3 de respuesta unica
-                System.out.println("Introduce el enunciado de la pregunta (PREGUNTA UNICA): ");
+            if(i < 3){ // 3 de Verdadero o falso
+                System.out.println("Introduce el enunciado de la pregunta (Verdadero o falso): ");
                 String enunciado = sc.nextLine();
                 System.out.println("Introduce la respuesta a esa pregunta:");
                 String respuesta = sc.nextLine();
-                preguntas.add(new OpcionUnica(enunciado,respuesta));
+                preguntas.add(new VoF(enunciado,respuesta));
                 System.out.println();
             }else{
                 System.out.println();
@@ -54,7 +54,7 @@ public class Principal {
                 System.out.println("Introduce la opcion correcta (a,b,c ó d):");
                 char respuesta = sc.nextLine().charAt(0);
                 String []opciones = {a,b,c,d};
-                preguntas.add(new VoF(enunciado, opciones, respuesta));
+                preguntas.add(new OpcionUnica(enunciado, opciones, respuesta));
             }
         }
     }
@@ -63,7 +63,7 @@ public class Principal {
         int correctas = 0;
         System.out.println("-----TEST DE 5 PREGUNTAS-----");
         for(Pregunta p : preguntas){
-            if(p instanceof OpcionUnica){
+            if(p instanceof VoF){
                 System.out.println("PREGUNTA: " + p.getEnunciado());
                 System.out.println("\nRESPUESTA: ");
                 if(p.comprobarRespuesta(sc.nextLine())) {
@@ -75,7 +75,7 @@ public class Principal {
                     System.out.println(p+"\n");
                 }
             }else{
-                VoF pregunta = (VoF) p;
+                OpcionUnica pregunta = (OpcionUnica) p;
                 System.out.println("\n---OPCIONES---");
                 System.out.println("PREGUNTA: " + p.getEnunciado());
                 int cont = 0;
