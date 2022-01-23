@@ -1,7 +1,7 @@
 package capitulo04.SimulacroExamenSpaceInvaders;
 
 public class Personaje {
-    private int puntosVida;
+    private int puntosVida, tirosRecibidos;
     private String nombre;
     private boolean vivo;
 
@@ -12,6 +12,7 @@ public class Personaje {
         this.puntosVida = puntosVida;
         this.nombre = nombre;
         this.vivo = vivo;
+        this.tirosRecibidos = 0;
     }
 
     public int getPuntosVida() {
@@ -19,7 +20,8 @@ public class Personaje {
     }
 
     public void setPuntosVida(int puntosVida) {
-        this.puntosVida = puntosVida;
+        if (puntosVida < 0) this.puntosVida = 0;
+        else this.puntosVida = puntosVida;
     }
 
     public String getNombre() {
@@ -31,6 +33,8 @@ public class Personaje {
     }
 
     public boolean isVivo() {
+        if (puntosVida > 0) vivo = true;
+        else vivo = false;
         return vivo;
     }
 
@@ -38,11 +42,21 @@ public class Personaje {
         this.vivo = vivo;
     }
 
+    public void sumarDisparo(){
+        this.tirosRecibidos++;
+    }
+
+    public int getTirosRecibidos(){
+        return this.tirosRecibidos;
+    }
+
     @Override
     public String toString() {
-        return "puntosVida=" + puntosVida +
-               ", nombre='" + nombre + '\'' +
-               ", vivo=" + vivo +
-               '}';
+        String status = "";
+        if (vivo) status = "O.o";
+        else status = "X.x";
+        return "PV:" + puntosVida +
+               ", ID:" + nombre +
+               ", STATUS:" + status ;
     }
 }

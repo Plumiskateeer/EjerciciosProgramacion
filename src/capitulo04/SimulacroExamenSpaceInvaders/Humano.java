@@ -10,6 +10,6 @@ public class Humano extends Personaje{
 
     @Override
     public String toString() {
-        return "HUMANO " + super.toString();
+        return "H: " + super.toString();
     }
 }

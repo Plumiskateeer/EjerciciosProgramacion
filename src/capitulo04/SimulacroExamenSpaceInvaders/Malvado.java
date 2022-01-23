@@ -10,6 +10,6 @@ public class Malvado extends Personaje{
 
     @Override
     public String toString() {
-        return "MALVADO " + super.toString();
+        return "M: " + super.toString();
     }
 }
