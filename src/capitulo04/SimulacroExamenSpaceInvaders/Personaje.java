@@ -1,9 +1,14 @@
 package capitulo04.SimulacroExamenSpaceInvaders;
 
-public class Personaje {
+import java.awt.*;
+
+public abstract class Personaje extends MiCanvas {
     private int puntosVida, tirosRecibidos;
     private String nombre;
     private boolean vivo;
+    protected int x, y;
+    protected int ancho = 30, alto = 30;
+    protected String img;
 
     public Personaje() {
     }
@@ -14,6 +19,9 @@ public class Personaje {
         this.vivo = vivo;
         this.tirosRecibidos = 0;
     }
+
+    @Override
+    public abstract void paint(Graphics g);
 
     public int getPuntosVida() {
         return puntosVida;
