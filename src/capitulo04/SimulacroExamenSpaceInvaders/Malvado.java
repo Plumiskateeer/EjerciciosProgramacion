@@ -1,7 +1,5 @@
 package capitulo04.SimulacroExamenSpaceInvaders;
 
-import java.awt.*;
-
 public class Malvado extends Personaje{
     public Malvado() {
     }
@@ -10,11 +8,6 @@ public class Malvado extends Personaje{
         super(puntosVida, nombre, vivo);
     }
 
-    @Override
-    public void paint(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(this.x,this.y,this.alto,this.ancho);
-    }
 
     @Override
     public String toString() {
