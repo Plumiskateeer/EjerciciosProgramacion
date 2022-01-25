@@ -12,7 +12,8 @@ public class Malvado extends Personaje{
 
     @Override
     public void paint(Graphics g) {
-
+        g.setColor(Color.BLUE);
+        g.fillRect(this.x,this.y,this.alto,this.ancho);
     }
 
     @Override

@@ -14,7 +14,6 @@ public class Humano extends Personaje{
     public void paint(Graphics g) {
         g.setColor(Color.YELLOW);
         g.fillRect(this.x,this.y,this.alto,this.ancho);
-
     }
 
     @Override
