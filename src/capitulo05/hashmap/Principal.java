@@ -27,7 +27,7 @@ public class Principal {
         for (Map.Entry<String, Articulo> entry : articulos.entrySet()) {
             sb.append("key=" + entry.getKey() + ", value=" + entry.getValue()).append("\n");
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     private static void anadirArticulo() {
