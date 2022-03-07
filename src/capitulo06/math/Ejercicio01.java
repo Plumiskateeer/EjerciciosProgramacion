@@ -9,6 +9,6 @@ public class Ejercicio01 {
             r1 = Math.sqrt(x);
             r2 = (-Math.log(x));
         } while (Math.abs(r1-r2) > 0.0001);
-        System.out.println("Se cortan en: " + r1 + " " + r2);
+        System.out.println("Se cortan en: " + x + " " + r2);
     }
 }
