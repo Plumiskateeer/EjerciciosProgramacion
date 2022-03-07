@@ -11,16 +11,10 @@ public class Principal {
 		
 		try {
 			comprobarFrase(str);
-		} catch (SoloEspaciosException e) {
-			e.printStackTrace();
-		} catch (MenorDe3PalabrasException e) {
-			e.printStackTrace();
-		} catch (BombillaNotFoundException e) {
-			e.printStackTrace();
-		} catch (PalabraOfensivaFoundException e) {
+		} catch (SoloEspaciosException | PalabraOfensivaFoundException | MenorDe3PalabrasException | BombillaNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
