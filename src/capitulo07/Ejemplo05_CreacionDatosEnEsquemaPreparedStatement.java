@@ -63,7 +63,7 @@ public class Ejemplo05_CreacionDatosEnEsquemaPreparedStatement {
 
         for (int i = 0; i < REGISTROS_A_INSERTAR_EN_CONCESIONARIO; i++) {
 
-            ps.setInt(1, nextIdEnTabla(conn, "concesionario"));
+            ps.setInt(1, nextIdEnTabla("concesionario"));
             ps.setString(2, getDNICIFAzar());
             ps.setString(3, getStringAlAzar(tiposEmpresas) + " " + getStringAlAzar(apellidos));
             ps.setString(4, getStringAlAzar(localidades));
@@ -96,7 +96,7 @@ public class Ejemplo05_CreacionDatosEnEsquemaPreparedStatement {
 
         for (int i = 0; i < REGISTROS_A_INSERTAR_EN_CLIENTE; i++) {
 
-            ps.setInt(1, nextIdEnTabla(conn, "cliente"));
+            ps.setInt(1, nextIdEnTabla("cliente"));
             ps.setString(2, getStringAlAzar(nombres));
             ps.setString(3, getStringAlAzar(apellidos) + " " + getStringAlAzar(apellidos));
             ps.setString(4, getStringAlAzar(localidades));
@@ -133,7 +133,7 @@ public class Ejemplo05_CreacionDatosEnEsquemaPreparedStatement {
 
         for (int i = 0; i < fabricantes.length; i++) {
 
-            ps.setInt(1, nextIdEnTabla(conn, "fabricante"));
+            ps.setInt(1, nextIdEnTabla("fabricante"));
             ps.setString(2, getDNICIFAzar());
             ps.setString(3, fabricantes[i]);
 
@@ -165,7 +165,7 @@ public class Ejemplo05_CreacionDatosEnEsquemaPreparedStatement {
 
         for (int i = 0; i < REGISTROS_A_INSERTAR_EN_COCHE; i++) {
 
-            ps.setInt(1, nextIdEnTabla(conn, "coche"));
+            ps.setInt(1, nextIdEnTabla("coche"));
             ps.setInt(2, getIdAzarEnTabla(conn, "fabricante"));
             ps.setString(3, getBastidorAzar());
             ps.setString(4, getModeloCoche());
@@ -202,7 +202,7 @@ public class Ejemplo05_CreacionDatosEnEsquemaPreparedStatement {
 
         for (int i = 0; i < idsClientes.size(); i++) {
 
-            ps.setInt(1, nextIdEnTabla(conn, "venta"));
+            ps.setInt(1, nextIdEnTabla("venta"));
             ps.setInt(2, idsClientes.get(i));
             ps.setInt(3, getIdAzarEnTabla(conn, "concesionario"));
             ps.setInt(4, idsCoches.get(i));
@@ -229,7 +229,7 @@ public class Ejemplo05_CreacionDatosEnEsquemaPreparedStatement {
      * @throws SQLException
      */
     private static int getIdAzarEnTabla(Connection conn, String tabla) throws SQLException {
-        int maxIdFabricante = maxIdEnTabla(conn, tabla);
+        int maxIdFabricante = maxIdEnTabla(tabla);
         int idFabricanteAzar;
 
         Statement s = (Statement) conn.createStatement();
@@ -343,23 +343,21 @@ public class Ejemplo05_CreacionDatosEnEsquemaPreparedStatement {
 
 
     /**
-     * @param conn
      * @param tabla
      * @return
      * @throws SQLException
      */
-    private static int nextIdEnTabla(Connection conn, String tabla) throws SQLException {
-        return maxIdEnTabla(conn, tabla) + 1;
+    private static int nextIdEnTabla(String tabla) throws SQLException {
+        return maxIdEnTabla(tabla) + 1;
     }
 
 
     /**
-     * @param conn
      * @param tabla
      * @return
      * @throws SQLException
      */
-    private static int maxIdEnTabla(Connection conn, String tabla) throws SQLException {
+    private static int maxIdEnTabla(String tabla) throws SQLException {
 
         PreparedStatement ps = psMaxIdsEnTabla.get(tabla);
 
