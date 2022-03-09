@@ -12,6 +12,9 @@ public class Coche {
         this.color = color;
     }
 
+    public Coche() {
+    }
+
     public int getId() {
         return id;
     }
@@ -54,12 +57,10 @@ public class Coche {
 
     @Override
     public String toString() {
-        return "Coche{" +
-               "id=" + id +
+        return "id=" + id +
                ", idfabricante=" + idfabricante +
                ", bastidor='" + bastidor + '\'' +
                ", modelo='" + modelo + '\'' +
-               ", color='" + color + '\'' +
-               '}';
+               ", color='" + color + '\'';
     }
 }

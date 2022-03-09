@@ -45,11 +45,9 @@ public class Concesionario {
 
     @Override
     public String toString() {
-        return "Concesionario{" +
-               "id=" + id +
+        return "id=" + id +
                ", cif='" + cif + '\'' +
                ", nombre='" + nombre + '\'' +
-               ", localidad='" + localidad + '\'' +
-               '}';
+               ", localidad='" + localidad + '\'';
     }
 }

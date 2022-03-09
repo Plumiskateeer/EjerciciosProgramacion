@@ -80,14 +80,12 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-               "id=" + id +
+        return "id=" + id +
                ", nombre='" + nombre + '\'' +
                ", apellidos='" + apellidos + '\'' +
                ", localidad='" + localidad + '\'' +
                ", dniNie='" + dniNie + '\'' +
                ", fechaNac=" + fechaNac +
-               ", activo=" + activo +
-               '}';
+               ", activo=" + activo;
     }
 }

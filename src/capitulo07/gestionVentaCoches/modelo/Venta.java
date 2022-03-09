@@ -16,6 +16,9 @@ public class Venta {
         this.precioventa = precioventa;
     }
 
+    public Venta() {
+    }
+
     public int getId() {
         return id;
     }
@@ -66,13 +69,11 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" +
-               "id=" + id +
+        return "id=" + id +
                ", idCliente=" + idCliente +
                ", idConcesionario=" + idConcesionario +
                ", idCoche=" + idCoche +
                ", fecha=" + fecha +
-               ", precioventa=" + precioventa +
-               '}';
+               ", precioventa=" + precioventa;
     }
 }
