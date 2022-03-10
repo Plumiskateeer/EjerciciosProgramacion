@@ -19,7 +19,7 @@ public class Main {
             System.out.println("\n\t1.- Gestion de fabricantes.");
             System.out.println("\t2.- Gestion de clientes.");
             System.out.println("\t3.- Gestion de coches.");
-            System.out.println("\t4.- Gestion de ___________.");
+            System.out.println("\t4.- Gestion de ventas.");
             System.out.println("\t5.- Gestion de ___________.");
             System.out.println("\t0.- Salir");
             System.out.println("\n\tElija una opcion: ");
@@ -38,6 +38,9 @@ public class Main {
                     break;
                 case 3:
                     GestionCoche.menuGestion();
+                    break;
+                case 4:
+                    GestionVenta.menuGestion();
                     break;
             }
         } while (opcionElegida != 0);

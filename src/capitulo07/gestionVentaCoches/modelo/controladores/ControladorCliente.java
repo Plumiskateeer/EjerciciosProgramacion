@@ -41,7 +41,7 @@ public class ControladorCliente extends ControladorBBDD{
     }
 
     /**
-     * @param actors
+     * @param
      * @throws ErrorBBDDException
      */
     public static void almacenar(Cliente cliente) throws ErrorBBDDException {
@@ -53,7 +53,7 @@ public class ControladorCliente extends ControladorBBDD{
     }
 
     /**
-     * @param cliente
+     * @param
      * @return
      * @throws ErrorBBDDException
      */
@@ -86,7 +86,7 @@ public class ControladorCliente extends ControladorBBDD{
     }
 
     /**
-     * @param actors
+     * @param
      * @throws ErrorBBDDException
      */
     private static void almacenarNuevo(Cliente cl) throws ErrorBBDDException {
@@ -122,7 +122,7 @@ public class ControladorCliente extends ControladorBBDD{
     }
 
     /**
-     * @param actors
+     * @param
      * @throws ErrorBBDDException
      */
     private static void almacenarModificado(Cliente cl) throws ErrorBBDDException {
@@ -159,7 +159,7 @@ public class ControladorCliente extends ControladorBBDD{
     }
 
     /**
-     * @param actors
+     * @param
      * @throws ErrorBBDDException
      */
     public static void eliminar(Cliente cl) throws ErrorBBDDException {
