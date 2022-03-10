@@ -1,7 +1,6 @@
 package examenes.examen10032022;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class Principal {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("------JUEGO DE DIANA-----");
-        for (int j = 0; j < 2; j++) {
+        for (int j = 0; j < RONDAS; j++) {
             for(int i = 0; i<jugadores.size(); i++) {
                 System.out.println("INDICES Y VALORES DE LA DIANA\n" + diana+
                                    "\n------RONDA " + (j + 1) + "/10--------");
