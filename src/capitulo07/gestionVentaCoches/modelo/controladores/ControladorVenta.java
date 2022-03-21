@@ -107,7 +107,7 @@ public class ControladorVenta extends ControladorBBDD{
             ps.setInt(2, v.getIdCliente());
             ps.setInt(3, v.getIdConcesionario());
             ps.setInt(4, v.getIdCoche());
-            ps.setDate(5, (Date) v.getFecha());
+            ps.setDate(5, new java.sql.Date(v.getFecha().getTime()));
             ps.setFloat(6, v.getPrecioventa());
 
             registrosInsertados = ps.executeUpdate();
@@ -144,6 +144,7 @@ public class ControladorVenta extends ControladorBBDD{
             ps.setInt(3, v.getIdCoche());
             ps.setDate(4, (Date) v.getFecha());
             ps.setFloat(5, v.getPrecioventa());
+            ps.setInt(6, v.getId());
 
 
             registrosInsertados = ps.executeUpdate();

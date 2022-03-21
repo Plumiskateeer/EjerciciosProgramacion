@@ -11,6 +11,9 @@ public class Concesionario {
         this.localidad = localidad;
     }
 
+    public Concesionario() {
+    }
+
     public int getId() {
         return id;
     }

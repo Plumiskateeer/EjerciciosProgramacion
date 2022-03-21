@@ -1,5 +1,6 @@
 package capitulo07.gestionVentaCoches.modelo;
 
+
 import java.util.Date;
 
 public class Venta {

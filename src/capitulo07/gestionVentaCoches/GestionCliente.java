@@ -112,7 +112,7 @@ public class GestionCliente {
      * @throws ErrorBBDDException
      */
     private static void modificacion() throws ErrorBBDDException, ParseException {
-        System.out.println("\n\tModificaci�n de fabricante\n");
+        System.out.println("\n\tModificaci�n de cliente\n");
 
         Cliente cl = seleccionPorUsuario();
 
