@@ -36,6 +36,28 @@ public class ControladorFabricante extends ControladorBBDD {
         return fabricantes;
     }
 
+    public static Fabricante getFabricante(String consulta) throws ErrorBBDDException {
+        Connection conn = null;
+        Fabricante fab = new Fabricante();
+        try {
+            conn = ConnectionManagerV2.getConexion();
+
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery(consulta);
+
+            while (rs.next()) {
+                fab.setId(rs.getInt("id"));
+                fab.setCif(rs.getString("cif"));
+                fab.setNombre(rs.getString("nombre"));
+            }
+
+            s.close();
+
+        } catch (SQLException | ImposibleConectarException e) {
+            throw new ErrorBBDDException(e);
+        }
+        return fab;
+    }
 
     /**
      * @param actors
