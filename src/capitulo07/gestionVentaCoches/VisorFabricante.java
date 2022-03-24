@@ -144,12 +144,15 @@ public class VisorFabricante {
         JButton btnUltimoElemento = new JButton(">>");
         btnUltimoElemento.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                setAccion(3);
+                btnUltimoElemento.setEnabled(true);
                 try {
-                    idField.setText(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
-                    cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
-                    nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
-                    setId(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
+                    if(ControladorFabricante.getFabricante(comprobarBoton()).getId() < ControladorFabricante.getAll().size()) {
+                        setAccion(3);
+                        idField.setText(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
+                        cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
+                        nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
+                        setId(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
+                    }else btnUltimoElemento.setEnabled(false);
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
