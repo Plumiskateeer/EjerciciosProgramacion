@@ -19,7 +19,7 @@ public class ConnectionManagerV2 {
     private static PoolDataSource pds =
             PoolDataSourceFactory.getPoolDataSource();
 
-    private static int MAX_INTENTOS_CONEXION = 3;
+    private static int MAX_INTENTOS_CONEXION = 200;
 
     /**
      * @return

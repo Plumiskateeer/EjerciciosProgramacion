@@ -52,10 +52,10 @@ public class ControladorFabricante extends ControladorBBDD {
             }
 
             s.close();
-
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);
         }
+
         return fab;
     }
 

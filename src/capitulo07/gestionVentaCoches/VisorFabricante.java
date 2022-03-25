@@ -4,6 +4,7 @@ import capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException;
 
 import java.awt.EventQueue;
 
+import javax.sound.midi.ControllerEventListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -19,7 +20,13 @@ public class VisorFabricante {
     private JTextField cifField;
     private JTextField nombreField;
 
-    private String id, cif, nombre;
+    private JButton btnAtras;
+    private JButton btnSiguiente;
+    private JButton btnPrimerElemento;
+    private JButton btnUltimoElemento;
+
+    private String cif, nombre;
+    private int id, primerId, ultimoId;
 
     private int accion = 0; // 0 primer elemento, 1 elemento atras, 2 elemento siguiente, 3 ultimo elemento // otherwise ignorar
 
@@ -42,8 +49,10 @@ public class VisorFabricante {
     /**
      * Create the application.
      */
-    public VisorFabricante() {
+    public VisorFabricante() throws ErrorBBDDException {
         initialize();
+        this.primerId = ControladorFabricante.getAll().get(0).getId();
+        this.ultimoId = ControladorFabricante.getAll().get(ControladorFabricante.getAll().size()-1).getId();
     }
 
     /**
@@ -91,14 +100,20 @@ public class VisorFabricante {
         nombreField.setBounds(220, 159, 138, 20);
         frame.getContentPane().add(nombreField);
 
-        JButton btnPrimerElemento = new JButton("<<");
+        btnPrimerElemento = new JButton("<<");
         btnPrimerElemento.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setAccion(0);
+                getBtnSiguiente().setEnabled(true);
+                getBtnUltimoElemento().setEnabled(true);
                 try {
-                    idField.setText(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
-                    cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
-                    nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
+                    if(getId() != getPrimerId()) {
+                        btnPrimerElemento.setEnabled(true);
+                        idField.setText(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
+                        cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
+                        nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
+                        setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
+                    }else btnPrimerElemento.setEnabled(false);
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -107,15 +122,20 @@ public class VisorFabricante {
         btnPrimerElemento.setBounds(43, 251, 89, 23);
         frame.getContentPane().add(btnPrimerElemento);
 
-        JButton btnAtras = new JButton("<");
+        btnAtras = new JButton("<");
         btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setAccion(1);
+                getBtnSiguiente().setEnabled(true);
+                getBtnUltimoElemento().setEnabled(true);
                 try {
-                    idField.setText(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
-                    cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
-                    nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
-                    setId(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
+                    if(getId() != getPrimerId()) {
+                        btnAtras.setEnabled(true);
+                        idField.setText(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
+                        cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
+                        nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
+                        setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
+                    }else btnAtras.setEnabled(false);
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -124,15 +144,20 @@ public class VisorFabricante {
         btnAtras.setBounds(176, 251, 89, 23);
         frame.getContentPane().add(btnAtras);
 
-        JButton btnSiguiente = new JButton(">");
+        btnSiguiente = new JButton(">");
         btnSiguiente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setAccion(2);
+                getBtnAtras().setEnabled(true);
+                getBtnPrimerElemento().setEnabled(true);
                 try {
-                    idField.setText(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
-                    cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
-                    nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
-                    setId(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
+                    if(getId() != getUltimoId()) {
+                        btnSiguiente.setEnabled(true);
+                        idField.setText(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
+                        cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
+                        nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
+                        setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
+                    }else btnSiguiente.setEnabled(false);
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -141,21 +166,24 @@ public class VisorFabricante {
         btnSiguiente.setBounds(296, 251, 89, 23);
         frame.getContentPane().add(btnSiguiente);
 
-        JButton btnUltimoElemento = new JButton(">>");
+        btnUltimoElemento = new JButton(">>");
         btnUltimoElemento.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                btnUltimoElemento.setEnabled(true);
+                setAccion(3);
+                getBtnAtras().setEnabled(true);
+                getBtnPrimerElemento().setEnabled(true);
                 try {
-                    if(ControladorFabricante.getFabricante(comprobarBoton()).getId() < ControladorFabricante.getAll().size()) {
-                        setAccion(3);
+                    if(getId() != getUltimoId()) {
+                        btnUltimoElemento.setEnabled(true);
                         idField.setText(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
                         cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
                         nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
-                        setId(String.valueOf(ControladorFabricante.getFabricante(comprobarBoton()).getId()));
+                        setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
                     }else btnUltimoElemento.setEnabled(false);
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
+
             }
         });
         btnUltimoElemento.setBounds(416, 251, 89, 23);
@@ -168,11 +196,11 @@ public class VisorFabricante {
         this.accion = accion;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -195,16 +223,69 @@ public class VisorFabricante {
     public String comprobarBoton(){
         String consulta = null;
         switch (getAccion()){
-            case 0: consulta = "select * from fabricante order by id asc limit 1"; break;
-            case 1:{
-                consulta = "select * from fabricante where id <" + getId() + " order by id asc limit 1";
-                System.out.println(getId());
+            case 0: {
+                consulta = "select * from fabricante order by id asc limit 1";
             } break;
-            case 2: consulta = "select * from fabricante where id >" + getId() + " order by id asc limit 1"; break;
-            case 3: consulta = "select * from fabricante order by id desc limit 1"; break;
+            case 1: {
+                consulta = "select * from fabricante where id <" + getId() + " order by id desc limit 1";
+            } break;
+            case 2: {
+                consulta = "select * from fabricante where id >" + getId() + " order by id asc limit 1";
+            } break;
+            case 3: {
+                consulta = "select * from fabricante order by id desc limit 1";
+            } break;
             default:break;
         }
         return consulta;
+    }
+
+    public int getPrimerId() {
+        return primerId;
+    }
+
+    public void setPrimerId(int primerId) {
+        this.primerId = primerId;
+    }
+
+    public int getUltimoId() {
+        return ultimoId;
+    }
+
+    public void setUltimoId(int ultimoId) {
+        this.ultimoId = ultimoId;
+    }
+
+    public JButton getBtnAtras() {
+        return btnAtras;
+    }
+
+    public void setBtnAtras(JButton btnAtras) {
+        this.btnAtras = btnAtras;
+    }
+
+    public JButton getBtnSiguiente() {
+        return btnSiguiente;
+    }
+
+    public void setBtnSiguiente(JButton btnSiguiente) {
+        this.btnSiguiente = btnSiguiente;
+    }
+
+    public JButton getBtnPrimerElemento() {
+        return btnPrimerElemento;
+    }
+
+    public void setBtnPrimerElemento(JButton btnPrimerElemento) {
+        this.btnPrimerElemento = btnPrimerElemento;
+    }
+
+    public JButton getBtnUltimoElemento() {
+        return btnUltimoElemento;
+    }
+
+    public void setBtnUltimoElemento(JButton btnUltimoElemento) {
+        this.btnUltimoElemento = btnUltimoElemento;
     }
 }
 
