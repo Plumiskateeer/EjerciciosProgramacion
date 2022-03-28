@@ -23,6 +23,9 @@ public class VisorFabricante {
     private JButton btnSiguiente;
     private JButton btnPrimerElemento;
     private JButton btnUltimoElemento;
+    private JButton btnNuevoRegistro;
+    private JButton btnGuardarRegistro;
+    private JButton btnEliminarRegistro;
 
     private String cif, nombre;
     private int id, primerId, ultimoId;
@@ -59,7 +62,7 @@ public class VisorFabricante {
      */
     private void initialize() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 568, 355);
+        frame.setBounds(100, 100, 568, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
@@ -191,6 +194,34 @@ public class VisorFabricante {
         });
         btnUltimoElemento.setBounds(416, 251, 89, 23);
         frame.getContentPane().add(btnUltimoElemento);
+
+        btnNuevoRegistro = new JButton("Nuevo");
+        btnNuevoRegistro.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setId(0);
+                idField.setText("0");
+                cifField.setText("");
+                nombreField.setText("");
+            }
+        });
+        btnNuevoRegistro.setBounds(107, 309, 89, 23);
+        frame.getContentPane().add(btnNuevoRegistro);
+
+        btnGuardarRegistro = new JButton("Guardar");
+        btnGuardarRegistro.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        btnGuardarRegistro.setBounds(235, 309, 89, 23);
+        frame.getContentPane().add(btnGuardarRegistro);
+
+        btnEliminarRegistro = new JButton("Eliminar");
+        btnEliminarRegistro.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        btnEliminarRegistro.setBounds(361, 309, 89, 23);
+        frame.getContentPane().add(btnEliminarRegistro);
     }
 
     public String comprobarBoton(){
