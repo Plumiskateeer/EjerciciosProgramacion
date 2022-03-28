@@ -45,7 +45,7 @@ public class ControladorFabricante extends ControladorBBDD {
             Statement s = conn.createStatement();
             ResultSet rs = s.executeQuery(consulta);
 
-            while (rs.next()) {
+            if (rs.next()) {
                 fab.setId(rs.getInt("id"));
                 fab.setCif(rs.getString("cif"));
                 fab.setNombre(rs.getString("nombre"));

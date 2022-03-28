@@ -192,6 +192,19 @@ public class VisorFabricante {
         btnUltimoElemento.setBounds(416, 251, 89, 23);
         frame.getContentPane().add(btnUltimoElemento);
     }
+
+    public String comprobarBoton(){
+        String consulta = null;
+        switch (getAccion()){
+            case 0: consulta = "select * from fabricante order by id asc limit 1"; break;
+            case 1: consulta = "select * from fabricante where id <" + getId() + " order by id desc limit 1"; break;
+            case 2: consulta = "select * from fabricante where id >" + getId() + " order by id asc limit 1"; break;
+            case 3: consulta = "select * from fabricante order by id desc limit 1"; break;
+            default: break;
+        }
+        return consulta;
+    }
+
     public int getAccion(){
         return this.accion;
     }
@@ -221,18 +234,6 @@ public class VisorFabricante {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String comprobarBoton(){
-        String consulta = null;
-        switch (getAccion()){
-            case 0: consulta = "select * from fabricante order by id asc limit 1"; break;
-            case 1: consulta = "select * from fabricante where id <" + getId() + " order by id desc limit 1"; break;
-            case 2: consulta = "select * from fabricante where id >" + getId() + " order by id asc limit 1"; break;
-            case 3: consulta = "select * from fabricante order by id desc limit 1"; break;
-            default: break;
-        }
-        return consulta;
     }
 
     public int getPrimerId() {
