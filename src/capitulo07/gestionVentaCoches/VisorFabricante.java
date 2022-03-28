@@ -4,7 +4,6 @@ import capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException;
 
 import java.awt.EventQueue;
 
-import javax.sound.midi.ControllerEventListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -113,7 +112,8 @@ public class VisorFabricante {
                         cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
                         nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
                         setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
-                    }else btnPrimerElemento.setEnabled(false);
+                    }
+                    if (getId() == getPrimerId()) btnPrimerElemento.setEnabled(false);
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -135,7 +135,8 @@ public class VisorFabricante {
                         cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
                         nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
                         setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
-                    }else btnAtras.setEnabled(false);
+                    }
+                    if (getId() == getPrimerId()) btnAtras.setEnabled(false);
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -157,7 +158,8 @@ public class VisorFabricante {
                         cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
                         nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
                         setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
-                    }else btnSiguiente.setEnabled(false);
+                    }
+                    if (getId() == getUltimoId()) btnSiguiente.setEnabled(false);
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -179,7 +181,8 @@ public class VisorFabricante {
                         cifField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getCif());
                         nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
                         setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
-                    }else btnUltimoElemento.setEnabled(false);
+                    }
+                    if (getId() == getUltimoId()) btnUltimoElemento.setEnabled(false);
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -223,19 +226,11 @@ public class VisorFabricante {
     public String comprobarBoton(){
         String consulta = null;
         switch (getAccion()){
-            case 0: {
-                consulta = "select * from fabricante order by id asc limit 1";
-            } break;
-            case 1: {
-                consulta = "select * from fabricante where id <" + getId() + " order by id desc limit 1";
-            } break;
-            case 2: {
-                consulta = "select * from fabricante where id >" + getId() + " order by id asc limit 1";
-            } break;
-            case 3: {
-                consulta = "select * from fabricante order by id desc limit 1";
-            } break;
-            default:break;
+            case 0: consulta = "select * from fabricante order by id asc limit 1"; break;
+            case 1: consulta = "select * from fabricante where id <" + getId() + " order by id desc limit 1"; break;
+            case 2: consulta = "select * from fabricante where id >" + getId() + " order by id asc limit 1"; break;
+            case 3: consulta = "select * from fabricante order by id desc limit 1"; break;
+            default: break;
         }
         return consulta;
     }

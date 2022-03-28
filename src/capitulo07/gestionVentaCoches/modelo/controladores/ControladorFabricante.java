@@ -52,6 +52,7 @@ public class ControladorFabricante extends ControladorBBDD {
             }
 
             s.close();
+            conn.close();
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);
         }
@@ -60,7 +61,7 @@ public class ControladorFabricante extends ControladorBBDD {
     }
 
     /**
-     * @param actors
+     * @param
      * @throws ErrorBBDDException
      */
     public static void almacenar(Fabricante fabricante) throws ErrorBBDDException {
@@ -73,7 +74,7 @@ public class ControladorFabricante extends ControladorBBDD {
 
 
     /**
-     * @param fabricante
+     * @param
      * @return
      * @throws ErrorBBDDException
      */
@@ -103,7 +104,7 @@ public class ControladorFabricante extends ControladorBBDD {
 
 
     /**
-     * @param actors
+     * @param
      * @throws ErrorBBDDException
      */
     private static void almacenarNuevo(Fabricante fab) throws ErrorBBDDException {
@@ -136,7 +137,7 @@ public class ControladorFabricante extends ControladorBBDD {
 
 
     /**
-     * @param actors
+     * @param
      * @throws ErrorBBDDException
      */
     private static void almacenarModificado(Fabricante fab) throws ErrorBBDDException {
@@ -169,7 +170,7 @@ public class ControladorFabricante extends ControladorBBDD {
 
 
     /**
-     * @param actors
+     * @param
      * @throws ErrorBBDDException
      */
     public static void eliminar(Fabricante fab) throws ErrorBBDDException {
