@@ -1,14 +1,13 @@
 package capitulo07.gestionVentaCoches;
+import capitulo07.gestionVentaCoches.modelo.Fabricante;
+import capitulo07.gestionVentaCoches.modelo.controladores.ControladorBBDD;
 import capitulo07.gestionVentaCoches.modelo.controladores.ControladorFabricante;
 import capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -53,6 +52,10 @@ public class VisorFabricante {
      */
     public VisorFabricante() throws ErrorBBDDException {
         initialize();
+        buscarPrimeroYUltimo();
+    }
+
+    public void buscarPrimeroYUltimo() throws ErrorBBDDException {
         this.primerId = ControladorFabricante.getAll().get(0).getId();
         this.ultimoId = ControladorFabricante.getAll().get(ControladorFabricante.getAll().size()-1).getId();
     }
@@ -116,7 +119,10 @@ public class VisorFabricante {
                         nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
                         setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
                     }
-                    if (getId() == getPrimerId()) btnPrimerElemento.setEnabled(false);
+                    if (getId() == getPrimerId()){
+                        btnPrimerElemento.setEnabled(false);
+                        btnAtras.setEnabled(false);
+                    }
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -139,7 +145,10 @@ public class VisorFabricante {
                         nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
                         setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
                     }
-                    if (getId() == getPrimerId()) btnAtras.setEnabled(false);
+                    if (getId() == getPrimerId()){
+                        btnAtras.setEnabled(false);
+                        btnPrimerElemento.setEnabled(false);
+                    }
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -162,7 +171,10 @@ public class VisorFabricante {
                         nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
                         setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
                     }
-                    if (getId() == getUltimoId()) btnSiguiente.setEnabled(false);
+                    if (getId() == getUltimoId()) {
+                        btnSiguiente.setEnabled(false);
+                        btnUltimoElemento.setEnabled(false);
+                    }
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -185,7 +197,10 @@ public class VisorFabricante {
                         nombreField.setText(ControladorFabricante.getFabricante(comprobarBoton()).getNombre());
                         setId(ControladorFabricante.getFabricante(comprobarBoton()).getId());
                     }
-                    if (getId() == getUltimoId()) btnUltimoElemento.setEnabled(false);
+                    if (getId() == getUltimoId()) {
+                        btnUltimoElemento.setEnabled(false);
+                        btnSiguiente.setEnabled(false);
+                    }
                 } catch (ErrorBBDDException ex) {
                     ex.printStackTrace();
                 }
@@ -210,6 +225,21 @@ public class VisorFabricante {
         btnGuardarRegistro = new JButton("Guardar");
         btnGuardarRegistro.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
+                try {
+                    if(Integer.parseInt(idField.getText())==0) {
+                        ControladorFabricante.almacenarNuevo
+                                (new Fabricante(Integer.parseInt(idField.getText()), cifField.getText(), nombreField.getText()));
+                        JOptionPane.showMessageDialog(null, "Registro introducido correctamente");
+                        buscarPrimeroYUltimo();
+                    }else{
+                        ControladorFabricante.almacenarModificado
+                                (new Fabricante(Integer.parseInt(idField.getText()), cifField.getText(), nombreField.getText()));
+                        JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
+                    }
+                } catch (ErrorBBDDException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         btnGuardarRegistro.setBounds(235, 309, 89, 23);
@@ -218,6 +248,17 @@ public class VisorFabricante {
         btnEliminarRegistro = new JButton("Eliminar");
         btnEliminarRegistro.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                try {
+                    ControladorFabricante.eliminar(new Fabricante(Integer.parseInt(idField.getText()),null,null));
+                    JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
+
+                    if (Integer.parseInt(idField.getText()) <= getUltimoId() && Integer.parseInt(idField.getText()) > getPrimerId()) {
+                        btnAtras.doClick();
+                    }else btnSiguiente.doClick();
+                    buscarPrimeroYUltimo();
+                } catch (ErrorBBDDException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         btnEliminarRegistro.setBounds(361, 309, 89, 23);

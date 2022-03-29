@@ -107,7 +107,7 @@ public class ControladorFabricante extends ControladorBBDD {
      * @param
      * @throws ErrorBBDDException
      */
-    private static void almacenarNuevo(Fabricante fab) throws ErrorBBDDException {
+    public static void almacenarNuevo(Fabricante fab) throws ErrorBBDDException {
 
         Connection conn = null;
 
@@ -115,8 +115,7 @@ public class ControladorFabricante extends ControladorBBDD {
             conn = ConnectionManagerV2.getConexion();
 
             PreparedStatement ps = (PreparedStatement) conn.
-                    prepareStatement(
-                            "INSERT INTO fabricante (id, cif, nombre) VALUES  (?, ?, ?)");
+                    prepareStatement("INSERT INTO fabricante (id, cif, nombre) VALUES  (?, ?, ?)");
             int registrosInsertados;
 
             ps.setInt(1, nextIdEnTabla(conn, "fabricante"));
@@ -140,7 +139,7 @@ public class ControladorFabricante extends ControladorBBDD {
      * @param
      * @throws ErrorBBDDException
      */
-    private static void almacenarModificado(Fabricante fab) throws ErrorBBDDException {
+    public static void almacenarModificado(Fabricante fab) throws ErrorBBDDException {
 
         Connection conn = null;
 
@@ -181,15 +180,14 @@ public class ControladorFabricante extends ControladorBBDD {
             conn = ConnectionManagerV2.getConexion();
 
             PreparedStatement ps = (PreparedStatement) conn.
-                    prepareStatement(
-                            "delete from fabricante where id = ?");
+                    prepareStatement("delete from fabricante where id = ?");
             int registrosInsertados;
 
             ps.setInt(1, fab.getId());
 
             registrosInsertados = ps.executeUpdate();
             if (registrosInsertados != 1) {
-                throw new ErrorBBDDException("No ha sido posible la eliminaci�n del registro");
+                throw new ErrorBBDDException("No ha sido posible la eliminación del registro");
             }
             ps.close();
 
