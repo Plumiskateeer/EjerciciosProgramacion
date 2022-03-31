@@ -91,6 +91,7 @@ public class VisorFabricante {
         nombreField.setBounds(220, 159, 138, 20);
         frame.getContentPane().add(nombreField);
 
+
         btnPrimerElemento = new JButton("<<");
         btnPrimerElemento.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -170,6 +171,8 @@ public class VisorFabricante {
 
                     if (getId() <= getUltimoId() && getId() > getPrimerId()) {
                         btnAtras.doClick();
+                        btnSiguiente.setEnabled(false);
+                        btnUltimoElemento.setEnabled(false);
                     }else btnSiguiente.doClick();
                     buscarPrimeroYUltimo();
                 } catch (ErrorBBDDException ex) {
@@ -179,6 +182,10 @@ public class VisorFabricante {
         });
         btnEliminarRegistro.setBounds(361, 309, 89, 23);
         frame.getContentPane().add(btnEliminarRegistro);
+
+        cargarRegistro(0);
+        btnPrimerElemento.setEnabled(false);
+        btnAtras.setEnabled(false);
     }
 
 
