@@ -173,7 +173,7 @@ public class VisorFabricante {
                     }else btnSiguiente.doClick();
                     buscarPrimeroYUltimo();
                 } catch (ErrorBBDDException ex) {
-                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null,"No se pudo eliminar el registro", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
