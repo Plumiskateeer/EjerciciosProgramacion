@@ -38,7 +38,7 @@ public class ControladorFabricante extends ControladorBBDD {
 
     public static Fabricante getFabricante(String consulta) throws ErrorBBDDException {
         Connection conn = null;
-        Fabricante fab = new Fabricante();
+        Fabricante fab = null;
         try {
             conn = ConnectionManagerV2.getConexion();
 
@@ -46,6 +46,7 @@ public class ControladorFabricante extends ControladorBBDD {
             ResultSet rs = s.executeQuery(consulta);
 
             if (rs.next()) {
+                fab = new Fabricante();
                 fab.setId(rs.getInt("id"));
                 fab.setCif(rs.getString("cif"));
                 fab.setNombre(rs.getString("nombre"));

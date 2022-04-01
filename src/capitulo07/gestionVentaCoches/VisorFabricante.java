@@ -3,14 +3,13 @@ import capitulo07.gestionVentaCoches.modelo.Fabricante;
 import capitulo07.gestionVentaCoches.modelo.controladores.ControladorFabricante;
 import capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.*;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class VisorFabricante {
+public class VisorFabricante extends JPanel {
 
     private JFrame frame;
     private JTextField cifField;
@@ -23,7 +22,7 @@ public class VisorFabricante {
     private JButton btnNuevoRegistro;
     private JButton btnGuardarRegistro;
     private JButton btnEliminarRegistro;
-
+    private static VisorFabricante instance = null;
     private int id = 1, primerId, ultimoId;
 
     private int accion = 0; // 0 primer elemento, 1 elemento atras, 2 elemento siguiente, 3 ultimo elemento // otherwise ignorar
@@ -31,6 +30,14 @@ public class VisorFabricante {
     /**
      * Launch the application.
      */
+
+
+    public static VisorFabricante getInstance() throws ErrorBBDDException {
+        if(instance == null)
+            instance = new VisorFabricante();
+        return instance;
+    }
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -155,7 +162,7 @@ public class VisorFabricante {
                         JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
                     }
                 } catch (ErrorBBDDException ex) {
-                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null,"No se pudo guardar o modificar el registro", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
