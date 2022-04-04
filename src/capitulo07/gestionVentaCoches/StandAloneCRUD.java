@@ -2,8 +2,7 @@ package capitulo07.gestionVentaCoches;
 
 import capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -39,13 +38,12 @@ public class StandAloneCRUD extends JFrame {
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        contentPane.setLayout(null);
+        contentPane.setLayout(new BorderLayout());
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.setBounds(5, 5, 499, 375);
-        contentPane.add(tabbedPane);
+    //    tabbedPane.setBounds(5, 5, 499, 375);
 
-        tabbedPane.addTab("Fabricantes",  VisorFabricante.getInstance());
+        tabbedPane.addTab("Fabricantes",null,  VisorFabricante.getInstance(),null);
 
         JPanel panel_1 = new JPanel();
         tabbedPane.addTab("New tab", null, panel_1, null);
@@ -58,5 +56,7 @@ public class StandAloneCRUD extends JFrame {
 
         JPanel panel_4 = new JPanel();
         tabbedPane.addTab("New tab", null, panel_4, null);
+
+        this.getContentPane().add(tabbedPane, BorderLayout.CENTER);
     }
 }

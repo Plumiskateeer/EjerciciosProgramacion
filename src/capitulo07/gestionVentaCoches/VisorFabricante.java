@@ -68,35 +68,35 @@ public class VisorFabricante extends JPanel {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        frame = new JFrame();
-        frame.setBounds(100, 100, 568, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
+//        frame = new JFrame();
+//        frame.setBounds(100, 100, 568, 400);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.getContentPane().setLayout(null);
 
         JLabel lblNewLabel = new JLabel("CRUD Fabricantes");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 23));
         lblNewLabel.setBounds(172, 11, 222, 28);
-        frame.getContentPane().add(lblNewLabel);
+        this.add(lblNewLabel);
 
         JLabel lblNewLabel_1_1 = new JLabel("CIF");
         lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
         lblNewLabel_1_1.setBounds(139, 112, 46, 14);
-        frame.getContentPane().add(lblNewLabel_1_1);
+        this.add(lblNewLabel_1_1);
 
         JLabel lblNewLabel_1_2 = new JLabel("Nombre");
         lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
         lblNewLabel_1_2.setBounds(139, 160, 71, 14);
-        frame.getContentPane().add(lblNewLabel_1_2);
+        this.add(lblNewLabel_1_2);
 
         cifField = new JTextField();
         cifField.setColumns(10);
         cifField.setBounds(220, 111, 138, 20);
-        frame.getContentPane().add(cifField);
+        this.add(cifField);
 
         nombreField = new JTextField();
         nombreField.setColumns(10);
         nombreField.setBounds(220, 159, 138, 20);
-        frame.getContentPane().add(nombreField);
+        this.add(nombreField);
 
 
         btnPrimerElemento = new JButton("<<");
@@ -106,7 +106,7 @@ public class VisorFabricante extends JPanel {
             }
         });
         btnPrimerElemento.setBounds(43, 251, 89, 23);
-        frame.getContentPane().add(btnPrimerElemento);
+        this.add(btnPrimerElemento);
 
         btnAtras = new JButton("<");
         btnAtras.addActionListener(new ActionListener() {
@@ -115,7 +115,7 @@ public class VisorFabricante extends JPanel {
             }
         });
         btnAtras.setBounds(176, 251, 89, 23);
-        frame.getContentPane().add(btnAtras);
+        this.add(btnAtras);
 
         btnSiguiente = new JButton(">");
         btnSiguiente.addActionListener(new ActionListener() {
@@ -124,7 +124,7 @@ public class VisorFabricante extends JPanel {
             }
         });
         btnSiguiente.setBounds(296, 251, 89, 23);
-        frame.getContentPane().add(btnSiguiente);
+        this.add(btnSiguiente);
 
         btnUltimoElemento = new JButton(">>");
         btnUltimoElemento.addActionListener(new ActionListener() {
@@ -133,7 +133,7 @@ public class VisorFabricante extends JPanel {
             }
         });
         btnUltimoElemento.setBounds(416, 251, 89, 23);
-        frame.getContentPane().add(btnUltimoElemento);
+        this.add(btnUltimoElemento);
 
         btnNuevoRegistro = new JButton("Nuevo");
         btnNuevoRegistro.addActionListener(new ActionListener() {
@@ -144,7 +144,7 @@ public class VisorFabricante extends JPanel {
             }
         });
         btnNuevoRegistro.setBounds(107, 309, 89, 23);
-        frame.getContentPane().add(btnNuevoRegistro);
+        this.add(btnNuevoRegistro);
 
         btnGuardarRegistro = new JButton("Guardar");
         btnGuardarRegistro.addActionListener(new ActionListener() {
@@ -167,7 +167,7 @@ public class VisorFabricante extends JPanel {
             }
         });
         btnGuardarRegistro.setBounds(235, 309, 89, 23);
-        frame.getContentPane().add(btnGuardarRegistro);
+        this.add(btnGuardarRegistro);
 
         btnEliminarRegistro = new JButton("Eliminar");
         btnEliminarRegistro.addActionListener(new ActionListener() {
@@ -188,7 +188,7 @@ public class VisorFabricante extends JPanel {
             }
         });
         btnEliminarRegistro.setBounds(361, 309, 89, 23);
-        frame.getContentPane().add(btnEliminarRegistro);
+        this.add(btnEliminarRegistro);
 
         cargarRegistro(0);
         btnPrimerElemento.setEnabled(false);
