@@ -3,10 +3,7 @@ package capitulo07.gestionVentaCoches;
 
 import capitulo07.gestionVentaCoches.modelo.Coche;
 import capitulo07.gestionVentaCoches.modelo.Fabricante;
-import capitulo07.gestionVentaCoches.modelo.controladores.ControladorCliente;
-import capitulo07.gestionVentaCoches.modelo.controladores.ControladorCoche;
-import capitulo07.gestionVentaCoches.modelo.controladores.ControladorFabricante;
-import capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException;
+import capitulo07.gestionVentaCoches.modelo.controladores.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -147,9 +144,13 @@ public class GestionCoche {
             System.out.print("\n�Realmente desea eliminar el registro? (S/N): ");
             String str = Utils.getStringConsola();
             if (str.equalsIgnoreCase("S")) {
-                ControladorCoche.eliminar(c);
-                System.out.println("\n\tEliminado correctamente!. Pulse 'Intro' para continuar");
-                Utils.pausa();
+                try {
+                    ControladorCoche.eliminar(c);
+                    System.out.println("\n\tEliminado correctamente!. Pulse 'Intro' para continuar");
+                    Utils.pausa();
+                } catch (ErrorBBDDException e) {
+                    System.out.println("ERROR, EXISTEN CLAVES FORANEAS");
+                }
             }
         }
     }

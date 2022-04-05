@@ -137,9 +137,14 @@ public class GestionConcesionario {
             System.out.print("\n�Realmente desea eliminar el registro? (S/N): ");
             String str = Utils.getStringConsola();
             if (str.equalsIgnoreCase("S")) {
-                ControladorConcesionario.eliminar(c);
-                System.out.println("\n\tEliminado correctamente!. Pulse 'Intro' para continuar");
-                Utils.pausa();
+                try {
+                    ControladorConcesionario.eliminar(c);
+                    System.out.println("\n\tEliminado correctamente!. Pulse 'Intro' para continuar");
+                    Utils.pausa();
+                } catch (ErrorBBDDException e) {
+                    System.out.println("ERROR, EXISTEN CLAVES FORANEAS");
+                }
+
             }
         }
     }
