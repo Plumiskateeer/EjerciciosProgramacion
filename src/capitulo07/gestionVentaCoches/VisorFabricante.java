@@ -11,10 +11,10 @@ import java.awt.event.ActionEvent;
 
 public class VisorFabricante extends JPanel {
 
-    private JFrame frame;
     private JTextField cifField;
     private JTextField nombreField;
 
+    private JPanel panel;
     private JButton btnAtras;
     private JButton btnSiguiente;
     private JButton btnPrimerElemento;
@@ -38,19 +38,6 @@ public class VisorFabricante extends JPanel {
         return instance;
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    VisorFabricante window = new VisorFabricante();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
     /**
      * Create the application.
      */
@@ -68,26 +55,76 @@ public class VisorFabricante extends JPanel {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-//        frame = new JFrame();
-//        frame.setBounds(100, 100, 568, 400);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.getContentPane().setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("CRUD Fabricantes");
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 23));
-        lblNewLabel.setBounds(172, 11, 222, 28);
-        this.add(lblNewLabel);
+        GridBagLayout gridBagLayout = new GridBagLayout();
+        gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
+        gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+        gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+        gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+        this.setLayout(gridBagLayout);
 
-        JLabel lblNewLabel_1_1 = new JLabel("CIF");
-        lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblNewLabel_1_1.setBounds(139, 112, 46, 14);
-        this.add(lblNewLabel_1_1);
+        JLabel lblNewLabel_1 = new JLabel("CRUD Fabricantes");
+        lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+        GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+        gbc_lblNewLabel_1.gridwidth = 2;
+        gbc_lblNewLabel_1.insets = new Insets(15, 0, 5, 5);
+        gbc_lblNewLabel_1.gridx = 0;
+        gbc_lblNewLabel_1.gridy = 0;
+        this.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
-        JLabel lblNewLabel_1_2 = new JLabel("Nombre");
-        lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblNewLabel_1_2.setBounds(139, 160, 71, 14);
-        this.add(lblNewLabel_1_2);
+        JLabel lblNewLabel_2 = new JLabel("CIF:");
+        GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+        gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
+        gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+        gbc_lblNewLabel_2.gridx = 0;
+        gbc_lblNewLabel_2.gridy = 2;
+        this.add(lblNewLabel_2, gbc_lblNewLabel_2);
 
+        cifField = new JTextField();
+        GridBagConstraints gbc_jtfCif = new GridBagConstraints();
+        gbc_jtfCif.fill = GridBagConstraints.HORIZONTAL;
+        gbc_jtfCif.insets = new Insets(0, 0, 5, 5);
+        gbc_jtfCif.gridx = 1;
+        gbc_jtfCif.gridy = 2;
+        this.add(cifField, gbc_jtfCif);
+        cifField.setColumns(10);
+
+        JLabel lblNewLabel_3 = new JLabel("Nombre:");
+        GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+        gbc_lblNewLabel_3.anchor = GridBagConstraints.EAST;
+        gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+        gbc_lblNewLabel_3.gridx = 0;
+        gbc_lblNewLabel_3.gridy = 3;
+        this.add(lblNewLabel_3, gbc_lblNewLabel_3);
+
+        nombreField = new JTextField();
+        GridBagConstraints gbc_jtfNombre = new GridBagConstraints();
+        gbc_jtfNombre.insets = new Insets(0, 0, 5, 5);
+        gbc_jtfNombre.fill = GridBagConstraints.HORIZONTAL;
+        gbc_jtfNombre.gridx = 1;
+        gbc_jtfNombre.gridy = 3;
+        this.add(nombreField, gbc_jtfNombre);
+        nombreField.setColumns(10);
+
+        JLabel lblNewLabel_4 = new JLabel(" ");
+        GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+        gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 15);
+        gbc_lblNewLabel_4.gridx = 2;
+        gbc_lblNewLabel_4.gridy = 3;
+        this.add(lblNewLabel_4, gbc_lblNewLabel_4);
+
+        panel = new JPanel();
+        GridBagConstraints gbc_panel = new GridBagConstraints();
+        gbc_panel.gridwidth = 3;
+        gbc_panel.fill = GridBagConstraints.BOTH;
+        gbc_panel.gridx = 0;
+        gbc_panel.gridy = 5;
+        this.add(panel, gbc_panel);
+
+/**
+ *
+ */
+        
         cifField = new JTextField();
         cifField.setColumns(10);
         cifField.setBounds(220, 111, 138, 20);
