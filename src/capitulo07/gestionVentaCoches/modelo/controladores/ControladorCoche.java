@@ -36,6 +36,32 @@ public class ControladorCoche  extends ControladorBBDD{
         return coches;
     }
 
+    public static Coche getCoche(String consulta) throws ErrorBBDDException {
+        Connection conn = null;
+        Coche c = null;
+        try {
+            conn = ConnectionManagerV2.getConexion();
+
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery(consulta);
+
+            if (rs.next()) {
+            	c = new Coche();
+                c.setId(rs.getInt("id"));
+                c.setIdfabricante(rs.getInt("idfabricante"));
+                c.setBastidor(rs.getString("bastidor"));
+                c.setModelo(rs.getString("modelo"));
+                c.setColor(rs.getString("color"));
+            }
+
+            s.close();
+            conn.close();
+        } catch (SQLException | ImposibleConectarException e) {
+            throw new ErrorBBDDException(e);
+        }
+
+        return c;
+    }
 
     /**
      * @param
@@ -86,7 +112,7 @@ public class ControladorCoche  extends ControladorBBDD{
      * @param
      * @throws ErrorBBDDException
      */
-    private static void almacenarNuevo(Coche c) throws ErrorBBDDException {
+    public static void almacenarNuevo(Coche c) throws ErrorBBDDException {
 
         Connection conn = null;
 
@@ -121,7 +147,7 @@ public class ControladorCoche  extends ControladorBBDD{
      * @param
      * @throws ErrorBBDDException
      */
-    private static void almacenarModificado(Coche c) throws ErrorBBDDException {
+    public static void almacenarModificado(Coche c) throws ErrorBBDDException {
 
         Connection conn = null;
 

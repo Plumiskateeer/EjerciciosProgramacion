@@ -1,6 +1,7 @@
 package capitulo07.gestionVentaCoches.modelo.controladores;
 
 import capitulo07.gestionVentaCoches.modelo.Concesionario;
+import capitulo07.gestionVentaCoches.modelo.Fabricante;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,6 +38,32 @@ public class ControladorConcesionario extends ControladorBBDD{
     }
 
 
+        public static Concesionario getConcesionario(String consulta) throws ErrorBBDDException {
+            Connection conn = null;
+            Concesionario c = null;
+            try {
+                conn = ConnectionManagerV2.getConexion();
+
+                Statement s = conn.createStatement();
+                ResultSet rs = s.executeQuery(consulta);
+
+                if (rs.next()) {
+                    c = new Concesionario();
+                    c.setId(rs.getInt("id"));
+                    c.setCif(rs.getString("cif"));
+                    c.setNombre(rs.getString("nombre"));
+                    c.setLocalidad(rs.getString("localidad"));
+                }
+
+                s.close();
+                conn.close();
+            } catch (SQLException | ImposibleConectarException e) {
+                throw new ErrorBBDDException(e);
+            }
+
+            return c;
+        }
+        
         /**
          * @param
          * @throws ErrorBBDDException
@@ -85,7 +112,7 @@ public class ControladorConcesionario extends ControladorBBDD{
          * @param
          * @throws ErrorBBDDException
          */
-        private static void almacenarNuevo(Concesionario c) throws ErrorBBDDException {
+        public static void almacenarNuevo(Concesionario c) throws ErrorBBDDException {
 
         Connection conn = null;
 
@@ -114,12 +141,11 @@ public class ControladorConcesionario extends ControladorBBDD{
 
     }
 
-
         /**
          * @param
          * @throws ErrorBBDDException
          */
-        private static void almacenarModificado(Concesionario c) throws ErrorBBDDException {
+        public static void almacenarModificado(Concesionario c) throws ErrorBBDDException {
 
         Connection conn = null;
 

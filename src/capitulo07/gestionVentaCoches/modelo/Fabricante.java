@@ -41,7 +41,7 @@ public class Fabricante {
 
 	@Override
 	public String toString() {
-		return "id=" + id + ", cif=" + cif + ", nombre=" + nombre;
+		return  nombre;
 	}
 
 }

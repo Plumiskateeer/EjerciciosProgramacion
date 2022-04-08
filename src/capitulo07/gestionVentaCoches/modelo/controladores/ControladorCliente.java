@@ -1,6 +1,7 @@
 package capitulo07.gestionVentaCoches.modelo.controladores;
 
 import capitulo07.gestionVentaCoches.modelo.Cliente;
+import capitulo07.gestionVentaCoches.modelo.Fabricante;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -40,6 +41,34 @@ public class ControladorCliente extends ControladorBBDD{
         return clientes;
     }
 
+    public static Cliente getCliente(String consulta) throws ErrorBBDDException {
+        Connection conn = null;
+        Cliente cl = null;
+        try {
+            conn = ConnectionManagerV2.getConexion();
+
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery(consulta);
+
+            if (rs.next()) {
+                cl = new Cliente();
+                cl.setId(rs.getInt("id"));
+                cl.setNombre(rs.getString("nombre"));
+                cl.setApellidos(rs.getString("apellidos"));
+                cl.setLocalidad(rs.getString("localidad"));
+                cl.setDniNie(rs.getString("dniNie"));
+                cl.setFechaNac(rs.getDate("fechaNac"));
+                cl.setActivo(rs.getBoolean("activo"));
+            }
+
+            s.close();
+            conn.close();
+        } catch (SQLException | ImposibleConectarException e) {
+            throw new ErrorBBDDException(e);
+        }
+
+        return cl;
+    }
     /**
      * @param
      * @throws ErrorBBDDException
@@ -89,7 +118,7 @@ public class ControladorCliente extends ControladorBBDD{
      * @param
      * @throws ErrorBBDDException
      */
-    private static void almacenarNuevo(Cliente cl) throws ErrorBBDDException {
+    public static void almacenarNuevo(Cliente cl) throws ErrorBBDDException {
 
         Connection conn = null;
 
@@ -125,7 +154,7 @@ public class ControladorCliente extends ControladorBBDD{
      * @param
      * @throws ErrorBBDDException
      */
-    private static void almacenarModificado(Cliente cl) throws ErrorBBDDException {
+    public static void almacenarModificado(Cliente cl) throws ErrorBBDDException {
 
         Connection conn = null;
 

@@ -39,6 +39,33 @@ public class ControladorVenta extends ControladorBBDD{
         return ventas;
     }
 
+    public static Venta getVenta(String consulta) throws ErrorBBDDException {
+        Connection conn = null;
+        Venta v = null;
+        try {
+            conn = ConnectionManagerV2.getConexion();
+
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery(consulta);
+
+            if (rs.next()) {
+            	v = new Venta();
+            	v.setId(rs.getInt("id"));
+                v.setIdCliente(rs.getInt("idCliente"));
+                v.setIdConcesionario(rs.getInt("idConcesionario"));
+                v.setIdCoche(rs.getInt("idCoche"));
+                v.setFecha(rs.getDate("fecha"));
+                v.setPrecioventa(rs.getFloat("precioVenta"));
+            }
+
+            s.close();
+            conn.close();
+        } catch (SQLException | ImposibleConectarException e) {
+            throw new ErrorBBDDException(e);
+        }
+
+        return v;
+    }
 
     /**
      * @param
@@ -91,7 +118,7 @@ public class ControladorVenta extends ControladorBBDD{
      * @param
      * @throws ErrorBBDDException
      */
-    private static void almacenarNuevo(Venta v) throws ErrorBBDDException {
+    public static void almacenarNuevo(Venta v) throws ErrorBBDDException {
 
         Connection conn = null;
 
@@ -127,7 +154,7 @@ public class ControladorVenta extends ControladorBBDD{
      * @param
      * @throws ErrorBBDDException
      */
-    private static void almacenarModificado(Venta v) throws ErrorBBDDException {
+    public static void almacenarModificado(Venta v) throws ErrorBBDDException {
 
         Connection conn = null;
 

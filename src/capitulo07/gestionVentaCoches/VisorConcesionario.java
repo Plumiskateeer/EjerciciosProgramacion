@@ -1,18 +1,28 @@
 package capitulo07.gestionVentaCoches;
+
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import capitulo07.gestionVentaCoches.modelo.Concesionario;
 import capitulo07.gestionVentaCoches.modelo.Fabricante;
+import capitulo07.gestionVentaCoches.modelo.controladores.ControladorConcesionario;
 import capitulo07.gestionVentaCoches.modelo.controladores.ControladorFabricante;
 import capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException;
 
-import java.awt.*;
-
-import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class VisorFabricante extends Panel{
-
+public class VisorConcesionario extends JPanel{
 	private static JTextField cifField;
 	private static JTextField nombreField;
+	private JTextField localidadField;
 	private JButton btnPrimerElemento;
 	private JButton btnAtras;
 	private JButton btnSiguiente;
@@ -21,7 +31,7 @@ public class VisorFabricante extends Panel{
 	private JButton btnGuardarRegistro;
 	private JButton btnEliminarRegistro;
 	
-	private static VisorFabricante instance = null;
+	private static VisorConcesionario instance = null;
     private int id = 1, primerId, ultimoId;
 
     private int accion = 0;
@@ -30,19 +40,19 @@ public class VisorFabricante extends Panel{
 	 * Create the application.
 	 */
     
-    public static VisorFabricante getInstance() throws ErrorBBDDException {
+    public static VisorConcesionario getInstance() throws ErrorBBDDException {
         if(instance == null)
-            instance = new VisorFabricante();
+            instance = new VisorConcesionario();
         return instance;
     }
     
-	public VisorFabricante() {
+	public VisorConcesionario() {
 		initialize();
 	}
 	
 	public void buscarPrimeroYUltimo() throws ErrorBBDDException {
-        this.primerId = ControladorFabricante.getAll().get(0).getId();
-        this.ultimoId = ControladorFabricante.getAll().get(ControladorFabricante.getAll().size()-1).getId();
+        this.primerId = ControladorConcesionario.getAll().get(0).getId();
+        this.ultimoId = ControladorConcesionario.getAll().get(ControladorConcesionario.getAll().size()-1).getId();
     }
 
 	/**
@@ -56,7 +66,7 @@ public class VisorFabricante extends Panel{
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		this.setLayout(gridBagLayout);
 		
-		JLabel lblNewLabel_1 = new JLabel("Gestión de fabricantes");
+		JLabel lblNewLabel_1 = new JLabel("Gestión de concesionario");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.gridwidth = 2;
@@ -99,6 +109,23 @@ public class VisorFabricante extends Panel{
 		this.add(nombreField, gbc_jtfNombre);
 		nombreField.setColumns(10);
 		
+		JLabel lblNewLabel_4 = new JLabel("Localidad:");
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_4.gridx = 0;
+		gbc_lblNewLabel_4.gridy = 4;
+		this.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		
+		localidadField = new JTextField();
+		GridBagConstraints gbc_jtfLocalidad = new GridBagConstraints();
+		gbc_jtfLocalidad.insets = new Insets(0, 0, 5, 5);
+		gbc_jtfLocalidad.fill = GridBagConstraints.HORIZONTAL;
+		gbc_jtfLocalidad.gridx = 1;
+		gbc_jtfLocalidad.gridy = 4;
+		this.add(localidadField, gbc_jtfLocalidad);
+		localidadField.setColumns(10);
+		
 		btnPrimerElemento = new JButton("<<");
         btnPrimerElemento.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -137,6 +164,7 @@ public class VisorFabricante extends Panel{
                 setId(0);
                 cifField.setText("");
                 nombreField.setText("");
+                localidadField.setText("");
             }
         });
         this.add(btnNuevoRegistro);
@@ -145,15 +173,14 @@ public class VisorFabricante extends Panel{
         btnGuardarRegistro.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
+            	Concesionario c = new Concesionario(getId(), cifField.getText(), nombreField.getText(), localidadField.getText());
                 try {
                     if(getId()==0) {
-                        ControladorFabricante.almacenarNuevo
-                                (new Fabricante(getId(), cifField.getText(), nombreField.getText()));
+                    	ControladorConcesionario.almacenarNuevo(c);
                         JOptionPane.showMessageDialog(null, "Registro introducido correctamente");
                         buscarPrimeroYUltimo();
                     }else{
-                        ControladorFabricante.almacenarModificado
-                                (new Fabricante(getId(), cifField.getText(), nombreField.getText()));
+                    	ControladorConcesionario.almacenarModificado(c);
                         JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
                     }
                 } catch (ErrorBBDDException ex) {
@@ -167,7 +194,7 @@ public class VisorFabricante extends Panel{
         btnEliminarRegistro.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ControladorFabricante.eliminar(new Fabricante(getId(),null,null));
+                    ControladorConcesionario.eliminar(new Concesionario(getId(),null,null,null));
                     JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
 
                     if (getId() <= getUltimoId() && getId() > getPrimerId()) {
@@ -193,10 +220,11 @@ public class VisorFabricante extends Panel{
 
         String consulta = comprobarBoton();
         try {
-        	Fabricante f  = ControladorFabricante.getFabricante(consulta);
-            setId(f.getId());
-            cifField.setText(f.getCif());
-            nombreField.setText(f.getNombre());
+        	Concesionario c  = ControladorConcesionario.getConcesionario(consulta);
+            setId(c.getId());
+            cifField.setText(c.getCif());
+            nombreField.setText(c.getNombre());
+            localidadField.setText(c.getLocalidad());
         } catch (ErrorBBDDException ex) {
             ex.printStackTrace();
         }
@@ -229,10 +257,10 @@ public class VisorFabricante extends Panel{
     public String comprobarBoton(){
         String consulta = null;
         switch (getAccion()){
-            case 0: consulta = "select * from fabricante order by id asc limit 1"; break;
-            case 1: consulta = "select * from fabricante where id <" + getId() + " order by id desc limit 1"; break;
-            case 2: consulta = "select * from fabricante where id >" + getId() + " order by id asc limit 1"; break;
-            case 3: consulta = "select * from fabricante order by id desc limit 1"; break;
+            case 0: consulta = "select * from concesionario order by id asc limit 1"; break;
+            case 1: consulta = "select * from concesionario where id <" + getId() + " order by id desc limit 1"; break;
+            case 2: consulta = "select * from concesionario where id >" + getId() + " order by id asc limit 1"; break;
+            case 3: consulta = "select * from concesionario order by id desc limit 1"; break;
             default: break;
         }
         return consulta;
@@ -265,7 +293,5 @@ public class VisorFabricante extends Panel{
     public int getUltimoId() {
         return ultimoId;
     }
+
 }
-
-
-

@@ -34,7 +34,7 @@ public class StandAloneCRUD extends JFrame {
      */
     public StandAloneCRUD() throws ErrorBBDDException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 517, 421);
+        setBounds(100, 100, 800, 300);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -43,19 +43,11 @@ public class StandAloneCRUD extends JFrame {
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     //    tabbedPane.setBounds(5, 5, 499, 375);
 
-        tabbedPane.addTab("Fabricantes",null,  VisorFabricante.getInstance(),null);
-
-        JPanel panel_1 = new JPanel();
-        tabbedPane.addTab("New tab", null, panel_1, null);
-
-        JPanel panel_2 = new JPanel();
-        tabbedPane.addTab("New tab", null, panel_2, null);
-
-        JPanel panel_3 = new JPanel();
-        tabbedPane.addTab("New tab", null, panel_3, null);
-
-        JPanel panel_4 = new JPanel();
-        tabbedPane.addTab("New tab", null, panel_4, null);
+        tabbedPane.addTab("Fabricantes", null,  VisorFabricante.getInstance(), null);
+        tabbedPane.addTab("Coches", null, VisorCoche.getInstance(), null);
+        tabbedPane.addTab("Concesionarios", null, VisorConcesionario.getInstance(), null);
+        tabbedPane.addTab("Clientes", null, VisorCliente.getInstance(), null);
+        tabbedPane.addTab("Ventas", null, VisorVenta.getInstance(), null);
 
         this.getContentPane().add(tabbedPane, BorderLayout.CENTER);
     }

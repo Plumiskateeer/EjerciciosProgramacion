@@ -48,9 +48,6 @@ public class Concesionario {
 
     @Override
     public String toString() {
-        return "id=" + id +
-               ", cif='" + cif + '\'' +
-               ", nombre='" + nombre + '\'' +
-               ", localidad='" + localidad + '\'';
+        return  nombre + " " + localidad ;
     }
 }

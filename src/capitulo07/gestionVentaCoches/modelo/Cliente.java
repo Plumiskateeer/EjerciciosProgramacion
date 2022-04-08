@@ -9,7 +9,8 @@ public class Cliente {
     private Date fechaNac;
     private boolean activo;
 
-    public Cliente(String nombre, String apellidos, String localidad, String dniNie, Date fechaNac, boolean activo) {
+    public Cliente(int id, String nombre, String apellidos, String localidad, String dniNie, Date fechaNac, boolean activo) {
+    	this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.localidad = localidad;
@@ -80,12 +81,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "id=" + id +
-               ", nombre='" + nombre + '\'' +
-               ", apellidos='" + apellidos + '\'' +
-               ", localidad='" + localidad + '\'' +
-               ", dniNie='" + dniNie + '\'' +
-               ", fechaNac=" + fechaNac +
-               ", activo=" + activo;
+        return nombre +" " + apellidos;
     }
 }

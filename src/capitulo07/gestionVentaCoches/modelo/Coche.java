@@ -57,10 +57,6 @@ public class Coche {
 
     @Override
     public String toString() {
-        return "id=" + id +
-               ", idfabricante=" + idfabricante +
-               ", bastidor='" + bastidor + '\'' +
-               ", modelo='" + modelo + '\'' +
-               ", color='" + color + '\'';
+        return modelo + " " + color;
     }
 }
