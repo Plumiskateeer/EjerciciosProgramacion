@@ -34,7 +34,7 @@ public class StandAloneCRUD extends JFrame {
      */
     public StandAloneCRUD() throws ErrorBBDDException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 300);
+        setBounds(100, 100, 675, 300);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
