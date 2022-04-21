@@ -21,5 +21,9 @@ public class Curso {
 	public String getDescripcion() {
 		return this.descripcion;
 	}
+	
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
 }
