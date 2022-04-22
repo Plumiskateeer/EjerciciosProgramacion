@@ -9,6 +9,10 @@ public class Curso {
 
 	public Curso() {
 	}
+	public Curso(int id, String descripcion) {
+		this.id = id;
+		this.descripcion = descripcion;
+	}
 
 	public int getId() {
 		return this.id;

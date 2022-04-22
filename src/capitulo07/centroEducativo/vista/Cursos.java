@@ -6,17 +6,35 @@ import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
+import capitulo07.centroEducativo.ErrorBBDDException;
+import capitulo07.centroEducativo.modelo.Curso;
+import capitulo07.centroEducativo.modelo.controladores.ControladorCurso;
+
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Cursos extends JPanel {
 	private static Cursos instance = null;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField idField;
+	private JTextField descripcionField;
+	private int id = 1, primerId, ultimoId;
+
+    private int accion = 0;
+	private JButton btnPrimerElemento;
+	private JButton btnAnterior;
+	private JButton btnSiguiente;
+	private JButton btnUltimoElemento;
+	private JButton btnNuevo;
+	private JButton btnGuardar;
+	private JButton btnEliminar;
 
 	/**
 	 * Create the panel.
@@ -37,31 +55,93 @@ public class Cursos extends JPanel {
 		JToolBar toolBar = new JToolBar();
 		add(toolBar, BorderLayout.NORTH);
 		
-		JButton btnPrimerElemento = new JButton("");
+		btnPrimerElemento = new JButton("");
+		btnPrimerElemento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargarRegistro(0);
+			}
+		});
 		btnPrimerElemento.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/gotostart.png")));
 		toolBar.add(btnPrimerElemento);
 		
-		JButton btnAnterior = new JButton("");
+		btnAnterior = new JButton("");
+		btnAnterior.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargarRegistro(1);
+			}
+		});
 		btnAnterior.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/previous.png")));
 		toolBar.add(btnAnterior);
 		
-		JButton btnSiguiente = new JButton("");
+		btnSiguiente = new JButton("");
+		btnSiguiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargarRegistro(2);
+			}
+		});
 		btnSiguiente.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/next.png")));
 		toolBar.add(btnSiguiente);
 		
-		JButton btnUltimoElemento = new JButton("");
+		btnUltimoElemento = new JButton("");
+		btnUltimoElemento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargarRegistro(3);
+			}
+		});
 		btnUltimoElemento.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/gotoend.png")));
 		toolBar.add(btnUltimoElemento);
 		
-		JButton btnNuevo = new JButton("");
+		btnNuevo = new JButton("");
+		btnNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setId(0);
+                idField.setText("");
+                descripcionField.setText("");
+			}
+		});
 		btnNuevo.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/nuevo.png")));
 		toolBar.add(btnNuevo);
 		
-		JButton btnGuardar = new JButton("");
+		btnGuardar = new JButton("");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Curso c = new Curso(getId(), descripcionField.getText());
+				try {
+                    if(getId()==0) {
+                        ControladorCurso.almacenarNuevo(c);
+                        JOptionPane.showMessageDialog(null, "Registro introducido correctamente");
+                        buscarPrimeroYUltimo();
+                    }else{
+                    	ControladorCurso.almacenarModificado(c);
+                        JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
+                    }
+                } catch (ErrorBBDDException e1) {
+                	JOptionPane.showMessageDialog(null,"No se pudo guardar o modificar el registro", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		btnGuardar.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/guardar.png")));
 		toolBar.add(btnGuardar);
 		
-		JButton btnEliminar = new JButton("");
+		btnEliminar = new JButton("");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+                    ControladorCurso.eliminar(new Curso(getId(),null));
+                    JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
+
+                    if (getId() <= getUltimoId() && getId() >= getPrimerId()) {
+                        btnAnterior.doClick();
+                        btnSiguiente.setEnabled(false);
+                        btnUltimoElemento.setEnabled(false);
+                    }else btnSiguiente.doClick();
+                    buscarPrimeroYUltimo();
+                } catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+                	JOptionPane.showMessageDialog(null,"No se pudo eliminar el registro", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		btnEliminar.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/eliminar.png")));
 		toolBar.add(btnEliminar);
 		
@@ -92,13 +172,14 @@ public class Cursos extends JPanel {
 		gbc_lbId.gridy = 1;
 		panel.add(lbId, gbc_lbId);
 		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 1;
-		panel.add(textField, gbc_textField);
-		textField.setColumns(10);
+		idField = new JTextField();
+		GridBagConstraints gbc_idField = new GridBagConstraints();
+		gbc_idField.insets = new Insets(0, 0, 5, 5);
+		gbc_idField.gridx = 1;
+		gbc_idField.gridy = 1;
+		panel.add(idField, gbc_idField);
+		idField.setColumns(10);
+		idField.setEnabled(false);
 		
 		JLabel lbDescripcion = new JLabel("Descripcion :");
 		GridBagConstraints gbc_lbDescripcion = new GridBagConstraints();
@@ -107,14 +188,97 @@ public class Cursos extends JPanel {
 		gbc_lbDescripcion.gridy = 2;
 		panel.add(lbDescripcion, gbc_lbDescripcion);
 		
-		textField_1 = new JTextField();
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 2;
-		panel.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
-		
-
+		descripcionField = new JTextField();
+		GridBagConstraints gbc_descripcionField = new GridBagConstraints();
+		gbc_descripcionField.insets = new Insets(0, 0, 5, 5);
+		gbc_descripcionField.gridx = 1;
+		gbc_descripcionField.gridy = 2;
+		panel.add(descripcionField, gbc_descripcionField);
+		descripcionField.setColumns(10);
+	
+		cargarRegistro(0);
+        btnPrimerElemento.setEnabled(false);
+        btnAnterior.setEnabled(false);
 	}
+	
+	private void cargarRegistro (int opcion) {
+        setAccion(opcion);
+
+        String consulta = comprobarBoton();
+        try {
+        	Curso c  = ControladorCurso.getCurso(consulta);
+            setId(c.getId());
+            idField.setText(c.getId()+"");
+            descripcionField.setText(c.getDescripcion());
+        } catch (capitulo07.centroEducativo.ErrorBBDDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        comprobarEstadoBotones();
+    }
+	
+	public void buscarPrimeroYUltimo() throws ErrorBBDDException {
+        this.primerId = ControladorCurso.getAll().get(0).getId();
+        this.ultimoId = ControladorCurso.getAll().get(ControladorCurso.getAll().size()-1).getId();
+    }
+	
+	private void comprobarEstadoBotones() {
+        if(getId() == getPrimerId()){
+            btnAnterior.setEnabled(false);
+            btnPrimerElemento.setEnabled(false);
+            btnSiguiente.setEnabled(true);
+            btnUltimoElemento.setEnabled(true);
+        }else if (getId() == getUltimoId()) {
+            btnAnterior.setEnabled(true);
+            btnPrimerElemento.setEnabled(true);
+            btnSiguiente.setEnabled(false);
+            btnUltimoElemento.setEnabled(false);
+        }else if(getAccion()==0 || getAccion()==1){
+            btnSiguiente.setEnabled(true);
+            btnUltimoElemento.setEnabled(true);
+        }else if(getAccion()==2 || getAccion()==3){
+        	btnAnterior.setEnabled(true);
+            btnPrimerElemento.setEnabled(true);
+        }
+    }
+
+    public String comprobarBoton(){
+        String consulta = null;
+        switch (getAccion()){
+            case 0: consulta = "select * from curso order by id asc limit 1"; break;
+            case 1: consulta = "select * from curso where id <" + getId() + " order by id desc limit 1"; break;
+            case 2: consulta = "select * from curso where id >" + getId() + " order by id asc limit 1"; break;
+            case 3: consulta = "select * from curso order by id desc limit 1"; break;
+            default: break;
+        }
+        return consulta;
+    }
+
+    public int getAccion(){
+        return this.accion;
+    }
+    public void setAccion(int accion){
+        this.accion = accion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public int getPrimerId() {
+        return primerId;
+    }
+
+    public void setPrimerId(int primerId) {
+        this.primerId = primerId;
+    }
+
+    public int getUltimoId() {
+        return ultimoId;
+    }
 }

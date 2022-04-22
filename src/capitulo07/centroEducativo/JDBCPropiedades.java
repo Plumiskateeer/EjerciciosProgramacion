@@ -17,14 +17,14 @@ public class JDBCPropiedades {
         if (propiedades == null) {
             propiedades = new Properties();
 
-            propiedades.setProperty("USUARIO","root");
-            propiedades.setProperty("PASSWORD","5411");
+            propiedades.setProperty("USUARIO","java");
+            propiedades.setProperty("PASSWORD","Abcdefgh.1");
             propiedades.setProperty("ID_USUARIO","1");
             propiedades.setProperty("JDBC_DRIVER_CLASS","com.mysql.jdbc.Driver");
-            propiedades.setProperty("JDBC_USER","root");
-            propiedades.setProperty("JDBC_PASSWORD","5411");
+            propiedades.setProperty("JDBC_USER","java");
+            propiedades.setProperty("JDBC_PASSWORD","Abcdefgh.1");
             propiedades.setProperty("JDBC_HOST","localhost");
-            propiedades.setProperty("JDBC_SCHEMA_NAME","tutorialjavacoches");
+            propiedades.setProperty("JDBC_SCHEMA_NAME","centroeducativo");
 
         }
         return propiedades;

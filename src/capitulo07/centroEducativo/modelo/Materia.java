@@ -7,8 +7,18 @@ public class Materia {
 	private String acronimo;
 
 	private String nombre;
+	
+	private int cursoid;
 
 
+
+	public Materia(int id, String acronimo, String nombre, int cursoid) {
+		super();
+		this.id = id;
+		this.acronimo = acronimo;
+		this.nombre = nombre;
+		this.cursoid = cursoid;
+	}
 
 	public Materia() {
 	}
@@ -36,5 +46,14 @@ public class Materia {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public int getCursoid() {
+		return cursoid;
+	}
+
+	public void setCursoid(int cursoid) {
+		this.cursoid = cursoid;
+	}
+	
 
 }
