@@ -21,13 +21,14 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class Materias extends JPanel {
 	private JTextField idField;
 	private JTextField nombreField;
 	private JTextField acronimoField;
-	private JTextField cursoField;
 	private static Materias instance = null;
 	private JButton btnPrimerElemento;
 	private JButton btnAnterior;
@@ -39,18 +40,20 @@ public class Materias extends JPanel {
 	private int id = 1, primerId, ultimoId;
 
     private int accion = 0;
+    private JComboBox<Curso> cursoComboBox;
 
 	/**
 	 * Create the panel.
+	 * @throws ErrorBBDDException 
 	 */
 	
-	public static Materias getInstance() {
+	public static Materias getInstance() throws ErrorBBDDException {
 		if(instance == null) {
 			instance = new Materias();
 		}
 		return instance;
 	}
-	public Materias() {
+	public Materias() throws ErrorBBDDException {
 		setLayout(new BorderLayout(0, 0));
 		
 		JToolBar toolBar = new JToolBar();
@@ -99,7 +102,8 @@ public class Materias extends JPanel {
                 idField.setText("0");
                 nombreField.setText("");
                 acronimoField.setText("");
-                cursoField.setText("");
+                cursoComboBox.setEditable(true);
+                cursoComboBox.setEnabled(true);
 			}
 		});
 		btnNuevo.setIcon(new ImageIcon(Materias.class.getResource("/capitulo07/resources/nuevo.png")));
@@ -108,7 +112,7 @@ public class Materias extends JPanel {
 		btnGuardar = new JButton("");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Materia m = new Materia(getId(), nombreField.getText(), acronimoField.getText(), Integer.parseInt(cursoField.getText()));
+				Materia m = new Materia(getId(), nombreField.getText(), acronimoField.getText(),getIdCursoSeleccionadoEnJComboBox());
 				try {
                     if(getId()==0) {
                         ControladorMateria.almacenarNuevo(m);
@@ -121,6 +125,9 @@ public class Materias extends JPanel {
                 } catch (ErrorBBDDException e1) {
                 	JOptionPane.showMessageDialog(null,"No se pudo guardar o modificar el registro", "Error", JOptionPane.ERROR_MESSAGE);
 				}
+				comprobarEstadoBotones();
+				cursoComboBox.setEditable(false);
+                cursoComboBox.setEnabled(true);
 			}
 		});
 		btnGuardar.setIcon(new ImageIcon(Materias.class.getResource("/capitulo07/resources/guardar.png")));
@@ -222,18 +229,19 @@ public class Materias extends JPanel {
 		gbc_lbIdCurso.gridy = 4;
 		panel.add(lbIdCurso, gbc_lbIdCurso);
 		
-		cursoField = new JTextField();
-		GridBagConstraints gbc_cursoField = new GridBagConstraints();
-		gbc_cursoField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_cursoField.gridx = 1;
-		gbc_cursoField.gridy = 4;
-		panel.add(cursoField, gbc_cursoField);
-		cursoField.setColumns(10);
+		cursoComboBox = new JComboBox();
+		GridBagConstraints gbc_cursoComboBox = new GridBagConstraints();
+		gbc_cursoComboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cursoComboBox.gridx = 1;
+		gbc_cursoComboBox.gridy = 4;
+		panel.add(cursoComboBox, gbc_cursoComboBox);
+		cursoComboBox.setEnabled(false);
 		
 		cargarRegistro(0);
         btnPrimerElemento.setEnabled(false);
         btnAnterior.setEnabled(false);
-
+        cargarValoresCursosEnJComboBox();
+        cursoComboBox.setEnabled(false);
 	}
 	
 	private void cargarRegistro (int opcion) {
@@ -246,7 +254,7 @@ public class Materias extends JPanel {
             idField.setText(m.getId()+"");
             nombreField.setText(m.getNombre());
             acronimoField.setText(m.getAcronimo());
-            cursoField.setText(m.getCursoid()+"");
+            seleccionarCursoEnJComboBox(m.getCursoid());
 
         } catch (ErrorBBDDException e) {
 			// TODO Auto-generated catch block
@@ -291,6 +299,26 @@ public class Materias extends JPanel {
         }
         return consulta;
     }
+    
+    private void cargarValoresCursosEnJComboBox () throws ErrorBBDDException {
+		// Cargamos valores dentro del combobox
+		List<Curso> lista = ControladorCurso.getAll();
+		for (int i = 0; i < lista.size(); i++) {
+			cursoComboBox.addItem(lista.get(i));
+		}
+	}
+    
+    private void seleccionarCursoEnJComboBox (int idCoche) {
+		for (int i = 0; i < cursoComboBox.getItemCount(); i++) {
+			if ( ((Curso) cursoComboBox.getItemAt(i)).getId() == idCoche) {
+				cursoComboBox.setSelectedIndex(i);
+			}
+		}
+	}
+    
+    private int getIdCursoSeleccionadoEnJComboBox () {
+		return ((Curso) cursoComboBox.getSelectedItem()).getId();
+	}
 
     public int getAccion(){
         return this.accion;

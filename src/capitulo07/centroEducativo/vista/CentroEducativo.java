@@ -8,6 +8,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
+
+import capitulo07.centroEducativo.ErrorBBDDException;
+
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -70,7 +73,12 @@ public class CentroEducativo {
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Materias");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				abrirVentanaMaterias();
+				try {
+					abrirVentanaMaterias();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
@@ -90,7 +98,12 @@ public class CentroEducativo {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				abrirVentanaMaterias();
+				try {
+					abrirVentanaMaterias();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(CentroEducativo.class.getResource("/capitulo07/resources/ruedadentada.png")));
@@ -118,7 +131,7 @@ public class CentroEducativo {
 		dialogo.setVisible(true);
 	}
 	
-	public void abrirVentanaMaterias() {
+	public void abrirVentanaMaterias() throws ErrorBBDDException {
 		JDialog dialogo = new JDialog();
 		// El usuario no puede redimensionar el diálogo
 		dialogo.setResizable(true);

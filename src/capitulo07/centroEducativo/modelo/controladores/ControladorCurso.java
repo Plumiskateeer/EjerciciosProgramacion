@@ -25,7 +25,7 @@ public class ControladorCurso extends ControladorBBDD{
 				conn = ConnectionManagerV2.getConexion();
 	
 	            Statement s = conn.createStatement();
-	            ResultSet rs = s.executeQuery("Select * from fabricante");
+	            ResultSet rs = s.executeQuery("Select * from curso");
 	
 	            while (rs.next()) {
 	            	Curso c = new Curso();

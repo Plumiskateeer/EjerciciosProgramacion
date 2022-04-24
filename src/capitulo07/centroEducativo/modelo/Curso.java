@@ -30,4 +30,7 @@ public class Curso {
 		this.descripcion = descripcion;
 	}
 
+	public String toString() {
+		return this.descripcion;
+	}
 }
