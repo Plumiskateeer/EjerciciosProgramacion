@@ -14,13 +14,15 @@ import javax.swing.border.EmptyBorder;
 import capitulo07.centroEducativo.ErrorBBDDException;
 import capitulo07.centroEducativo.modelo.Estudiante;
 import capitulo07.centroEducativo.modelo.Materia;
+import capitulo07.centroEducativo.modelo.Profesor;
 import capitulo07.centroEducativo.modelo.controladores.ControladorEstudiante;
 import capitulo07.centroEducativo.modelo.controladores.ControladorMateria;
+import capitulo07.centroEducativo.modelo.controladores.ControladorProfesor;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Estudiantes extends JPanel {
+public class Profesores extends JPanel {
 
 	private JPanel contentPane;
 	private Campos panelCampos = new Campos();
@@ -34,7 +36,7 @@ public class Estudiantes extends JPanel {
 	private JButton btnNuevo;
 	private JButton btnGuardar;
 	private JButton btnEliminar;
-	private static Estudiantes instance = null;
+	private static Profesores instance = null;
 
 	/**
 	 * Launch the application.
@@ -43,7 +45,7 @@ public class Estudiantes extends JPanel {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Estudiantes frame = new Estudiantes();
+					Profesores frame = new Profesores();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,9 +54,9 @@ public class Estudiantes extends JPanel {
 		});
 	}
 	
-	public static Estudiantes getInstance() throws ErrorBBDDException {
+	public static Profesores getInstance() throws ErrorBBDDException {
 		if(instance == null) {
-			instance = new Estudiantes();
+			instance = new Profesores();
 		}
 		return instance;
 	}
@@ -63,7 +65,7 @@ public class Estudiantes extends JPanel {
 	 * Create the frame.
 	 * @throws ErrorBBDDException 
 	 */
-	public Estudiantes() throws ErrorBBDDException {
+	public Profesores() throws ErrorBBDDException {
 		setBounds(100, 100, 450, 241);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -150,16 +152,16 @@ public class Estudiantes extends JPanel {
 		btnGuardar = new JButton("");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Estudiante es = new Estudiante(getId(), panelCampos.getNombreField().getText(), panelCampos.getApellido1Field().getText(), 
+				Profesor es = new Profesor(getId(), panelCampos.getNombreField().getText(), panelCampos.getApellido1Field().getText(), 
 						panelCampos.getApellido2Field().getText(), panelCampos.getDniField().getText(), panelCampos.getDireccionField().getText(),
 						panelCampos.getEmailField().getText(), panelCampos.getTelefonoField().getText());
 				try {
                     if(getId()==0) {
-                        ControladorEstudiante.almacenarNuevo(es);
+                        ControladorProfesor.almacenarNuevo(es);
                         JOptionPane.showMessageDialog(null, "Registro introducido correctamente");
                         buscarPrimeroYUltimo();
                     }else{
-                    	ControladorEstudiante.almacenarModificado(es);
+                    	ControladorProfesor.almacenarModificado(es);
                         JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
                     }
                 } catch (ErrorBBDDException e1) {
@@ -181,7 +183,7 @@ public class Estudiantes extends JPanel {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ControladorEstudiante.eliminar(new Estudiante(getId(),null,null,null,null,null,null,null));
+					ControladorProfesor.eliminar(new Profesor(getId(),null,null,null,null,null,null,null));
 	                JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
 	
 	                if (getId() <= getUltimoId() && getId() > getPrimerId()) {
@@ -210,7 +212,7 @@ public class Estudiantes extends JPanel {
 
         String consulta = comprobarBoton();
         try {
-        	Estudiante e  = ControladorEstudiante.getEstudiante(consulta);
+        	Profesor e  = ControladorProfesor.getProfesor(consulta);
         	panelCampos.setNombreField(e.getNombre());
         	panelCampos.setApellido1Field(e.getApellido1());
         	panelCampos.setApellido2Field(e.getApellido2());
@@ -227,14 +229,14 @@ public class Estudiantes extends JPanel {
     }
 	
 	public void buscarPrimeroYUltimo() throws ErrorBBDDException {
-        this.primerId = ControladorEstudiante.getAll().get(0).getId();
-        this.ultimoId = ControladorEstudiante.getAll().get(ControladorEstudiante.getAll().size()-1).getId();
+        this.primerId = ControladorProfesor.getAll().get(0).getId();
+        this.ultimoId = ControladorProfesor.getAll().get(ControladorProfesor.getAll().size()-1).getId();
     }
 	
 	private void comprobarEstadoBotones() throws ErrorBBDDException {
 		int accion = getAccion();
 		setAccion(1);
-		if (ControladorEstudiante.getEstudiante(comprobarBoton()) == null) {
+		if (ControladorProfesor.getProfesor(comprobarBoton()) == null) {
             btnPrimerElemento.setEnabled(false);
             btnAnterior.setEnabled(false);
         }
@@ -244,7 +246,7 @@ public class Estudiantes extends JPanel {
         }
         // Si no existe un siguiente deshabilito los botones de �ltimo y siguiente
       	setAccion(2);
-        boolean existeSiguiente = (ControladorEstudiante.getEstudiante(comprobarBoton()) == null)? false : true;
+        boolean existeSiguiente = (ControladorProfesor.getProfesor(comprobarBoton()) == null)? false : true;
         btnUltimoElemento.setEnabled(existeSiguiente);
         btnSiguiente.setEnabled(existeSiguiente);
         
@@ -254,10 +256,10 @@ public class Estudiantes extends JPanel {
     public String comprobarBoton(){
         String consulta = null;
         switch (getAccion()){
-            case 0: consulta = "select * from estudiante order by id asc limit 1"; break;
-            case 1: consulta = "select * from estudiante where id <" + getId() + " order by id desc limit 1"; break;
-            case 2: consulta = "select * from estudiante where id >" + getId() + " order by id asc limit 1"; break;
-            case 3: consulta = "select * from estudiante order by id desc limit 1"; break;
+            case 0: consulta = "select * from profesor order by id asc limit 1"; break;
+            case 1: consulta = "select * from profesor where id <" + getId() + " order by id desc limit 1"; break;
+            case 2: consulta = "select * from profesor where id >" + getId() + " order by id asc limit 1"; break;
+            case 3: consulta = "select * from profesor order by id desc limit 1"; break;
             default: break;
         }
         return consulta;

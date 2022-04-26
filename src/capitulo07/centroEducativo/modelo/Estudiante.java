@@ -18,7 +18,20 @@ public class Estudiante {
 
 	private String telefono;
 
+	public Estudiante(int i,String nombre, String apellido1, String apellido2, String direccion, String dni, String email, String telefono) {
+	this.id = i;
+	this.nombre = nombre;
+	this.apellido1 = apellido1;
+	this.apellido2 = apellido2;
+	this.direccion = direccion;
+	this.dni = dni;
+	this.email = email;
+	this.telefono = telefono;
+	
+	}
+	
 	public Estudiante() {
+		
 	}
 
 	public int getId() {

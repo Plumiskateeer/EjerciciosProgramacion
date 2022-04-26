@@ -20,6 +20,21 @@ public class Profesor {
 
 	public Profesor() {
 	}
+	
+	public Profesor(int id, String apellido1, String apellido2, String direccion, String dni, String email,
+			String nombre, String telefono) {
+		super();
+		this.id = id;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.direccion = direccion;
+		this.dni = dni;
+		this.email = email;
+		this.nombre = nombre;
+		this.telefono = telefono;
+	}
+
+
 
 	public int getId() {
 		return this.id;
