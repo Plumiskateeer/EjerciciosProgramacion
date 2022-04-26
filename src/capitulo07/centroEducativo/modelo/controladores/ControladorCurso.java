@@ -34,7 +34,9 @@ public class ControladorCurso extends ControladorBBDD{
 	                cursos.add(c);
 	            }
 	
+	            conn.close();
 	            s.close();
+	            
             
             } catch (SQLException | ImposibleConectarException e) {
 				// TODO Auto-generated catch block
@@ -102,6 +104,7 @@ public class ControladorCurso extends ControladorBBDD{
                 c.setDescripcion(rs.getString("descripcion"));
             }
             s.close();
+            conn.close();
 
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);
@@ -133,6 +136,7 @@ public class ControladorCurso extends ControladorBBDD{
                 throw new ErrorBBDDException("No ha sido posible la inserci�n del nuevo registro");
             }
             ps.close();
+            conn.close();
 
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);
@@ -165,6 +169,7 @@ public class ControladorCurso extends ControladorBBDD{
                 throw new ErrorBBDDException("No ha sido posible la modificaci�n del registro");
             }
             ps.close();
+            conn.close();
 
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);
@@ -195,6 +200,7 @@ public class ControladorCurso extends ControladorBBDD{
                 throw new ErrorBBDDException("No ha sido posible la eliminación del registro");
             }
             ps.close();
+            conn.close();
 
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);

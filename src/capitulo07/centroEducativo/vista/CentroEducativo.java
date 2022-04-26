@@ -65,7 +65,12 @@ public class CentroEducativo {
 		JMenuItem mntmNewMenuItem = new JMenuItem("Cursos");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				abrirVentanaCursos();
+				try {
+					abrirVentanaCursos();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
@@ -83,13 +88,31 @@ public class CentroEducativo {
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Estudiantes");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					abrirVentanaEstudiantes();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_2);
+		
 		JToolBar toolBar = new JToolBar();
 		frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				abrirVentanaCursos();
+				try {
+					abrirVentanaCursos();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(CentroEducativo.class.getResource("/capitulo07/resources/ruedadentada.png")));
@@ -112,7 +135,7 @@ public class CentroEducativo {
 		
 	}
 	
-	public void abrirVentanaCursos() {
+	public void abrirVentanaCursos() throws ErrorBBDDException {
 		JDialog dialogo = new JDialog();
 		// El usuario no puede redimensionar el diálogo
 		dialogo.setResizable(true);
@@ -139,6 +162,25 @@ public class CentroEducativo {
 		dialogo.setTitle("Título");
 		// Introducimos el panel creado sobre el diálogo
 		dialogo.setContentPane(Materias.getInstance());
+		// Empaquetar el di�logo hace que todos los componentes ocupen el espacio que deben y el lugar adecuado
+		dialogo.pack();
+		// El usuario no puede hacer clic sobre la ventana padre, si el Di�logo es modal
+		dialogo.setModal(true);
+		// Centro el di�logo en pantalla
+		dialogo.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - dialogo.getWidth()/2, 
+				(Toolkit.getDefaultToolkit().getScreenSize().height)/2 - dialogo.getHeight()/2);
+		// Muestro el di�logo en pantalla
+		dialogo.setVisible(true);
+	}
+	
+	public void abrirVentanaEstudiantes() throws ErrorBBDDException {
+		JDialog dialogo = new JDialog();
+		// El usuario no puede redimensionar el diálogo
+		dialogo.setResizable(true);
+		// título del díalogo
+		dialogo.setTitle("Título");
+		// Introducimos el panel creado sobre el diálogo
+		dialogo.setContentPane(Estudiantes.getInstance());
 		// Empaquetar el di�logo hace que todos los componentes ocupen el espacio que deben y el lugar adecuado
 		dialogo.pack();
 		// El usuario no puede hacer clic sobre la ventana padre, si el Di�logo es modal

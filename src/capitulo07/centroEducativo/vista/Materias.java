@@ -62,7 +62,12 @@ public class Materias extends JPanel {
 		btnPrimerElemento = new JButton("");
 		btnPrimerElemento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarRegistro(0);
+				try {
+					cargarRegistro(0);
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnPrimerElemento.setIcon(new ImageIcon(Materias.class.getResource("/capitulo07/resources/gotostart.png")));
@@ -71,7 +76,12 @@ public class Materias extends JPanel {
 		btnAnterior = new JButton("");
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarRegistro(1);
+				try {
+					cargarRegistro(1);
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnAnterior.setIcon(new ImageIcon(Materias.class.getResource("/capitulo07/resources/previous.png")));
@@ -80,7 +90,12 @@ public class Materias extends JPanel {
 		btnSiguiente = new JButton("");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarRegistro(2);
+				try {
+					cargarRegistro(2);
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnSiguiente.setIcon(new ImageIcon(Materias.class.getResource("/capitulo07/resources/next.png")));
@@ -89,7 +104,12 @@ public class Materias extends JPanel {
 		btnUltimoElemento = new JButton("");
 		btnUltimoElemento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarRegistro(3);
+				try {
+					cargarRegistro(3);
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnUltimoElemento.setIcon(new ImageIcon(Materias.class.getResource("/capitulo07/resources/gotoend.png")));
@@ -125,7 +145,12 @@ public class Materias extends JPanel {
                 } catch (ErrorBBDDException e1) {
                 	JOptionPane.showMessageDialog(null,"No se pudo guardar o modificar el registro", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				comprobarEstadoBotones();
+				try {
+					comprobarEstadoBotones();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				cursoComboBox.setEditable(false);
                 cursoComboBox.setEnabled(true);
 			}
@@ -235,16 +260,14 @@ public class Materias extends JPanel {
 		gbc_cursoComboBox.gridx = 1;
 		gbc_cursoComboBox.gridy = 4;
 		panel.add(cursoComboBox, gbc_cursoComboBox);
-		cursoComboBox.setEnabled(false);
 		
 		cargarRegistro(0);
         btnPrimerElemento.setEnabled(false);
         btnAnterior.setEnabled(false);
         cargarValoresCursosEnJComboBox();
-        cursoComboBox.setEnabled(false);
 	}
 	
-	private void cargarRegistro (int opcion) {
+	private void cargarRegistro (int opcion) throws ErrorBBDDException {
         setAccion(opcion);
 
         String consulta = comprobarBoton();
@@ -268,24 +291,24 @@ public class Materias extends JPanel {
         this.ultimoId = ControladorMateria.getAll().get(ControladorMateria.getAll().size()-1).getId();
     }
 	
-	private void comprobarEstadoBotones() {
-        if(getId() == getPrimerId()){
-            btnAnterior.setEnabled(false);
+	private void comprobarEstadoBotones() throws ErrorBBDDException {
+		int accion = getAccion();
+		setAccion(1);
+		if (ControladorMateria.getMateria(comprobarBoton()) == null) {
             btnPrimerElemento.setEnabled(false);
-            btnSiguiente.setEnabled(true);
-            btnUltimoElemento.setEnabled(true);
-        }else if (getId() == getUltimoId()) {
-            btnAnterior.setEnabled(true);
-            btnPrimerElemento.setEnabled(true);
-            btnSiguiente.setEnabled(false);
-            btnUltimoElemento.setEnabled(false);
-        }else if(getAccion()==0 || getAccion()==1){
-            btnSiguiente.setEnabled(true);
-            btnUltimoElemento.setEnabled(true);
-        }else if(getAccion()==2 || getAccion()==3){
-        	btnAnterior.setEnabled(true);
-            btnPrimerElemento.setEnabled(true);
+            btnAnterior.setEnabled(false);
         }
+        else {
+        	btnPrimerElemento.setEnabled(true);
+        	btnAnterior.setEnabled(true);
+        }
+        // Si no existe un siguiente deshabilito los botones de último y siguiente
+      	setAccion(2);
+        boolean existeSiguiente = (ControladorMateria.getMateria(comprobarBoton()) == null)? false : true;
+        btnUltimoElemento.setEnabled(existeSiguiente);
+        btnSiguiente.setEnabled(existeSiguiente);
+        
+        setAccion(accion);
     }
 
     public String comprobarBoton(){

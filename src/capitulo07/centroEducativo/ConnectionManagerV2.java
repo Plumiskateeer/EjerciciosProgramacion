@@ -44,7 +44,6 @@ public class ConnectionManagerV2 {
             throw new ImposibleConectarException("Tiempo agotado, imposible conectar");
         }
 
-
         return conexion;
     }
 

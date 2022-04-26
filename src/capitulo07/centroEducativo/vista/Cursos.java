@@ -38,10 +38,11 @@ public class Cursos extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws ErrorBBDDException 
 	 * 
 	 */
 	
-	public static Cursos getInstance() {
+	public static Cursos getInstance() throws ErrorBBDDException {
 		if(instance == null) {
 			instance = new Cursos();
 		}
@@ -49,7 +50,7 @@ public class Cursos extends JPanel {
 	}
 	
 	
-	public Cursos() {
+	public Cursos() throws ErrorBBDDException {
 		setLayout(new BorderLayout(0, 0));
 		
 		JToolBar toolBar = new JToolBar();
@@ -58,7 +59,12 @@ public class Cursos extends JPanel {
 		btnPrimerElemento = new JButton("");
 		btnPrimerElemento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarRegistro(0);
+				try {
+					cargarRegistro(0);
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnPrimerElemento.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/gotostart.png")));
@@ -67,7 +73,12 @@ public class Cursos extends JPanel {
 		btnAnterior = new JButton("");
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarRegistro(1);
+				try {
+					cargarRegistro(1);
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnAnterior.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/previous.png")));
@@ -76,7 +87,12 @@ public class Cursos extends JPanel {
 		btnSiguiente = new JButton("");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarRegistro(2);
+				try {
+					cargarRegistro(2);
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnSiguiente.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/next.png")));
@@ -85,7 +101,12 @@ public class Cursos extends JPanel {
 		btnUltimoElemento = new JButton("");
 		btnUltimoElemento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarRegistro(3);
+				try {
+					cargarRegistro(3);
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnUltimoElemento.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/gotoend.png")));
@@ -118,6 +139,13 @@ public class Cursos extends JPanel {
                 } catch (ErrorBBDDException e1) {
                 	JOptionPane.showMessageDialog(null,"No se pudo guardar o modificar el registro", "Error", JOptionPane.ERROR_MESSAGE);
 				}
+				try {
+					comprobarEstadoBotones();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				btnSiguiente.doClick();
 			}
 		});
 		btnGuardar.setIcon(new ImageIcon(Cursos.class.getResource("/capitulo07/resources/guardar.png")));
@@ -130,15 +158,19 @@ public class Cursos extends JPanel {
                     ControladorCurso.eliminar(new Curso(getId(),null));
                     JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
 
-                    if (getId() <= getUltimoId() && getId() >= getPrimerId()) {
+                    if (getId() > getPrimerId()) {
                         btnAnterior.doClick();
-                        btnSiguiente.setEnabled(false);
-                        btnUltimoElemento.setEnabled(false);
                     }else btnSiguiente.doClick();
                     buscarPrimeroYUltimo();
                 } catch (ErrorBBDDException e1) {
 					// TODO Auto-generated catch block
                 	JOptionPane.showMessageDialog(null,"No se pudo eliminar el registro", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				try {
+					comprobarEstadoBotones();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -201,7 +233,7 @@ public class Cursos extends JPanel {
         btnAnterior.setEnabled(false);
 	}
 	
-	private void cargarRegistro (int opcion) {
+	private void cargarRegistro (int opcion) throws ErrorBBDDException {
         setAccion(opcion);
 
         String consulta = comprobarBoton();
@@ -210,7 +242,7 @@ public class Cursos extends JPanel {
             setId(c.getId());
             idField.setText(c.getId()+"");
             descripcionField.setText(c.getDescripcion());
-        } catch (capitulo07.centroEducativo.ErrorBBDDException e) {
+        } catch (ErrorBBDDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -222,25 +254,25 @@ public class Cursos extends JPanel {
         this.ultimoId = ControladorCurso.getAll().get(ControladorCurso.getAll().size()-1).getId();
     }
 	
-	private void comprobarEstadoBotones() {
-        if(getId() == getPrimerId()){
-            btnAnterior.setEnabled(false);
+	private void comprobarEstadoBotones() throws ErrorBBDDException {
+		int accion = getAccion();
+		setAccion(1);
+		if (ControladorCurso.getCurso(comprobarBoton()) == null) {
             btnPrimerElemento.setEnabled(false);
-            btnSiguiente.setEnabled(true);
-            btnUltimoElemento.setEnabled(true);
-        }else if (getId() == getUltimoId()) {
-            btnAnterior.setEnabled(true);
-            btnPrimerElemento.setEnabled(true);
-            btnSiguiente.setEnabled(false);
-            btnUltimoElemento.setEnabled(false);
-        }else if(getAccion()==0 || getAccion()==1){
-            btnSiguiente.setEnabled(true);
-            btnUltimoElemento.setEnabled(true);
-        }else if(getAccion()==2 || getAccion()==3){
-        	btnAnterior.setEnabled(true);
-            btnPrimerElemento.setEnabled(true);
+            btnAnterior.setEnabled(false);
         }
-    }
+        else {
+        	btnPrimerElemento.setEnabled(true);
+        	btnAnterior.setEnabled(true);
+        }
+        // Si no existe un siguiente deshabilito los botones de último y siguiente
+      	setAccion(2);
+        boolean existeSiguiente = (ControladorCurso.getCurso(comprobarBoton()) == null)? false : true;
+        btnUltimoElemento.setEnabled(existeSiguiente);
+        btnSiguiente.setEnabled(existeSiguiente);
+        
+        setAccion(accion);
+	}
 
     public String comprobarBoton(){
         String consulta = null;
@@ -268,7 +300,6 @@ public class Cursos extends JPanel {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public int getPrimerId() {
         return primerId;

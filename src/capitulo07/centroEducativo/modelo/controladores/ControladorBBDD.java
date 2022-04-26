@@ -18,11 +18,11 @@ public class ControladorBBDD {
 			@Override
 			public void run() {
 				try {
-					capitulo07.gestionVentaCoches.modelo.controladores.ConnectionManagerV2.getConexion();
+					ConnectionManagerV2.getConexion();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (capitulo07.gestionVentaCoches.modelo.controladores.ImposibleConectarException e) {
+				} catch (ImposibleConectarException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -61,6 +61,7 @@ public class ControladorBBDD {
 				max = rs.getInt(1);
 			}
 			rs.close();
+			conn.close();
 		}
 
 		return max;
@@ -70,7 +71,7 @@ public class ControladorBBDD {
 	/**
 	 * @throws capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException
 	 */
-	protected static int eliminarTodoEnTabla() throws capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException {
+	protected static int eliminarTodoEnTabla() throws ErrorBBDDException {
 		Connection conn = null;
 
 		try {
@@ -79,6 +80,7 @@ public class ControladorBBDD {
 			Statement s = conn.createStatement();
 			int registrosModificados = s.executeUpdate("delete from " + JDBCPropiedades.getProperty("JDBC_SCHEMA_NAME") + ".actor");
 			s.close();
+			conn.close();
 			return registrosModificados;
 
 		} catch (SQLException | ImposibleConectarException e) {
