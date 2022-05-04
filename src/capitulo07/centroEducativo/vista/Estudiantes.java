@@ -5,15 +5,14 @@ import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-import javax.swing.border.EmptyBorder;
 
 import capitulo07.centroEducativo.ErrorBBDDException;
 import capitulo07.centroEducativo.modelo.Estudiante;
-import capitulo07.centroEducativo.modelo.Materia;
 import capitulo07.centroEducativo.modelo.controladores.ControladorEstudiante;
 import capitulo07.centroEducativo.modelo.controladores.ControladorMateria;
 
@@ -138,6 +137,8 @@ public class Estudiantes extends JPanel {
 				panelCampos.setTelefonoField("");
 				panelCampos.getSexocomboBox().setEditable(true);
 				panelCampos.getSexocomboBox().setEnabled(true);
+				JLabel lblIcono = new JLabel("Sin imagen");
+				panelCampos.getScrollPane().setViewportView(lblIcono);
 			}
 		});
 		btnNuevo.setIcon(new ImageIcon(Botones.class.getResource("/capitulo07/resources/nuevo.png")));
@@ -146,9 +147,11 @@ public class Estudiantes extends JPanel {
 		btnGuardar = new JButton("");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Estudiante es = new Estudiante(getId(), panelCampos.getNombreField().getText(), panelCampos.getApellido1Field().getText(), 
+				Estudiante es = new Estudiante(
+						getId(), panelCampos.getNombreField().getText(), panelCampos.getApellido1Field().getText(), 
 						panelCampos.getApellido2Field().getText(), panelCampos.getDniField().getText(), panelCampos.getDireccionField().getText(),
-						panelCampos.getEmailField().getText(), panelCampos.getTelefonoField().getText(),panelCampos.getIdSexoSeleccionadoEnJComboBox());
+						panelCampos.getEmailField().getText(), panelCampos.getTelefonoField().getText(),panelCampos.getIdSexoSeleccionadoEnJComboBox(),
+						panelCampos.getImagenEnArrayDeBytes());
 				try {
                     if(getId()==0) {
                         ControladorEstudiante.almacenarNuevo(es);
@@ -179,7 +182,7 @@ public class Estudiantes extends JPanel {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ControladorEstudiante.eliminar(new Estudiante(getId(),null,null,null,null,null,null,null,0));
+					ControladorEstudiante.eliminar(new Estudiante(getId(),null,null,null,null,null,null,null,0,null));
 	                JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
 	
 	                if (getId() <= getUltimoId() && getId() > getPrimerId()) {
@@ -218,6 +221,8 @@ public class Estudiantes extends JPanel {
         	panelCampos.setDireccionField(e.getDireccion());
         	panelCampos.setEmailField(e.getEmail());
         	panelCampos.setTelefonoField(e.getTelefono());
+        	panelCampos.setImagenEnArrayDeBytes(e.getImagen());
+        	panelCampos.mostrarImagen();
         	
         } catch (ErrorBBDDException e) {
 			// TODO Auto-generated catch block
@@ -234,7 +239,7 @@ public class Estudiantes extends JPanel {
 	private void comprobarEstadoBotones() throws ErrorBBDDException {
 		int accion = getAccion();
 		setAccion(1);
-		if (ControladorEstudiante.getEstudiante(comprobarBoton()) == null) {
+		if (ControladorMateria.getMateria(comprobarBoton()) == null) {
             btnPrimerElemento.setEnabled(false);
             btnAnterior.setEnabled(false);
         }
@@ -266,6 +271,7 @@ public class Estudiantes extends JPanel {
     public int getAccion(){
         return this.accion;
     }
+    
     public void setAccion(int accion){
         this.accion = accion;
     }

@@ -212,63 +212,14 @@ public class Campos extends JPanel {
 
 	}
 
-	public JTextField getNombreField() {
-		return nombreField;
+	public JScrollPane getScrollPane() {
+		return scrollPane;
 	}
 
-	public void setNombreField(String nombreField) {
-		this.nombreField.setText(nombreField);
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
 	}
 
-	public JTextField getApellido1Field() {
-		return apellido1Field;
-	}
-
-	public void setApellido1Field(String apellido1Field) {
-		this.apellido1Field.setText(apellido1Field);
-	}
-
-	public JTextField getApellido2Field() {
-		return apellido2Field;
-	}
-
-	public void setApellido2Field(String apellido2Field) {
-		this.apellido2Field.setText(apellido2Field);
-	}
-
-	public JTextField getDniField() {
-		return dniField;
-	}
-
-	public void setDniField(String dniField) {
-		this.dniField.setText(dniField);
-	}
-
-	public JTextField getDireccionField() {
-		return direccionField;
-	}
-
-	public void setDireccionField(String direccionField) {
-		this.direccionField.setText(direccionField);
-	}
-
-	public JTextField getEmailField() {
-		return emailField;
-	}
-
-	public void setEmailField(String emailField) {
-		this.emailField.setText(emailField);
-	}
-
-	public JTextField getTelefonoField() {
-		return telefonoField;
-	}
-
-	public void setTelefonoField(String telefonoField) {
-		this.telefonoField.setText(telefonoField);
-	}
-	
-	
 	public JComboBox getSexocomboBox() {
 		return sexocomboBox;
 	}
@@ -289,6 +240,7 @@ public class Campos extends JPanel {
 		for (int i = 0; i < sexocomboBox.getItemCount(); i++) {
 			if ( ((TipologiaSexo) sexocomboBox.getItemAt(i)).getId() == idTipologia) {
 				sexocomboBox.setSelectedIndex(i);
+				
 			}
 		}
 	}
@@ -347,7 +299,7 @@ public class Campos extends JPanel {
 	/**
 	 * 
 	 */
-	private void mostrarImagen () {
+	public void mostrarImagen () {
 		if (imagenEnArrayDeBytes != null && imagenEnArrayDeBytes.length > 0) {
 			ImageIcon icono = new ImageIcon(imagenEnArrayDeBytes);
 			JLabel lblIcono = new JLabel(icono);
@@ -371,8 +323,8 @@ public class Campos extends JPanel {
 			Connection conexion = (Connection) DriverManager.getConnection ("jdbc:mysql://localhost/centroeducativo?serverTimezone=UTC","java", "Abcdefgh.1");
 		   
 			PreparedStatement ps = (PreparedStatement) conexion.
-					prepareStatement("UPDATE centroeducativo.estudiante set imagen=? where id=?");
-			
+					prepareStatement("UPDATE estudiante set imagen=? where id=?");
+		
 			ps.setBytes(1, imagenEnArrayDeBytes);
 			ps.setInt(2, 1);
 		   
@@ -393,6 +345,70 @@ public class Campos extends JPanel {
 			System.out.println("Error en la ejecuci�n SQL: " + ex.getMessage());
 			ex.printStackTrace();
 		}
+	}
+	
+	public JTextField getNombreField() {
+		return nombreField;
+	}
+
+	public void setNombreField(String nombreField) {
+		this.nombreField.setText(nombreField);
+	}
+
+	public JTextField getApellido1Field() {
+		return apellido1Field;
+	}
+
+	public void setApellido1Field(String apellido1Field) {
+		this.apellido1Field.setText(apellido1Field);
+	}
+
+	public JTextField getApellido2Field() {
+		return apellido2Field;
+	}
+
+	public void setApellido2Field(String apellido2Field) {
+		this.apellido2Field.setText(apellido2Field);
+	}
+
+	public JTextField getDniField() {
+		return dniField;
+	}
+
+	public void setDniField(String dniField) {
+		this.dniField.setText(dniField);
+	}
+
+	public JTextField getDireccionField() {
+		return direccionField;
+	}
+
+	public void setDireccionField(String direccionField) {
+		this.direccionField.setText(direccionField);
+	}
+
+	public JTextField getEmailField() {
+		return emailField;
+	}
+
+	public void setEmailField(String emailField) {
+		this.emailField.setText(emailField);
+	}
+
+	public JTextField getTelefonoField() {
+		return telefonoField;
+	}
+
+	public void setTelefonoField(String telefonoField) {
+		this.telefonoField.setText(telefonoField);
+	}
+
+	public byte[] getImagenEnArrayDeBytes() {
+		return imagenEnArrayDeBytes;
+	}
+
+	public void setImagenEnArrayDeBytes(byte[] imagenEnArrayDeBytes) {
+		this.imagenEnArrayDeBytes = imagenEnArrayDeBytes;
 	}
 	
 	

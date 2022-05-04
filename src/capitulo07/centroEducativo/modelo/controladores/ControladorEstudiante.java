@@ -39,6 +39,8 @@ public class ControladorEstudiante extends ControladorBBDD{
 	                e.setDireccion(rs.getString("direccion"));
 	                e.setEmail(rs.getString("email"));
 	                e.setTelefono(rs.getString("telefono"));
+	                e.setSexo(rs.getInt("tipologiaSexo_id"));
+	                e.setImagen(rs.getBytes("imagen"));
 	                estudiantes.add(e);
 	            }
 	
@@ -72,6 +74,8 @@ public class ControladorEstudiante extends ControladorBBDD{
                 e.setDireccion(rs.getString("direccion"));
                 e.setEmail(rs.getString("email"));
                 e.setTelefono(rs.getString("telefono"));
+                e.setSexo(rs.getInt("tipologiaSexo_id"));
+                e.setImagen(rs.getBytes("imagen"));
             }
 
             s.close();
@@ -121,6 +125,9 @@ public class ControladorEstudiante extends ControladorBBDD{
                 e.setDireccion(rs.getString("direccion"));
                 e.setEmail(rs.getString("email"));
                 e.setTelefono(rs.getString("telefono"));
+                e.setSexo(rs.getInt("tipologiaSexo_id"));
+                e.setImagen(rs.getBytes("imagen"));
+               
             }
             s.close();
             conn.close();
@@ -143,16 +150,20 @@ public class ControladorEstudiante extends ControladorBBDD{
             conn = ConnectionManagerV2.getConexion();
 
             PreparedStatement ps = (PreparedStatement) conn.
-                    prepareStatement("INSERT INTO estudiante (id, nombre, apellido1, apellido2, dni, direccion, email, telefono) VALUES  (?, ?, ?, ?, ?, ?, ?, ?)");
+                    prepareStatement("INSERT INTO estudiante (id, nombre, apellido1, apellido2, dni, direccion, email, telefono, tipologiaSexo_id, imagen) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             int registrosInsertados;
 
             ps.setInt(1, nextIdEnTabla(conn, "estudiante"));
             ps.setString(2, e.getNombre());
-            ps.setString(3, e.getApellido2());
-            ps.setString(4, e.getDni());
-            ps.setString(5, e.getDireccion());
-            ps.setString(6, e.getEmail());
-            ps.setString(7, e.getTelefono());
+            ps.setString(3, e.getApellido1());
+            ps.setString(4, e.getApellido2());
+            ps.setString(5, e.getDni());
+            ps.setString(6, e.getDireccion());
+            ps.setString(7, e.getEmail());
+            ps.setString(8, e.getTelefono());
+            ps.setInt(9, e.getSexo());
+            ps.setBytes(10, e.getImagen());
+            
 
 
             registrosInsertados = ps.executeUpdate();
@@ -182,16 +193,19 @@ public class ControladorEstudiante extends ControladorBBDD{
 
             PreparedStatement ps = (PreparedStatement) conn.
                     prepareStatement(
-                            "update estudiante set nombre = ?, apellido1 = ?, apellido2 = ?, dni = ?, direccion = ?, email = ?, telefono = ? where id = ?");
+                            "update estudiante set nombre = ?, apellido1 = ?, apellido2 = ?, dni = ?, direccion = ?, email = ?, telefono = ?, tipologiaSexo_id = ?, imagen = ? where id = ?");
             int registrosInsertados;
 
             ps.setString(1, e.getNombre());
-            ps.setString(2, e.getApellido2());
-            ps.setString(3, e.getDni());
-            ps.setString(4, e.getDireccion());
-            ps.setString(5, e.getEmail());
-            ps.setString(6, e.getTelefono());
-            ps.setInt(7, e.getId());
+            ps.setString(2, e.getApellido1());
+            ps.setString(3, e.getApellido2());
+            ps.setString(4, e.getDni());
+            ps.setString(5, e.getDireccion());
+            ps.setString(6, e.getEmail());
+            ps.setString(7, e.getTelefono());
+            ps.setInt(8, e.getSexo());
+            ps.setBytes(9, e.getImagen());
+            ps.setInt(10, e.getId());
 
             registrosInsertados = ps.executeUpdate();
             if (registrosInsertados != 1) {
