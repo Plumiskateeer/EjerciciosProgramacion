@@ -1,12 +1,15 @@
 package capitulo07.centroEducativo.modelo.controladores;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import capitulo07.centroEducativo.ConnectionManagerV2;
 import capitulo07.centroEducativo.ErrorBBDDException;
@@ -154,7 +157,7 @@ public class ControladorEstudiante extends ControladorBBDD{
 
             registrosInsertados = ps.executeUpdate();
             if (registrosInsertados != 1) {
-                throw new ErrorBBDDException("No ha sido posible la inserci�n del nuevo registro");
+                throw new ErrorBBDDException("No ha sido posible la inserciï¿½n del nuevo registro");
             }
             ps.close();
             conn.close();
@@ -192,7 +195,7 @@ public class ControladorEstudiante extends ControladorBBDD{
 
             registrosInsertados = ps.executeUpdate();
             if (registrosInsertados != 1) {
-                throw new ErrorBBDDException("No ha sido posible la modificaci�n del registro");
+                throw new ErrorBBDDException("No ha sido posible la modificaciï¿½n del registro");
             }
             ps.close();
             conn.close();
@@ -223,7 +226,7 @@ public class ControladorEstudiante extends ControladorBBDD{
 
             registrosInsertados = ps.executeUpdate();
             if (registrosInsertados != 1) {
-                throw new ErrorBBDDException("No ha sido posible la eliminación del registro");
+                throw new ErrorBBDDException("No ha sido posible la eliminaciÃ³n del registro");
             }
             ps.close();
             conn.close();
@@ -233,5 +236,6 @@ public class ControladorEstudiante extends ControladorBBDD{
         }
 
     }
+    
 
 }

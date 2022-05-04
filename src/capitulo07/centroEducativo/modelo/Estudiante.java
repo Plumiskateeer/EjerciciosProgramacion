@@ -17,13 +17,16 @@ public class Estudiante {
 	private String nombre;
 
 	private String telefono;
+	
+	private int sexo;
 
-	public Estudiante(int i,String nombre, String apellido1, String apellido2, String direccion, String dni, String email, String telefono) {
+	public Estudiante(int i,String nombre, String apellido1, String apellido2, String direccion, String dni, String email, String telefono, int sexo) {
 	this.id = i;
 	this.nombre = nombre;
 	this.apellido1 = apellido1;
 	this.apellido2 = apellido2;
 	this.direccion = direccion;
+	this.sexo = sexo;
 	this.dni = dni;
 	this.email = email;
 	this.telefono = telefono;
@@ -97,5 +100,15 @@ public class Estudiante {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+
+	public int getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(int sexo) {
+		this.sexo = sexo;
+	}
+	
+	
 
 }

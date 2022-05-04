@@ -145,6 +145,34 @@ public class CentroEducativo {
 		btnNewButton_1.setIcon(new ImageIcon(CentroEducativo.class.getResource("/capitulo07/resources/ruedadentada.png")));
 		toolBar.add(btnNewButton_1);
 		
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					abrirVentanaEstudiantes();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2.setIcon(new ImageIcon(CentroEducativo.class.getResource("/capitulo07/resources/ruedadentada.png")));
+		toolBar.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					abrirVentanaProfesores();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_3.setIcon(new ImageIcon(CentroEducativo.class.getResource("/capitulo07/resources/ruedadentada.png")));
+		toolBar.add(btnNewButton_3);
+		
 		
 	}
 	

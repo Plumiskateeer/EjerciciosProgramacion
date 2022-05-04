@@ -21,8 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Estudiantes extends JPanel {
-
-	private JPanel contentPane;
 	private Campos panelCampos = new Campos();
 	private int id = 1, primerId, ultimoId;
 
@@ -64,11 +62,7 @@ public class Estudiantes extends JPanel {
 	 * @throws ErrorBBDDException 
 	 */
 	public Estudiantes() throws ErrorBBDDException {
-		setBounds(100, 100, 450, 241);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		this.add(contentPane);
+		setBounds(100, 100, 457, 241);
 		
 		this.setLayout(new BorderLayout(0, 0));
 		
@@ -142,6 +136,8 @@ public class Estudiantes extends JPanel {
 				panelCampos.setDireccionField("");
 				panelCampos.setEmailField("");
 				panelCampos.setTelefonoField("");
+				panelCampos.getSexocomboBox().setEditable(true);
+				panelCampos.getSexocomboBox().setEnabled(true);
 			}
 		});
 		btnNuevo.setIcon(new ImageIcon(Botones.class.getResource("/capitulo07/resources/nuevo.png")));
@@ -152,7 +148,7 @@ public class Estudiantes extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Estudiante es = new Estudiante(getId(), panelCampos.getNombreField().getText(), panelCampos.getApellido1Field().getText(), 
 						panelCampos.getApellido2Field().getText(), panelCampos.getDniField().getText(), panelCampos.getDireccionField().getText(),
-						panelCampos.getEmailField().getText(), panelCampos.getTelefonoField().getText());
+						panelCampos.getEmailField().getText(), panelCampos.getTelefonoField().getText(),panelCampos.getIdSexoSeleccionadoEnJComboBox());
 				try {
                     if(getId()==0) {
                         ControladorEstudiante.almacenarNuevo(es);
@@ -171,6 +167,8 @@ public class Estudiantes extends JPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				panelCampos.getSexocomboBox().setEditable(false);
+				panelCampos.getSexocomboBox().setEnabled(true);
 			
 			}
 		});
@@ -181,7 +179,7 @@ public class Estudiantes extends JPanel {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ControladorEstudiante.eliminar(new Estudiante(getId(),null,null,null,null,null,null,null));
+					ControladorEstudiante.eliminar(new Estudiante(getId(),null,null,null,null,null,null,null,0));
 	                JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
 	
 	                if (getId() <= getUltimoId() && getId() > getPrimerId()) {
@@ -200,9 +198,10 @@ public class Estudiantes extends JPanel {
 		toolBar.add(btnEliminar);
 		
 		
-		this.add(panelCampos, BorderLayout.CENTER);
+		this.add(panelCampos, BorderLayout.SOUTH);
 		
 		cargarRegistro(0);
+		panelCampos.cargarValoresSexoEnJComboBox();
 		
 	}
 	private void cargarRegistro (int opcion) throws ErrorBBDDException {
@@ -214,6 +213,7 @@ public class Estudiantes extends JPanel {
         	panelCampos.setNombreField(e.getNombre());
         	panelCampos.setApellido1Field(e.getApellido1());
         	panelCampos.setApellido2Field(e.getApellido2());
+        	panelCampos.seleccionarSexoEnJComboBox(e.getSexo());
         	panelCampos.setDniField(e.getDni());
         	panelCampos.setDireccionField(e.getDireccion());
         	panelCampos.setEmailField(e.getEmail());
