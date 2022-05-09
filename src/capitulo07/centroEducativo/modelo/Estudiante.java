@@ -22,7 +22,8 @@ public class Estudiante {
 	
 	private byte [] imagen;
 
-	public Estudiante(int i,String nombre, String apellido1, String apellido2, String direccion, String dni, String email, String telefono, int sexo, byte[] imagen) {
+	public Estudiante(int i,String nombre, String apellido1, String apellido2, String direccion, 
+			String dni, String email, String telefono, int sexo, byte[] imagen) {
 	this.id = i;
 	this.nombre = nombre;
 	this.apellido1 = apellido1;

@@ -15,7 +15,7 @@ import capitulo07.centroEducativo.modelo.Profesor;
 
 public class ControladorProfesor extends ControladorBBDD{
 	public static List<Profesor> getAll() throws ErrorBBDDException {
-        List<Profesor> estudiantes = new ArrayList<Profesor>();
+        List<Profesor> profesores = new ArrayList<Profesor>();
 
         Connection conn = null;
 
@@ -27,16 +27,18 @@ public class ControladorProfesor extends ControladorBBDD{
 	            ResultSet rs = s.executeQuery("Select * from profesor");
 	
 	            while (rs.next()) {
-	            	Profesor e = new Profesor();
-	                e.setId(rs.getInt("id"));
-	                e.setNombre(rs.getString("nombre"));
-	                e.setApellido1(rs.getString("apellido1"));
-	                e.setApellido2(rs.getString("apellido2"));
-	                e.setDni(rs.getString("dni"));
-	                e.setDireccion(rs.getString("direccion"));
-	                e.setEmail(rs.getString("email"));
-	                e.setTelefono(rs.getString("telefono"));
-	                estudiantes.add(e);
+	            	Profesor p = new Profesor();
+	            	p.setId(rs.getInt("id"));
+	                p.setNombre(rs.getString("nombre"));
+	                p.setApellido1(rs.getString("apellido1"));
+	                p.setApellido2(rs.getString("apellido2"));
+	                p.setDni(rs.getString("dni"));
+	                p.setDireccion(rs.getString("direccion"));
+	                p.setEmail(rs.getString("email"));
+	                p.setTelefono(rs.getString("telefono"));
+	                p.setSexo(rs.getInt("tipologiaSexo_id"));
+	                p.setImagen(rs.getBytes("imagen"));
+	                profesores.add(p);
 	            }
 	
 	            s.close();
@@ -47,12 +49,12 @@ public class ControladorProfesor extends ControladorBBDD{
 				e.printStackTrace();
 			}
         
-        return estudiantes;
+        return profesores;
     }
 
     public static Profesor getProfesor(String consulta) throws ErrorBBDDException {
         Connection conn = null;
-        Profesor e = null;
+        Profesor p = null;
         try {
             conn = ConnectionManagerV2.getConexion();
 
@@ -60,15 +62,17 @@ public class ControladorProfesor extends ControladorBBDD{
             ResultSet rs = s.executeQuery(consulta);
 
             if (rs.next()) {
-                e = new Profesor();
-                e.setId(rs.getInt("id"));
-                e.setNombre(rs.getString("nombre"));
-                e.setApellido1(rs.getString("apellido1"));
-                e.setApellido2(rs.getString("apellido2"));
-                e.setDni(rs.getString("dni"));
-                e.setDireccion(rs.getString("direccion"));
-                e.setEmail(rs.getString("email"));
-                e.setTelefono(rs.getString("telefono"));
+                p = new Profesor();
+                p.setId(rs.getInt("id"));
+                p.setNombre(rs.getString("nombre"));
+                p.setApellido1(rs.getString("apellido1"));
+                p.setApellido2(rs.getString("apellido2"));
+                p.setDni(rs.getString("dni"));
+                p.setDireccion(rs.getString("direccion"));
+                p.setEmail(rs.getString("email"));
+                p.setTelefono(rs.getString("telefono"));
+                p.setSexo(rs.getInt("tipologiaSexo_id"));
+                p.setImagen(rs.getBytes("imagen"));
             }
 
             s.close();
@@ -77,18 +81,18 @@ public class ControladorProfesor extends ControladorBBDD{
             throw new ErrorBBDDException(e1);
         }
 
-        return e;
+        return p;
     }
 
     /**
      * @param
      * @throws ErrorBBDDException
      */
-    public static void almacenar(Profesor curso) throws ErrorBBDDException {
-        if (get(curso.getId()) != null) { // Solo modificar
-            almacenarModificado(curso);
+    public static void almacenar(Profesor profesor) throws ErrorBBDDException {
+        if (get(profesor.getId()) != null) { // Solo modificar
+            almacenarModificado(profesor);
         } else { // Crear nuevo objeto en la BBDD
-            almacenarNuevo(curso);
+            almacenarNuevo(profesor);
         }
     }
 
@@ -100,7 +104,7 @@ public class ControladorProfesor extends ControladorBBDD{
      */
     public static Profesor get(int id) throws ErrorBBDDException {
         Connection conn = null;
-        Profesor e = null;
+        Profesor p = null;
 
         try {
             conn = ConnectionManagerV2.getConexion();
@@ -109,22 +113,24 @@ public class ControladorProfesor extends ControladorBBDD{
             ResultSet rs = s.executeQuery("Select * from profesor where id = " + id);
 
             if (rs.next()) {
-                e = new Profesor();
-                e.setId(id);
-                e.setNombre(rs.getString("nombre"));
-                e.setApellido1(rs.getString("apellido1"));
-                e.setApellido2(rs.getString("apellido2"));
-                e.setDni(rs.getString("dni"));
-                e.setDireccion(rs.getString("direccion"));
-                e.setEmail(rs.getString("email"));
-                e.setTelefono(rs.getString("telefono"));
+                p = new Profesor();
+                p.setId(id);
+                p.setNombre(rs.getString("nombre"));
+                p.setApellido1(rs.getString("apellido1"));
+                p.setApellido2(rs.getString("apellido2"));
+                p.setDni(rs.getString("dni"));
+                p.setDireccion(rs.getString("direccion"));
+                p.setEmail(rs.getString("email"));
+                p.setTelefono(rs.getString("telefono"));
+                p.setSexo(rs.getInt("tipologiaSexo_id"));
+                p.setImagen(rs.getBytes("imagen"));
             }
             s.close();
             conn.close();
         } catch (SQLException | ImposibleConectarException e1) {
             throw new ErrorBBDDException(e1);
         }
-        return e;
+        return p;
     }
 
 
@@ -140,16 +146,19 @@ public class ControladorProfesor extends ControladorBBDD{
             conn = ConnectionManagerV2.getConexion();
 
             PreparedStatement ps = (PreparedStatement) conn.
-                    prepareStatement("INSERT INTO profesor (id, nombre, apellido1, apellido2, dni, direccion, email, telefono) VALUES  (?, ?, ?, ?, ?, ?, ?, ?)");
+            		prepareStatement("INSERT INTO profesor (id, nombre, apellido1, apellido2, dni, direccion, email, telefono, tipologiaSexo_id, imagen) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             int registrosInsertados;
 
-            ps.setInt(1, nextIdEnTabla(conn, "estudiante"));
+            ps.setInt(1, nextIdEnTabla(conn, "profesor"));
             ps.setString(2, e.getNombre());
-            ps.setString(3, e.getApellido2());
-            ps.setString(4, e.getDni());
-            ps.setString(5, e.getDireccion());
-            ps.setString(6, e.getEmail());
-            ps.setString(7, e.getTelefono());
+            ps.setString(3, e.getApellido1());
+            ps.setString(4, e.getApellido2());
+            ps.setString(5, e.getDni());
+            ps.setString(6, e.getDireccion());
+            ps.setString(7, e.getEmail());
+            ps.setString(8, e.getTelefono());
+            ps.setInt(9, e.getSexo());
+            ps.setBytes(10, e.getImagen());
 
 
             registrosInsertados = ps.executeUpdate();
@@ -170,7 +179,7 @@ public class ControladorProfesor extends ControladorBBDD{
      * @param
      * @throws ErrorBBDDException
      */
-    public static void almacenarModificado(Profesor e) throws ErrorBBDDException {
+    public static void almacenarModificado(Profesor p) throws ErrorBBDDException {
 
         Connection conn = null;
 
@@ -178,17 +187,20 @@ public class ControladorProfesor extends ControladorBBDD{
             conn = ConnectionManagerV2.getConexion();
 
             PreparedStatement ps = (PreparedStatement) conn.
-                    prepareStatement(
-                            "update profesor set nombre = ?, apellido1 = ?, apellido2 = ?, dni = ?, direccion = ?, email = ?, telefono = ? where id = ?");
+            		prepareStatement(
+                            "update profesor set nombre = ?, apellido1 = ?, apellido2 = ?, dni = ?, direccion = ?, email = ?, telefono = ?, tipologiaSexo_id = ?, imagen = ? where id = ?");
             int registrosInsertados;
 
-            ps.setString(1, e.getNombre());
-            ps.setString(2, e.getApellido2());
-            ps.setString(3, e.getDni());
-            ps.setString(4, e.getDireccion());
-            ps.setString(5, e.getEmail());
-            ps.setString(6, e.getTelefono());
-            ps.setInt(7, e.getId());
+            ps.setString(1, p.getNombre());
+            ps.setString(2, p.getApellido1());
+            ps.setString(3, p.getApellido2());
+            ps.setString(4, p.getDni());
+            ps.setString(5, p.getDireccion());
+            ps.setString(6, p.getEmail());
+            ps.setString(7, p.getTelefono());
+            ps.setInt(8, p.getSexo());
+            ps.setBytes(9, p.getImagen());
+            ps.setInt(10, p.getId());
 
             registrosInsertados = ps.executeUpdate();
             if (registrosInsertados != 1) {

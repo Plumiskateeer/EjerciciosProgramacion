@@ -4,19 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JToolBar;
-import javax.swing.border.EmptyBorder;
 
 import capitulo07.centroEducativo.ErrorBBDDException;
-import capitulo07.centroEducativo.modelo.Estudiante;
-import capitulo07.centroEducativo.modelo.Materia;
 import capitulo07.centroEducativo.modelo.Profesor;
-import capitulo07.centroEducativo.modelo.controladores.ControladorEstudiante;
-import capitulo07.centroEducativo.modelo.controladores.ControladorMateria;
 import capitulo07.centroEducativo.modelo.controladores.ControladorProfesor;
 
 import java.awt.event.ActionListener;
@@ -24,18 +16,10 @@ import java.awt.event.ActionEvent;
 
 public class Profesores extends JPanel {
 
-	private JPanel contentPane;
-	private Campos panelCampos = new Campos();
 	private int id = 1, primerId, ultimoId;
 
     private int accion = 0;
-    private JButton btnPrimerElemento;
-	private JButton btnAnterior;
-	private JButton btnSiguiente;
-	private JButton btnUltimoElemento;
-	private JButton btnNuevo;
-	private JButton btnGuardar;
-	private JButton btnEliminar;
+    private Botones botones;
 	private static Profesores instance = null;
 
 	/**
@@ -54,7 +38,7 @@ public class Profesores extends JPanel {
 		});
 	}
 	
-	public static Profesores getInstance() throws ErrorBBDDException {
+	public static Profesores getInstance() throws ErrorBBDDException, ClassNotFoundException {
 		if(instance == null) {
 			instance = new Profesores();
 		}
@@ -64,163 +48,158 @@ public class Profesores extends JPanel {
 	/**
 	 * Create the frame.
 	 * @throws ErrorBBDDException 
+	 * @throws ClassNotFoundException 
 	 */
-	public Profesores() throws ErrorBBDDException {
-		setBounds(100, 100, 450, 241);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		this.add(contentPane);
+	public Profesores() throws ErrorBBDDException, ClassNotFoundException {
+		botones = new Botones();
+		setBounds(100, 100, 457, 241);
 		
 		this.setLayout(new BorderLayout(0, 0));
 		
-		JToolBar toolBar = new JToolBar();
-		this.add(toolBar, BorderLayout.NORTH);
+		this.add(botones.getToolBar(), BorderLayout.NORTH);
 		
-		btnPrimerElemento = new JButton("");
-		btnPrimerElemento.addActionListener(new ActionListener() {
+		botones.getBtnGuardar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					guardar();
+				} catch (ErrorBBDDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		botones.getToolBar().add(botones.getBtnGuardar());
+		
+		botones.getBtnEliminar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eliminar();
+			}
+		});
+		botones.getToolBar().add(botones.getBtnEliminar());
+		
+		botones.getBtnPrimerElemento().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					cargarRegistro(0);
 				} catch (ErrorBBDDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
-		btnPrimerElemento.setIcon(new ImageIcon(Botones.class.getResource("/capitulo07/resources/gotostart.png")));
-		toolBar.add(btnPrimerElemento);
+		botones.getToolBar().add(botones.getBtnPrimerElemento());
 		
-		btnAnterior = new JButton("");
-		btnAnterior.addActionListener(new ActionListener() {
+		botones.getBtnAnterior().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					cargarRegistro(1);
 				} catch (ErrorBBDDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
-		btnAnterior.setIcon(new ImageIcon(Botones.class.getResource("/capitulo07/resources/previous.png")));
-		toolBar.add(btnAnterior);
+		botones.getToolBar().add(botones.getBtnAnterior());
 		
-		btnSiguiente = new JButton("");
-		btnSiguiente.addActionListener(new ActionListener() {
+		botones.getBtnSiguiente().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					cargarRegistro(2);
 				} catch (ErrorBBDDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
-		btnSiguiente.setIcon(new ImageIcon(Botones.class.getResource("/capitulo07/resources/next.png")));
-		toolBar.add(btnSiguiente);
+		botones.getToolBar().add(botones.getBtnSiguiente());
 		
-		btnUltimoElemento = new JButton("");
-		btnUltimoElemento.addActionListener(new ActionListener() {
+		botones.getBtnUltimoElemento().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					cargarRegistro(3);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				} catch (ErrorBBDDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnUltimoElemento.setIcon(new ImageIcon(Botones.class.getResource("/capitulo07/resources/gotoend.png")));
-		toolBar.add(btnUltimoElemento);
-		
-		btnNuevo = new JButton("");
-		btnNuevo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setId(0);
-				panelCampos.setNombreField("");
-				panelCampos.setApellido1Field("");
-				panelCampos.setApellido2Field("");
-				panelCampos.setDniField("");
-				panelCampos.setDireccionField("");
-				panelCampos.setEmailField("");
-				panelCampos.setTelefonoField("");
-			}
-		});
-		btnNuevo.setIcon(new ImageIcon(Botones.class.getResource("/capitulo07/resources/nuevo.png")));
-		toolBar.add(btnNuevo);
-		
-		btnGuardar = new JButton("");
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Profesor es = new Profesor(getId(), panelCampos.getNombreField().getText(), panelCampos.getApellido1Field().getText(), 
-						panelCampos.getApellido2Field().getText(), panelCampos.getDniField().getText(), panelCampos.getDireccionField().getText(),
-						panelCampos.getEmailField().getText(), panelCampos.getTelefonoField().getText());
-				try {
-                    if(getId()==0) {
-                        ControladorProfesor.almacenarNuevo(es);
-                        JOptionPane.showMessageDialog(null, "Registro introducido correctamente");
-                        buscarPrimeroYUltimo();
-                    }else{
-                    	ControladorProfesor.almacenarModificado(es);
-                        JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
-                    }
-                } catch (ErrorBBDDException e1) {
-                	JOptionPane.showMessageDialog(null,"No se pudo guardar o modificar el registro", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-				try {
-					comprobarEstadoBotones();
-				} catch (ErrorBBDDException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			
-			}
-		});
-		btnGuardar.setIcon(new ImageIcon(Botones.class.getResource("/capitulo07/resources/guardar.png")));
-		toolBar.add(btnGuardar);
-		
-		btnEliminar = new JButton("");
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					ControladorProfesor.eliminar(new Profesor(getId(),null,null,null,null,null,null,null));
-	                JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
-	
-	                if (getId() <= getUltimoId() && getId() > getPrimerId()) {
-	                    btnAnterior.doClick();
-	                    btnSiguiente.setEnabled(false);
-	                    btnUltimoElemento.setEnabled(false);
-	                }else btnSiguiente.doClick();
-	                buscarPrimeroYUltimo();
-	            } catch (ErrorBBDDException e1) {
-					// TODO Auto-generated catch block
-	            	JOptionPane.showMessageDialog(null,"No se pudo eliminar el registro", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
-		btnEliminar.setIcon(new ImageIcon(Botones.class.getResource("/capitulo07/resources/eliminar.png")));
-		toolBar.add(btnEliminar);
-		
-		
-		this.add(panelCampos, BorderLayout.CENTER);
+		botones.getToolBar().add(botones.getBtnUltimoElemento());
 		
 		cargarRegistro(0);
+		this.add(botones.getPanelCampos(), BorderLayout.SOUTH);
 		
 	}
-	private void cargarRegistro (int opcion) throws ErrorBBDDException {
+	
+	private void eliminar() {
+		try {
+			ControladorProfesor.eliminar(new Profesor(getId(),null,null,null,null,null,null,null,1,null));
+            JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
+
+            if (getId() <= getUltimoId() && getId() > getPrimerId()) {
+                botones.getBtnAnterior().doClick();
+                botones.getBtnSiguiente().setEnabled(false);
+                botones.getBtnUltimoElemento().setEnabled(false);
+            }else botones.getBtnSiguiente().doClick();
+            buscarPrimeroYUltimo();
+        } catch (ErrorBBDDException e1) {
+			// TODO Auto-generated catch block
+        	JOptionPane.showMessageDialog(null,"No se pudo eliminar el registro", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	private void guardar() throws ErrorBBDDException, ClassNotFoundException {
+		Profesor es = new Profesor(getId(), botones.getPanelCampos().getNombreField().getText(), botones.getPanelCampos().getApellido1Field().getText(), 
+				botones.getPanelCampos().getApellido2Field().getText(), botones.getPanelCampos().getDniField().getText(), botones.getPanelCampos().getDireccionField().getText(),
+				botones.getPanelCampos().getEmailField().getText(), botones.getPanelCampos().getTelefonoField().getText(),botones.getPanelCampos().getIdSexoSeleccionadoEnJComboBox(),
+				botones.getPanelCampos().getImagenEnArrayDeBytes());
+		try {
+            if(getId()==0) {
+                ControladorProfesor.almacenarNuevo(es);
+                JOptionPane.showMessageDialog(null, "Registro introducido correctamente");
+                buscarPrimeroYUltimo();
+            }else{
+            	ControladorProfesor.almacenarModificado(es);
+                JOptionPane.showMessageDialog(null, "Registro modificado correctamente");
+            }
+        } catch (ErrorBBDDException e1) {
+        	JOptionPane.showMessageDialog(null,"No se pudo guardar o modificar el registro", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		comprobarEstadoBotones();
+	}
+
+	public void cargarRegistro (int opcion) throws ErrorBBDDException, ClassNotFoundException {
         setAccion(opcion);
 
         String consulta = comprobarBoton();
         try {
         	Profesor e  = ControladorProfesor.getProfesor(consulta);
-        	panelCampos.setNombreField(e.getNombre());
-        	panelCampos.setApellido1Field(e.getApellido1());
-        	panelCampos.setApellido2Field(e.getApellido2());
-        	panelCampos.setDniField(e.getDni());
-        	panelCampos.setDireccionField(e.getDireccion());
-        	panelCampos.setEmailField(e.getEmail());
-        	panelCampos.setTelefonoField(e.getTelefono());
-        	
+        	if(e!=null) {
+	        	botones.getPanelCampos().setNombreField(e.getNombre());
+	    		botones.getPanelCampos().setApellido1Field(e.getApellido1());
+	    		botones.getPanelCampos().setApellido2Field(e.getApellido2());
+	    		botones.getPanelCampos().seleccionarSexoEnJComboBox(e.getSexo());
+	    		botones.getPanelCampos().setDniField(e.getDni());
+	    		botones.getPanelCampos().setDireccionField(e.getDireccion());
+	    		botones.getPanelCampos().setEmailField(e.getEmail());
+	    		botones.getPanelCampos().setTelefonoField(e.getTelefono());
+	    		botones.getPanelCampos().setImagenEnArrayDeBytes(e.getImagen());
+	    		botones.getPanelCampos().mostrarImagen();
+        	}
         } catch (ErrorBBDDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -234,28 +213,32 @@ public class Profesores extends JPanel {
     }
 	
 	private void comprobarEstadoBotones() throws ErrorBBDDException {
-		int accion = getAccion();
-		setAccion(1);
-		if (ControladorProfesor.getProfesor(comprobarBoton()) == null) {
-            btnPrimerElemento.setEnabled(false);
-            btnAnterior.setEnabled(false);
-        }
-        else {
-        	btnPrimerElemento.setEnabled(true);
-        	btnAnterior.setEnabled(true);
-        }
-        // Si no existe un siguiente deshabilito los botones de �ltimo y siguiente
-      	setAccion(2);
-        boolean existeSiguiente = (ControladorProfesor.getProfesor(comprobarBoton()) == null)? false : true;
-        btnUltimoElemento.setEnabled(existeSiguiente);
-        btnSiguiente.setEnabled(existeSiguiente);
+		boolean existeAnterior = (ControladorProfesor.getProfesor(comprobarBoton(1)) == null)? false:true;
+		botones.getBtnPrimerElemento().setEnabled(existeAnterior);
+        botones.getBtnAnterior().setEnabled(existeAnterior);
         
-        setAccion(accion);
+        boolean existeSiguiente = (ControladorProfesor.getProfesor(comprobarBoton(2)) == null)? false : true;
+        botones.getBtnUltimoElemento().setEnabled(existeSiguiente);
+        botones.getBtnSiguiente().setEnabled(existeSiguiente);
+        botones.getBtnAnterior().setEnabled(!existeSiguiente);
+        botones.getBtnPrimerElemento().setEnabled(!existeSiguiente);
 	}
 
     public String comprobarBoton(){
         String consulta = null;
         switch (getAccion()){
+            case 0: consulta = "select * from profesor order by id asc limit 1"; break;
+            case 1: consulta = "select * from profesor where id <" + getId() + " order by id desc limit 1"; break;
+            case 2: consulta = "select * from profesor where id >" + getId() + " order by id asc limit 1"; break;
+            case 3: consulta = "select * from profesor order by id desc limit 1"; break;
+            default: break;
+        }
+        return consulta;
+    }
+    
+    public String comprobarBoton(int i){
+        String consulta = null;
+        switch (i){
             case 0: consulta = "select * from profesor order by id asc limit 1"; break;
             case 1: consulta = "select * from profesor where id <" + getId() + " order by id desc limit 1"; break;
             case 2: consulta = "select * from profesor where id >" + getId() + " order by id asc limit 1"; break;

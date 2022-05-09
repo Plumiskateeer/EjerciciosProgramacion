@@ -17,21 +17,27 @@ public class Profesor {
 	private String nombre;
 
 	private String telefono;
+	
+	private int sexo;
+	
+	private byte [] imagen;
 
 	public Profesor() {
 	}
 	
-	public Profesor(int id, String apellido1, String apellido2, String direccion, String dni, String email,
-			String nombre, String telefono) {
+	public Profesor(int i,String nombre, String apellido1, String apellido2, String direccion, 
+			String dni, String email, String telefono, int sexo, byte[] imagen) {
 		super();
-		this.id = id;
+		this.id = i;
+		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
 		this.direccion = direccion;
+		this.sexo = sexo;
 		this.dni = dni;
 		this.email = email;
-		this.nombre = nombre;
 		this.telefono = telefono;
+		this.imagen = imagen;
 	}
 
 
@@ -99,6 +105,23 @@ public class Profesor {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	
+	public int getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(int sexo) {
+		this.sexo = sexo;
+	}
+
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+	
 
 
 
