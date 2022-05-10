@@ -32,10 +32,8 @@ public class Botones extends JPanel {
 	 * Create the panel.
 	 * @throws ErrorBBDDException 
 	 * @throws ClassNotFoundException 
-	 */
-
-	
-	public Botones() throws ErrorBBDDException, ClassNotFoundException {
+	 */	
+	public Botones() throws ErrorBBDDException {
 		this.panelCampos = new Campos();
 		
 		setLayout(new BorderLayout(0, 0));

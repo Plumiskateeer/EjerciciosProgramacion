@@ -55,7 +55,7 @@ public class Campos extends JPanel {
 		gridBagLayout.columnWidths = new int[]{0, 116, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblNombre = new JLabel("Nombre");
@@ -77,7 +77,7 @@ public class Campos extends JPanel {
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 5;
-		gbc_scrollPane.gridheight = 5;
+		gbc_scrollPane.gridheight = 7;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 2;
@@ -179,21 +179,6 @@ public class Campos extends JPanel {
 		add(emailField, gbc_emailField);
 		emailField.setColumns(10);
 		
-		btnCargarImagen = new JButton("");
-		btnCargarImagen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				seleccionaImagen();
-				actualizarImagenEnTabla();
-			}
-		});
-		btnCargarImagen.setIcon(new ImageIcon(Campos.class.getResource("/capitulo07/resources/ruedadentada.png")));
-		GridBagConstraints gbc_btnCargarImagen = new GridBagConstraints();
-		gbc_btnCargarImagen.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnCargarImagen.insets = new Insets(0, 0, 5, 0);
-		gbc_btnCargarImagen.gridx = 2;
-		gbc_btnCargarImagen.gridy = 6;
-		add(btnCargarImagen, gbc_btnCargarImagen);
-		
 		JLabel lblTelefono = new JLabel("Telefono");
 		GridBagConstraints gbc_lblTelefono = new GridBagConstraints();
 		gbc_lblTelefono.insets = new Insets(0, 0, 0, 5);
@@ -209,6 +194,21 @@ public class Campos extends JPanel {
 		gbc_telefonoField.gridy = 7;
 		add(telefonoField, gbc_telefonoField);
 		telefonoField.setColumns(10);
+		
+		btnCargarImagen = new JButton("");
+		btnCargarImagen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				seleccionaImagen();
+				actualizarImagenEnTabla();
+			}
+		});
+		btnCargarImagen.setIcon(new ImageIcon(Campos.class.getResource("/capitulo07/resources/ruedadentada.png")));
+		GridBagConstraints gbc_btnCargarImagen = new GridBagConstraints();
+		gbc_btnCargarImagen.gridwidth = 5;
+		gbc_btnCargarImagen.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnCargarImagen.gridx = 2;
+		gbc_btnCargarImagen.gridy = 7;
+		add(btnCargarImagen, gbc_btnCargarImagen);
 
 	}
 

@@ -190,77 +190,49 @@ public class CentroEducativo {
 	
 	public void abrirVentanaCursos() throws ErrorBBDDException {
 		JDialog dialogo = new JDialog();
-		// El usuario no puede redimensionar el diálogo
 		dialogo.setResizable(true);
-		// título del díalogo
 		dialogo.setTitle("Cursos");
-		// Introducimos el panel creado sobre el diálogo
 		dialogo.setContentPane(Cursos.getInstance());
-		// Empaquetar el di�logo hace que todos los componentes ocupen el espacio que deben y el lugar adecuado
 		dialogo.pack();
-		// El usuario no puede hacer clic sobre la ventana padre, si el Di�logo es modal
 		dialogo.setModal(true);
-		// Centro el di�logo en pantalla
 		dialogo.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - dialogo.getWidth()/2, 
 				(Toolkit.getDefaultToolkit().getScreenSize().height)/2 - dialogo.getHeight()/2);
-		// Muestro el di�logo en pantalla
 		dialogo.setVisible(true);
 	}
 	
 	public void abrirVentanaMaterias() throws ErrorBBDDException {
 		JDialog dialogo = new JDialog();
-		// El usuario no puede redimensionar el diálogo
 		dialogo.setResizable(true);
-		// título del díalogo
 		dialogo.setTitle("Materias");
-		// Introducimos el panel creado sobre el diálogo
 		dialogo.setContentPane(Materias.getInstance());
-		// Empaquetar el di�logo hace que todos los componentes ocupen el espacio que deben y el lugar adecuado
 		dialogo.pack();
-		// El usuario no puede hacer clic sobre la ventana padre, si el Di�logo es modal
 		dialogo.setModal(true);
-		// Centro el di�logo en pantalla
 		dialogo.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - dialogo.getWidth()/2, 
 				(Toolkit.getDefaultToolkit().getScreenSize().height)/2 - dialogo.getHeight()/2);
-		// Muestro el di�logo en pantalla
 		dialogo.setVisible(true);
 	}
 	
 	public void abrirVentanaEstudiantes() throws ErrorBBDDException, ClassNotFoundException {
 		JDialog dialogo = new JDialog();
-		// El usuario no puede redimensionar el diálogo
 		dialogo.setResizable(true);
-		// título del díalogo
 		dialogo.setTitle("Estudiantes");
-		// Introducimos el panel creado sobre el diálogo
 		dialogo.setContentPane(Estudiantes.getInstance());
-		// Empaquetar el di�logo hace que todos los componentes ocupen el espacio que deben y el lugar adecuado
 		dialogo.pack();
-		// El usuario no puede hacer clic sobre la ventana padre, si el Di�logo es modal
 		dialogo.setModal(true);
-		// Centro el di�logo en pantalla
 		dialogo.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - dialogo.getWidth()/2, 
 				(Toolkit.getDefaultToolkit().getScreenSize().height)/2 - dialogo.getHeight()/2);
-		// Muestro el di�logo en pantalla
 		dialogo.setVisible(true);
 	}
 	
 	public void abrirVentanaProfesores() throws ErrorBBDDException, ClassNotFoundException {
 		JDialog dialogo = new JDialog();
-		// El usuario no puede redimensionar el diálogo
 		dialogo.setResizable(true);
-		// título del díalogo
 		dialogo.setTitle("Profesores");
-		// Introducimos el panel creado sobre el diálogo
 		dialogo.setContentPane(Profesores.getInstance());
-		// Empaquetar el di�logo hace que todos los componentes ocupen el espacio que deben y el lugar adecuado
 		dialogo.pack();
-		// El usuario no puede hacer clic sobre la ventana padre, si el Di�logo es modal
 		dialogo.setModal(true);
-		// Centro el di�logo en pantalla
 		dialogo.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - dialogo.getWidth()/2, 
 				(Toolkit.getDefaultToolkit().getScreenSize().height)/2 - dialogo.getHeight()/2);
-		// Muestro el di�logo en pantalla
 		dialogo.setVisible(true);
 	}
 

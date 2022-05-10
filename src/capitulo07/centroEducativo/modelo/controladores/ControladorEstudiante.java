@@ -17,6 +17,39 @@ import capitulo07.centroEducativo.ImposibleConectarException;
 import capitulo07.centroEducativo.modelo.Estudiante;
 
 public class ControladorEstudiante extends ControladorBBDD{
+	
+	/**
+	 * @throws ErrorBBDDException 
+	 * 
+	 */
+	public static Estudiante findPrimero () throws ErrorBBDDException {
+		return getEstudiante("select * from estudiante order by id limit 1");
+	}
+
+	/**
+	 * @throws ErrorBBDDException 
+	 * 
+	 */
+	public static Estudiante findUltimo () throws ErrorBBDDException {
+		return getEstudiante("select * from estudiante order by id desc limit 1");
+	}
+
+	/**
+	 * @throws ErrorBBDDException 
+	 * 
+	 */
+	public static Estudiante findAnterior (int idActual) throws ErrorBBDDException {
+		return getEstudiante("select * from estudiante where id < " + idActual + " order by id desc limit 1");
+	}
+
+	/**
+	 * @throws ErrorBBDDException 
+	 * 
+	 */
+	public static Estudiante findSiguiente (int idActual) throws ErrorBBDDException {
+		return getEstudiante("select * from estudiante where id > " + idActual + " order by id limit 1");
+	}
+	
 	public static List<Estudiante> getAll() throws ErrorBBDDException {
         List<Estudiante> estudiantes = new ArrayList<Estudiante>();
 

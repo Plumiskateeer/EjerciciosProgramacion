@@ -11,9 +11,43 @@ import java.util.List;
 import capitulo07.centroEducativo.ConnectionManagerV2;
 import capitulo07.centroEducativo.ErrorBBDDException;
 import capitulo07.centroEducativo.ImposibleConectarException;
+import capitulo07.centroEducativo.modelo.Estudiante;
 import capitulo07.centroEducativo.modelo.Profesor;
 
 public class ControladorProfesor extends ControladorBBDD{
+	
+	/**
+	 * @throws ErrorBBDDException 
+	 * 
+	 */
+	public static Profesor findPrimero () throws ErrorBBDDException {
+		return getProfesor("select * from profesor order by id limit 1");
+	}
+
+	/**
+	 * @throws ErrorBBDDException 
+	 * 
+	 */
+	public static Profesor findUltimo () throws ErrorBBDDException {
+		return getProfesor("select * from profesor order by id desc limit 1");
+	}
+
+	/**
+	 * @throws ErrorBBDDException 
+	 * 
+	 */
+	public static Profesor findAnterior (int idActual) throws ErrorBBDDException {
+		return getProfesor("select * from profesor where id < " + idActual + " order by id desc limit 1");
+	}
+
+	/**
+	 * @throws ErrorBBDDException 
+	 * 
+	 */
+	public static Profesor findSiguiente (int idActual) throws ErrorBBDDException {
+		return getProfesor("select * from profesor where id > " + idActual + " order by id limit 1");
+	}
+	
 	public static List<Profesor> getAll() throws ErrorBBDDException {
         List<Profesor> profesores = new ArrayList<Profesor>();
 
