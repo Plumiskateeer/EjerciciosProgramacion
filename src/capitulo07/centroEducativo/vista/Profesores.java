@@ -26,7 +26,7 @@ public class Profesores extends JPanel {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
+	 			try {
 					Profesores frame = new Profesores();
 					frame.setVisible(true);
 				} catch (Exception e) {

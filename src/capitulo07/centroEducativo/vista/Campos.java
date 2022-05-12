@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 
@@ -32,6 +33,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollBar;
 
 public class Campos extends JPanel {
 	private JTextField nombreField;
@@ -46,6 +48,7 @@ public class Campos extends JPanel {
 	private JScrollPane scrollPane;
 	private byte[] imagenEnArrayDeBytes;
 	private JButton btnCargarImagen;
+	private JScrollBar scrollBar;
 
 	/**
 	 * Create the panel.
@@ -77,12 +80,16 @@ public class Campos extends JPanel {
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 5;
-		gbc_scrollPane.gridheight = 7;
+		gbc_scrollPane.gridheight = 5;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 2;
-		gbc_scrollPane.gridy = 0;
+		gbc_scrollPane.gridy = 1;
+		scrollPane.setPreferredSize(new Dimension(200,150));
 		add(scrollPane, gbc_scrollPane);
+		
+		scrollBar = new JScrollBar();
+		scrollPane.setViewportView(scrollBar);
 		
 		JLabel lblApellido1 = new JLabel("Apellido");
 		GridBagConstraints gbc_lblApellido1 = new GridBagConstraints();
@@ -302,8 +309,13 @@ public class Campos extends JPanel {
 	public void mostrarImagen () {
 		if (imagenEnArrayDeBytes != null && imagenEnArrayDeBytes.length > 0) {
 			ImageIcon icono = new ImageIcon(imagenEnArrayDeBytes);
+			if(icono.getIconWidth() <= 100 && icono.getIconHeight() <= 100) {
 			JLabel lblIcono = new JLabel(icono);
 			scrollPane.setViewportView(lblIcono);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Elige una imagen inferior o igual a 100x100");
+			}
 		}
 		else {
 			JLabel lblIcono = new JLabel("Sin imagen");
