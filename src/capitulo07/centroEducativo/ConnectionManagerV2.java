@@ -19,14 +19,16 @@ public class ConnectionManagerV2 {
             PoolDataSourceFactory.getPoolDataSource();
 
     private static int MAX_INTENTOS_CONEXION = 3;
+    
+    private static Connection instance = null;
 
     /**
      * @return
      * @throws SQLException
      */
     public static Connection getConexion() throws SQLException, ImposibleConectarException {
+    	if(instance == null) {
 
-        Connection conexion;
 
         int intentos = 0;
 
@@ -36,15 +38,16 @@ public class ConnectionManagerV2 {
             pds.setURL("jdbc:mysql://" + host + "/" + schema);
             pds.setUser(user);
             pds.setPassword(password);
-            conexion = (Connection) pds.getConnection();
+            instance = (Connection) pds.getConnection();
             intentos++;
-        } while (!conexion.isValid(5) && intentos <= MAX_INTENTOS_CONEXION);
+        } while (!instance.isValid(5) && intentos <= MAX_INTENTOS_CONEXION);
 
-        if (!conexion.isValid(1) && intentos >= MAX_INTENTOS_CONEXION) {
+        if (!instance.isValid(1) && intentos >= MAX_INTENTOS_CONEXION) {
             throw new ImposibleConectarException("Tiempo agotado, imposible conectar");
         }
+    	}
 
-        return conexion;
+        return instance;
     }
 
 }

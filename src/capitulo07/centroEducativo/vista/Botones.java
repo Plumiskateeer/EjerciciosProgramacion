@@ -70,8 +70,6 @@ public class Botones extends JPanel {
 					
 				} catch (ErrorBBDDException e1) {
 					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
 				}
 				panelCampos.setNombreField("");
 				panelCampos.setApellido1Field("");

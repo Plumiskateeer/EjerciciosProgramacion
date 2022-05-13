@@ -96,9 +96,6 @@ public class CentroEducativo {
 				} catch (ErrorBBDDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
 			}
 		});
@@ -110,9 +107,6 @@ public class CentroEducativo {
 				try {
 					abrirVentanaProfesores();
 				} catch (ErrorBBDDException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -159,9 +153,6 @@ public class CentroEducativo {
 				} catch (ErrorBBDDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
 			}
 		});
@@ -174,9 +165,6 @@ public class CentroEducativo {
 				try {
 					abrirVentanaProfesores();
 				} catch (ErrorBBDDException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -212,7 +200,7 @@ public class CentroEducativo {
 		dialogo.setVisible(true);
 	}
 	
-	public void abrirVentanaEstudiantes() throws ErrorBBDDException, ClassNotFoundException {
+	public void abrirVentanaEstudiantes() throws ErrorBBDDException {
 		JDialog dialogo = new JDialog();
 		dialogo.setResizable(true);
 		dialogo.setTitle("Estudiantes");
@@ -224,7 +212,7 @@ public class CentroEducativo {
 		dialogo.setVisible(true);
 	}
 	
-	public void abrirVentanaProfesores() throws ErrorBBDDException, ClassNotFoundException {
+	public void abrirVentanaProfesores() throws ErrorBBDDException {
 		JDialog dialogo = new JDialog();
 		dialogo.setResizable(true);
 		dialogo.setTitle("Profesores");

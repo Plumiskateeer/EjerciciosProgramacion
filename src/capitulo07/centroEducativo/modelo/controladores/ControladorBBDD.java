@@ -1,12 +1,13 @@
 package capitulo07.centroEducativo.modelo.controladores;
 
-import capitulo07.gestionVentaCoches.modelo.controladores.ConnectionManagerV2;
-import capitulo07.gestionVentaCoches.modelo.controladores.ErrorBBDDException;
-import capitulo07.gestionVentaCoches.modelo.controladores.ImposibleConectarException;
-import capitulo07.gestionVentaCoches.modelo.controladores.JDBCPropiedades;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
+
+import capitulo07.centroEducativo.ConnectionManagerV2;
+import capitulo07.centroEducativo.ErrorBBDDException;
+import capitulo07.centroEducativo.ImposibleConectarException;
+import capitulo07.centroEducativo.JDBCPropiedades;
 
 public class ControladorBBDD {
 
@@ -37,9 +38,10 @@ public class ControladorBBDD {
 	 * @param tabla
 	 * @return
 	 * @throws SQLException
+	 * @throws ImposibleConectarException 
 	 */
-	protected static int nextIdEnTabla(Connection conn, String tabla) throws SQLException {
-		return maxIdEnTabla(conn, tabla) + 1;
+	protected static int nextIdEnTabla(String tabla) throws SQLException, ImposibleConectarException {
+		return maxIdEnTabla(tabla) + 1;
 	}
 
 
@@ -48,9 +50,11 @@ public class ControladorBBDD {
 	 * @param tabla
 	 * @return
 	 * @throws SQLException
+	 * @throws ImposibleConectarException 
 	 */
-	protected static int maxIdEnTabla(Connection conn, String tabla) throws SQLException {
+	protected static int maxIdEnTabla(String tabla) throws SQLException, ImposibleConectarException {
 
+		Connection conn = ConnectionManagerV2.getConexion();
 		PreparedStatement ps = conn.prepareStatement("select max(id) from " + tabla);
 
 		int max = 1;
@@ -61,7 +65,6 @@ public class ControladorBBDD {
 				max = rs.getInt(1);
 			}
 			rs.close();
-			conn.close();
 		}
 
 		return max;
@@ -80,7 +83,6 @@ public class ControladorBBDD {
 			Statement s = conn.createStatement();
 			int registrosModificados = s.executeUpdate("delete from " + JDBCPropiedades.getProperty("JDBC_SCHEMA_NAME") + ".actor");
 			s.close();
-			conn.close();
 			return registrosModificados;
 
 		} catch (SQLException | ImposibleConectarException e) {

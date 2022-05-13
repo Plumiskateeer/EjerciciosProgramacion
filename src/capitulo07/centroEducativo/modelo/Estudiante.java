@@ -21,9 +21,11 @@ public class Estudiante {
 	private int sexo;
 	
 	private byte [] imagen;
+	
+	private String colorpreferido;
 
 	public Estudiante(int i,String nombre, String apellido1, String apellido2, String direccion, 
-			String dni, String email, String telefono, int sexo, byte[] imagen) {
+			String dni, String email, String telefono, int sexo, byte[] imagen, String colorpreferido) {
 	this.id = i;
 	this.nombre = nombre;
 	this.apellido1 = apellido1;
@@ -34,6 +36,7 @@ public class Estudiante {
 	this.email = email;
 	this.telefono = telefono;
 	this.imagen = imagen;
+	this.colorpreferido = colorpreferido;
 	}
 	
 	public Estudiante() {
@@ -120,7 +123,12 @@ public class Estudiante {
 		this.imagen = imagen;
 	}
 	
-	
-	
+	public String getColorpreferido() {
+		return colorpreferido;
+	}
+
+	public void setColorpreferido(String colorpreferido) {
+		this.colorpreferido = colorpreferido;
+	}
 
 }

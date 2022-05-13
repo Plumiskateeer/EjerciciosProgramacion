@@ -34,7 +34,6 @@ public class ControladorTipologiaSexo extends  ErrorBBDDException{
 	            }
 	
 	            s.close();
-	            conn.close();
             
             } catch (SQLException | ImposibleConectarException e) {
 				// TODO Auto-generated catch block
@@ -60,7 +59,6 @@ public class ControladorTipologiaSexo extends  ErrorBBDDException{
             }
 
             s.close();
-            conn.close();
         } catch (SQLException | ImposibleConectarException e1) {
             throw new ErrorBBDDException(e1);
         }
@@ -90,7 +88,6 @@ public class ControladorTipologiaSexo extends  ErrorBBDDException{
                 t.setDescripcion(rs.getString("descripcion"));
             }
             s.close();
-            conn.close();
         } catch (SQLException | ImposibleConectarException e1) {
             throw new ErrorBBDDException(e1);
         }

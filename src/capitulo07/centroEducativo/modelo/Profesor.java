@@ -21,12 +21,14 @@ public class Profesor {
 	private int sexo;
 	
 	private byte [] imagen;
+	
+	private String colorpreferido;
 
 	public Profesor() {
 	}
 	
 	public Profesor(int i,String nombre, String apellido1, String apellido2, String direccion, 
-			String dni, String email, String telefono, int sexo, byte[] imagen) {
+			String dni, String email, String telefono, int sexo, byte[] imagen, String colorpreferido) {
 		super();
 		this.id = i;
 		this.nombre = nombre;
@@ -38,6 +40,7 @@ public class Profesor {
 		this.email = email;
 		this.telefono = telefono;
 		this.imagen = imagen;
+		this.colorpreferido = colorpreferido;
 	}
 
 
@@ -121,6 +124,15 @@ public class Profesor {
 	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
 	}
+
+	public String getColorpreferido() {
+		return colorpreferido;
+	}
+
+	public void setColorpreferido(String colorpreferido) {
+		this.colorpreferido = colorpreferido;
+	}
+	
 	
 
 

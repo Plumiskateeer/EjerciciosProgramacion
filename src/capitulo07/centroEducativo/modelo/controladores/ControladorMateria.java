@@ -36,7 +36,6 @@ public class ControladorMateria extends ControladorBBDD{
 	            }
 	
 	            s.close();
-	            conn.close();
             
             } catch (SQLException | ImposibleConectarException e) {
 				// TODO Auto-generated catch block
@@ -64,7 +63,6 @@ public class ControladorMateria extends ControladorBBDD{
             }
 
             s.close();
-            conn.close();
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);
         }
@@ -108,7 +106,6 @@ public class ControladorMateria extends ControladorBBDD{
                 m.setCursoid(rs.getInt("curso_id"));
             }
             s.close();
-            conn.close();
 
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);
@@ -132,7 +129,7 @@ public class ControladorMateria extends ControladorBBDD{
                     prepareStatement("INSERT INTO materia (id, nombre, acronimo, curso_id) VALUES  (?, ?, ?, ?)");
             int registrosInsertados;
 
-            ps.setInt(1, nextIdEnTabla(conn, "materia"));
+            ps.setInt(1, nextIdEnTabla("materia"));
             ps.setString(2, m.getNombre());
             ps.setString(3, m.getAcronimo());
             ps.setInt(4, m.getCursoid());
@@ -142,7 +139,6 @@ public class ControladorMateria extends ControladorBBDD{
                 throw new ErrorBBDDException("No ha sido posible la inserci�n del nuevo registro");
             }
             ps.close();
-            conn.close();
 
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);
@@ -177,7 +173,6 @@ public class ControladorMateria extends ControladorBBDD{
                 throw new ErrorBBDDException("No ha sido posible la modificaci�n del registro");
             }
             ps.close();
-            conn.close();
 
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);
@@ -208,7 +203,6 @@ public class ControladorMateria extends ControladorBBDD{
                 throw new ErrorBBDDException("No ha sido posible la eliminación del registro");
             }
             ps.close();
-            conn.close();
 
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);

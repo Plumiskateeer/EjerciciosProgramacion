@@ -1,6 +1,7 @@
 package capitulo07.centroEducativo.vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JOptionPane;
@@ -36,7 +37,7 @@ public class Profesores extends JPanel {
 		});
 	}
 	
-	public static Profesores getInstance() throws ErrorBBDDException, ClassNotFoundException {
+	public static Profesores getInstance() throws ErrorBBDDException {
 		if(instance == null) {
 			instance = new Profesores();
 		}
@@ -46,9 +47,8 @@ public class Profesores extends JPanel {
 	/**
 	 * Create the frame.
 	 * @throws ErrorBBDDException 
-	 * @throws ClassNotFoundException 
 	 */
-	public Profesores() throws ErrorBBDDException, ClassNotFoundException {
+	public Profesores() throws ErrorBBDDException {
 		botones = new Botones();
 		setBounds(100, 100, 457, 241);
 		
@@ -61,9 +61,6 @@ public class Profesores extends JPanel {
 				try {
 					guardar();
 				} catch (ErrorBBDDException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -87,9 +84,6 @@ public class Profesores extends JPanel {
 				} catch (ErrorBBDDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
 			}
 		});
@@ -102,9 +96,6 @@ public class Profesores extends JPanel {
 					setId(est.getId());
 					cargarRegistro(est);
 				} catch (ErrorBBDDException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -121,9 +112,6 @@ public class Profesores extends JPanel {
 				} catch (ErrorBBDDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
 			}
 		});
@@ -135,9 +123,6 @@ public class Profesores extends JPanel {
 					Profesor est = ControladorProfesor.findUltimo();
 					setId(est.getId());
 					cargarRegistro(est);
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				} catch (ErrorBBDDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -153,7 +138,7 @@ public class Profesores extends JPanel {
 	
 	private void eliminar() {
 		try {
-			ControladorProfesor.eliminar(new Profesor(getId(),null,null,null,null,null,null,null,1,null));
+			ControladorProfesor.eliminar(new Profesor(getId(),null,null,null,null,null,null,null,1,null,null));
             JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
 
         } catch (ErrorBBDDException e1) {
@@ -162,11 +147,11 @@ public class Profesores extends JPanel {
 		}
 	}
 	
-	private void guardar() throws ErrorBBDDException, ClassNotFoundException {
+	private void guardar() throws ErrorBBDDException{
 		Profesor es = new Profesor(getId(), botones.getPanelCampos().getNombreField().getText(), botones.getPanelCampos().getApellido1Field().getText(), 
 				botones.getPanelCampos().getApellido2Field().getText(), botones.getPanelCampos().getDniField().getText(), botones.getPanelCampos().getDireccionField().getText(),
 				botones.getPanelCampos().getEmailField().getText(), botones.getPanelCampos().getTelefonoField().getText(),botones.getPanelCampos().getIdSexoSeleccionadoEnJComboBox(),
-				botones.getPanelCampos().getImagenEnArrayDeBytes());
+				botones.getPanelCampos().getImagenEnArrayDeBytes(),botones.getPanelCampos().getColorField().getText());
 		try {
             if(getId()==0) {
                 ControladorProfesor.almacenarNuevo(es);
@@ -180,7 +165,7 @@ public class Profesores extends JPanel {
 		}
 	}
 
-	public void cargarRegistro (Profesor e) throws ErrorBBDDException, ClassNotFoundException {
+	public void cargarRegistro (Profesor e) throws ErrorBBDDException {
         if(e!=null) {
 			botones.getPanelCampos().setNombreField(e.getNombre());
 			botones.getPanelCampos().setApellido1Field(e.getApellido1());
@@ -192,7 +177,7 @@ public class Profesores extends JPanel {
 			botones.getPanelCampos().setTelefonoField(e.getTelefono());
 			botones.getPanelCampos().setImagenEnArrayDeBytes(e.getImagen());
 			botones.getPanelCampos().mostrarImagen();
-		}
+			botones.getPanelCampos().setColorPreferido(e.getColorpreferido());
         if (ControladorProfesor.findAnterior(e.getId()) == null) {
 				botones.getBtnPrimerElemento().setEnabled(false);
 				botones.getBtnAnterior().setEnabled(false);
@@ -206,6 +191,7 @@ public class Profesores extends JPanel {
 					(ControladorProfesor.findSiguiente(e.getId()) == null)? false : true;
 			botones.getBtnUltimoElemento().setEnabled(existeSiguiente);
 			botones.getBtnSiguiente().setEnabled(existeSiguiente);
+			}
     }
 
 

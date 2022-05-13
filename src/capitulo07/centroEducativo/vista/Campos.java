@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
@@ -31,6 +32,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
@@ -49,16 +52,18 @@ public class Campos extends JPanel {
 	private byte[] imagenEnArrayDeBytes;
 	private JButton btnCargarImagen;
 	private JScrollBar scrollBar;
-
+	private JButton btnNewButton;
+	private JTextField colorField;
+	private JLabel lblNewLabel;
 	/**
 	 * Create the panel.
 	 */
 	public Campos() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 116, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblNombre = new JLabel("Nombre");
@@ -188,14 +193,14 @@ public class Campos extends JPanel {
 		
 		JLabel lblTelefono = new JLabel("Telefono");
 		GridBagConstraints gbc_lblTelefono = new GridBagConstraints();
-		gbc_lblTelefono.insets = new Insets(0, 0, 0, 5);
+		gbc_lblTelefono.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTelefono.gridx = 0;
 		gbc_lblTelefono.gridy = 7;
 		add(lblTelefono, gbc_lblTelefono);
 		
 		telefonoField = new JTextField();
 		GridBagConstraints gbc_telefonoField = new GridBagConstraints();
-		gbc_telefonoField.insets = new Insets(0, 0, 0, 5);
+		gbc_telefonoField.insets = new Insets(0, 0, 5, 5);
 		gbc_telefonoField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_telefonoField.gridx = 1;
 		gbc_telefonoField.gridy = 7;
@@ -211,28 +216,44 @@ public class Campos extends JPanel {
 		});
 		btnCargarImagen.setIcon(new ImageIcon(Campos.class.getResource("/capitulo07/resources/ruedadentada.png")));
 		GridBagConstraints gbc_btnCargarImagen = new GridBagConstraints();
+		gbc_btnCargarImagen.insets = new Insets(0, 0, 5, 0);
 		gbc_btnCargarImagen.gridwidth = 5;
 		gbc_btnCargarImagen.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCargarImagen.gridx = 2;
 		gbc_btnCargarImagen.gridy = 7;
 		add(btnCargarImagen, gbc_btnCargarImagen);
+		
+		lblNewLabel = new JLabel("Color preferido");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 8;
+		add(lblNewLabel, gbc_lblNewLabel);
+		
+		colorField = new JTextField();
+		GridBagConstraints gbc_colorField = new GridBagConstraints();
+		gbc_colorField.insets = new Insets(0, 0, 0, 5);
+		gbc_colorField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_colorField.gridx = 1;
+		gbc_colorField.gridy = 8;
+		add(colorField, gbc_colorField);
+		colorField.setColumns(10);
+		
+		btnNewButton = new JButton("Elegir un color");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				elegirColor();
+			}
 
-	}
+			
+		});
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnNewButton.gridwidth = 5;
+		gbc_btnNewButton.gridx = 2;
+		gbc_btnNewButton.gridy = 8;
+		add(btnNewButton, gbc_btnNewButton);
 
-	public JScrollPane getScrollPane() {
-		return scrollPane;
-	}
-
-	public void setScrollPane(JScrollPane scrollPane) {
-		this.scrollPane = scrollPane;
-	}
-
-	public JComboBox getSexocomboBox() {
-		return sexocomboBox;
-	}
-
-	public void setSexocomboBox(JComboBox sexocomboBox) {
-		this.sexocomboBox = sexocomboBox;
 	}
 
 	public void cargarValoresSexoEnJComboBox () throws ErrorBBDDException {
@@ -301,7 +322,27 @@ public class Campos extends JPanel {
 			}
 		}
 	}
+	
+	/**
+	 * 	
+	 */
+	private void elegirColor() {
+		Color color = JColorChooser.showDialog(null, "Seleccione un Color", Color.gray);
+		// Si el usuario pulsa sobre aceptar, el color elegido no será nulo
+		if (color != null) {
+			String strColor = "#"+Integer.toHexString(color.getRGB()).substring(2);
+			this.colorField.setText(strColor);
+			this.setBackground(color);
+		}
 		
+	}
+	
+	public void setColorPreferido(String color) {
+		if(color != null && color.startsWith("#") && color.length() == 7) {
+			this.colorField.setText(color);
+			this.setBackground(Color.decode(color));
+		}
+	}
 	
 	/**
 	 * 
@@ -422,6 +463,29 @@ public class Campos extends JPanel {
 	public void setImagenEnArrayDeBytes(byte[] imagenEnArrayDeBytes) {
 		this.imagenEnArrayDeBytes = imagenEnArrayDeBytes;
 	}
+
+	public JTextField getColorField() {
+		return colorField;
+	}
+
+	public void setColorField(JTextField colorField) {
+		this.colorField = colorField;
+	}
 	
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
+
+	public JComboBox getSexocomboBox() {
+		return sexocomboBox;
+	}
+
+	public void setSexocomboBox(JComboBox sexocomboBox) {
+		this.sexocomboBox = sexocomboBox;
+	}
 	
 }

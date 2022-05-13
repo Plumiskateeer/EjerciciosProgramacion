@@ -1,29 +1,22 @@
 package capitulo07.centroEducativo.vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 
 import capitulo07.centroEducativo.ErrorBBDDException;
 import capitulo07.centroEducativo.modelo.Estudiante;
 import capitulo07.centroEducativo.modelo.controladores.ControladorEstudiante;
-import capitulo07.centroEducativo.modelo.controladores.ControladorMateria;
-import capitulo07.centroEducativo.modelo.controladores.ControladorProfesor;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Estudiantes extends JPanel {
-	private int id = 1, primerId, ultimoId;
-
-    private int accion = 0;
+	private int id = 1;
     private Botones botones;
 	private static Estudiantes instance = null;
 
@@ -153,7 +146,7 @@ public class Estudiantes extends JPanel {
 				getId(), botones.getPanelCampos().getNombreField().getText(), botones.getPanelCampos().getApellido1Field().getText(), 
 				botones.getPanelCampos().getApellido2Field().getText(), botones.getPanelCampos().getDniField().getText(), botones.getPanelCampos().getDireccionField().getText(),
 				botones.getPanelCampos().getEmailField().getText(), botones.getPanelCampos().getTelefonoField().getText(),botones.getPanelCampos().getIdSexoSeleccionadoEnJComboBox(),
-				botones.getPanelCampos().getImagenEnArrayDeBytes());
+				botones.getPanelCampos().getImagenEnArrayDeBytes(), botones.getPanelCampos().getColorField().getText());
 		try {
             if(getId()==0) {
                 ControladorEstudiante.almacenarNuevo(es);
@@ -172,14 +165,10 @@ public class Estudiantes extends JPanel {
 	
 	private void eliminar() {
 		try {
-			ControladorEstudiante.eliminar(new Estudiante(getId(),null,null,null,null,null,null,null,0,null));
+			ControladorEstudiante.eliminar(new Estudiante(getId(),null,null,null,null,null,null,null,0,null,null));
             JOptionPane.showMessageDialog(null,"Registro eliminado correctamente");
 
-            if (getId() <= getUltimoId() && getId() > getPrimerId()) {
-                botones.getBtnAnterior().doClick();
-                botones.getBtnSiguiente().setEnabled(false);
-                botones.getBtnUltimoElemento().setEnabled(false);
-            }else botones.getBtnSiguiente().doClick();
+            botones.getBtnAnterior().doClick();
         } catch (ErrorBBDDException e1) {
 			// TODO Auto-generated catch block
         	JOptionPane.showMessageDialog(null,"No se pudo eliminar el registro", "Error", JOptionPane.ERROR_MESSAGE);
@@ -199,6 +188,7 @@ public class Estudiantes extends JPanel {
 			botones.getPanelCampos().setTelefonoField(e.getTelefono());
 			botones.getPanelCampos().setImagenEnArrayDeBytes(e.getImagen());
 			botones.getPanelCampos().mostrarImagen();
+			botones.getPanelCampos().setColorPreferido(e.getColorpreferido());
 		}
      // Ahora habilitamos o deshabilitamos botones de navegación
      			// Si no existe un anterior deshabilito los botones de primero y anterior
@@ -224,18 +214,6 @@ public class Estudiantes extends JPanel {
     public void setId(int id) {
         this.id = id;
     }
-
-
-    public int getPrimerId() {
-        return primerId;
-    }
-
-    public void setPrimerId(int primerId) {
-        this.primerId = primerId;
-    }
-
-    public int getUltimoId() {
-        return ultimoId;
-    }
+	
 
 }

@@ -10,9 +10,8 @@ import java.util.List;
 
 import capitulo07.centroEducativo.ConnectionManagerV2;
 import capitulo07.centroEducativo.ErrorBBDDException;
-import capitulo07.centroEducativo.ImposibleConectarException;
-import capitulo07.centroEducativo.modelo.Estudiante;
 import capitulo07.centroEducativo.modelo.Profesor;
+import capitulo07.centroEducativo.ImposibleConectarException;
 
 public class ControladorProfesor extends ControladorBBDD{
 	
@@ -72,11 +71,11 @@ public class ControladorProfesor extends ControladorBBDD{
 	                p.setTelefono(rs.getString("telefono"));
 	                p.setSexo(rs.getInt("tipologiaSexo_id"));
 	                p.setImagen(rs.getBytes("imagen"));
+	                p.setColorpreferido(rs.getString("colorpreferido"));
 	                profesores.add(p);
 	            }
 	
 	            s.close();
-	            conn.close();
             
             } catch (SQLException | ImposibleConectarException e) {
 				// TODO Auto-generated catch block
@@ -107,10 +106,10 @@ public class ControladorProfesor extends ControladorBBDD{
                 p.setTelefono(rs.getString("telefono"));
                 p.setSexo(rs.getInt("tipologiaSexo_id"));
                 p.setImagen(rs.getBytes("imagen"));
+                p.setColorpreferido(rs.getString("colorpreferido"));
             }
 
             s.close();
-            conn.close();
         } catch (SQLException | ImposibleConectarException e1) {
             throw new ErrorBBDDException(e1);
         }
@@ -121,8 +120,9 @@ public class ControladorProfesor extends ControladorBBDD{
     /**
      * @param
      * @throws ErrorBBDDException
+     * @throws ImposibleConectarException 
      */
-    public static void almacenar(Profesor profesor) throws ErrorBBDDException {
+    public static void almacenar(Profesor profesor) throws ErrorBBDDException, ImposibleConectarException {
         if (get(profesor.getId()) != null) { // Solo modificar
             almacenarModificado(profesor);
         } else { // Crear nuevo objeto en la BBDD
@@ -158,9 +158,9 @@ public class ControladorProfesor extends ControladorBBDD{
                 p.setTelefono(rs.getString("telefono"));
                 p.setSexo(rs.getInt("tipologiaSexo_id"));
                 p.setImagen(rs.getBytes("imagen"));
+                p.setColorpreferido(rs.getString("colorpreferido"));
             }
             s.close();
-            conn.close();
         } catch (SQLException | ImposibleConectarException e1) {
             throw new ErrorBBDDException(e1);
         }
@@ -171,19 +171,21 @@ public class ControladorProfesor extends ControladorBBDD{
     /**
      * @param
      * @throws ErrorBBDDException
+     * @throws ImposibleConectarException 
+     * @throws capitulo07.gestionVentaCoches.modelo.controladores.ImposibleConectarException 
+     * @throws capitulo07.gestionVentaCoches.modelo.controladores.ImposibleConectarException 
      */
     public static void almacenarNuevo(Profesor e) throws ErrorBBDDException {
-
         Connection conn = null;
 
         try {
             conn = ConnectionManagerV2.getConexion();
 
             PreparedStatement ps = (PreparedStatement) conn.
-            		prepareStatement("INSERT INTO profesor (id, nombre, apellido1, apellido2, dni, direccion, email, telefono, tipologiaSexo_id, imagen) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            		prepareStatement("INSERT INTO profesor (id, nombre, apellido1, apellido2, dni, direccion, email, telefono, tipologiaSexo_id, imagen,colorpreferido) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
             int registrosInsertados;
 
-            ps.setInt(1, nextIdEnTabla(conn, "profesor"));
+            ps.setInt(1, nextIdEnTabla("profesor"));
             ps.setString(2, e.getNombre());
             ps.setString(3, e.getApellido1());
             ps.setString(4, e.getApellido2());
@@ -193,6 +195,7 @@ public class ControladorProfesor extends ControladorBBDD{
             ps.setString(8, e.getTelefono());
             ps.setInt(9, e.getSexo());
             ps.setBytes(10, e.getImagen());
+            ps.setString(11, e.getColorpreferido());
 
 
             registrosInsertados = ps.executeUpdate();
@@ -200,7 +203,6 @@ public class ControladorProfesor extends ControladorBBDD{
                 throw new ErrorBBDDException("No ha sido posible la inserci�n del nuevo registro");
             }
             ps.close();
-            conn.close();
 
         } catch (SQLException | ImposibleConectarException e1) {
             throw new ErrorBBDDException(e1);
@@ -222,7 +224,7 @@ public class ControladorProfesor extends ControladorBBDD{
 
             PreparedStatement ps = (PreparedStatement) conn.
             		prepareStatement(
-                            "update profesor set nombre = ?, apellido1 = ?, apellido2 = ?, dni = ?, direccion = ?, email = ?, telefono = ?, tipologiaSexo_id = ?, imagen = ? where id = ?");
+                            "update profesor set nombre = ?, apellido1 = ?, apellido2 = ?, dni = ?, direccion = ?, email = ?, telefono = ?, tipologiaSexo_id = ?, imagen = ?, colorpreferido = ? where id = ?");
             int registrosInsertados;
 
             ps.setString(1, p.getNombre());
@@ -234,14 +236,14 @@ public class ControladorProfesor extends ControladorBBDD{
             ps.setString(7, p.getTelefono());
             ps.setInt(8, p.getSexo());
             ps.setBytes(9, p.getImagen());
-            ps.setInt(10, p.getId());
+            ps.setString(10, p.getColorpreferido());
+            ps.setInt(11, p.getId());
 
             registrosInsertados = ps.executeUpdate();
             if (registrosInsertados != 1) {
                 throw new ErrorBBDDException("No ha sido posible la modificaci�n del registro");
             }
             ps.close();
-            conn.close();
 
         } catch (SQLException | ImposibleConectarException e1) {
             throw new ErrorBBDDException(e1);
@@ -272,7 +274,6 @@ public class ControladorProfesor extends ControladorBBDD{
                 throw new ErrorBBDDException("No ha sido posible la eliminación del registro");
             }
             ps.close();
-            conn.close();
 
         } catch (SQLException | ImposibleConectarException e) {
             throw new ErrorBBDDException(e);
