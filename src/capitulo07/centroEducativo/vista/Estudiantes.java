@@ -191,20 +191,20 @@ public class Estudiantes extends JPanel {
 			botones.getPanelCampos().setColorPreferido(e.getColorpreferido());
 		}
      // Ahora habilitamos o deshabilitamos botones de navegación
-     			// Si no existe un anterior deshabilito los botones de primero y anterior
-     			if (ControladorEstudiante.findAnterior(e.getId()) == null) {
-     				botones.getBtnPrimerElemento().setEnabled(false);
-     				botones.getBtnAnterior().setEnabled(false);
-     			}
-     			else {
-     				botones.getBtnPrimerElemento().setEnabled(true);
-     				botones.getBtnAnterior().setEnabled(true);
-     			}
-     			// Si no existe un siguiente deshabilito los botones de último y siguiente
-     			boolean existeSiguiente = 
-     					(ControladorEstudiante.findSiguiente(e.getId()) == null)? false : true;
-     			botones.getBtnUltimoElemento().setEnabled(existeSiguiente);
-     			botones.getBtnSiguiente().setEnabled(existeSiguiente);
+		// Si no existe un anterior deshabilito los botones de primero y anterior
+		if (ControladorEstudiante.findAnterior(e.getId()) == null) {
+			botones.getBtnPrimerElemento().setEnabled(false);
+			botones.getBtnAnterior().setEnabled(false);
+		}
+		else {
+			botones.getBtnPrimerElemento().setEnabled(true);
+			botones.getBtnAnterior().setEnabled(true);
+		}
+		// Si no existe un siguiente deshabilito los botones de último y siguiente
+		boolean existeSiguiente = 
+				(ControladorEstudiante.findSiguiente(e.getId()) == null)? false : true;
+		botones.getBtnUltimoElemento().setEnabled(existeSiguiente);
+		botones.getBtnSiguiente().setEnabled(existeSiguiente);
     }
 
     public int getId() {
